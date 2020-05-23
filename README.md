@@ -7,6 +7,8 @@ Jetpack Compose Kotlin MPP Weather app
 - Jetpack Compose (for Android app UI)
 - MVI-like app architecture
 
+![](https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/sample.gif?token=AANVRTFUAVZIHQUHIYUKTRC6ZFJQQ)
+
 ## Kotlin MPP Features
 
 - Ktor
