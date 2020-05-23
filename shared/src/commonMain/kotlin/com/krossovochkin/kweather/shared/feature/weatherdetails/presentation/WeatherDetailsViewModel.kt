@@ -1,6 +1,8 @@
 package com.krossovochkin.kweather.shared.feature.weatherdetails.presentation
 
 import com.krossovochkin.kweather.shared.common.image.ImageLoader
+import com.krossovochkin.kweather.shared.common.localization.LocalizationManager
+import com.krossovochkin.kweather.shared.common.localization.LocalizedStringKey
 import com.krossovochkin.kweather.shared.common.presentation.BaseViewModel
 import com.krossovochkin.kweather.shared.common.presentation.ViewModel
 import com.krossovochkin.kweather.shared.common.router.Router
@@ -23,7 +25,8 @@ class WeatherDetailsViewModelImpl(
     private val getWeatherDetailsInteractor: GetWeatherDetailsInteractor,
     private val getCurrentCityInteractor: GetCurrentCityInteractor,
     private val router: Router,
-    private val imageLoader: ImageLoader
+    private val imageLoader: ImageLoader,
+    private val localizationManager: LocalizationManager
 ) : BaseViewModel<WeatherDetailsState, WeatherDetailsAction, WeatherDetailsActionResult>(
     WeatherDetailsState.Loading
 ), WeatherDetailsViewModel {
@@ -43,11 +46,17 @@ class WeatherDetailsViewModelImpl(
                         WeatherDetailsState.Data(
                             cityNameText = result.weatherDetails.city.name,
                             temperatureText = "${result.weatherDetails.temperature}$CELSIUS_DEGREES",
-                            weatherConditionsImage = result.weatherConditionsImage
+                            weatherConditionsImage = result.weatherConditionsImage,
+                            changeCityButtonText = localizationManager.getString(LocalizedStringKey.WeatherDetails_ChangeCity)
                         )
                     }
                     WeatherDetailsActionResult.LoadErrorCityMissing -> {
-                        WeatherDetailsState.CityUnknownError
+                        WeatherDetailsState.CityUnknownError(
+                            cityMissingMessageText = localizationManager.getString(
+                                LocalizedStringKey.WeatherDetails_CityMissingMessage
+                            ),
+                            selectCityButtonText = localizationManager.getString(LocalizedStringKey.WeatherDetails_SelectCity)
+                        )
                     }
                     is WeatherDetailsActionResult.LoadErrorUnknown -> {
                         WeatherDetailsState.UnknownError(result.e)
@@ -56,7 +65,7 @@ class WeatherDetailsViewModelImpl(
             }
             is WeatherDetailsState.Data -> reducerError(state, result)
             is WeatherDetailsState.UnknownError -> reducerError(state, result)
-            WeatherDetailsState.CityUnknownError -> reducerError(state, result)
+            is WeatherDetailsState.CityUnknownError -> reducerError(state, result)
         }
     }
 

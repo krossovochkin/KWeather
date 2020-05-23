@@ -8,7 +8,8 @@ sealed class CityListState {
 
     data class Data(
         val cityList: List<City>,
-        val queryText: String
+        val queryText: String,
+        val cityNameHintText: String
     ) : CityListState()
 
     data class Error(

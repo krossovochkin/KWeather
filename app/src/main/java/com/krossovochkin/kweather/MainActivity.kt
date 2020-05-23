@@ -10,14 +10,12 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.ui.core.Modifier
 import androidx.ui.core.setContent
 import androidx.ui.foundation.*
+import androidx.ui.graphics.Color
 import androidx.ui.graphics.asImageAsset
 import androidx.ui.layout.Column
 import androidx.ui.layout.fillMaxSize
 import androidx.ui.layout.padding
-import androidx.ui.material.Button
-import androidx.ui.material.CircularProgressIndicator
-import androidx.ui.material.FilledTextField
-import androidx.ui.material.MaterialTheme
+import androidx.ui.material.*
 import androidx.ui.unit.Dp
 import com.krossovochkin.kweather.feature.citylist.CityListScreen
 import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
@@ -42,7 +40,11 @@ class MainActivity : AppCompatActivity() {
         val appModule = (application as App).appModule
 
         setContent {
-            MaterialTheme {
+            MaterialTheme(
+                colors = lightColorPalette(
+                    background = Color(0xFFADD8E6)
+                )
+            ) {
                 val screen = appModule.router
                     .observeCurrentDestination
                     .collectAsState(initial = appModule.router.currentDestination)

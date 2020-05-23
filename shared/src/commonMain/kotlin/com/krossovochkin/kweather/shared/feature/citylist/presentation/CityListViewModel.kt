@@ -1,5 +1,7 @@
 package com.krossovochkin.kweather.shared.feature.citylist.presentation
 
+import com.krossovochkin.kweather.shared.common.localization.LocalizationManager
+import com.krossovochkin.kweather.shared.common.localization.LocalizedStringKey
 import com.krossovochkin.kweather.shared.common.presentation.BaseViewModel
 import com.krossovochkin.kweather.shared.common.presentation.ViewModel
 import com.krossovochkin.kweather.shared.common.router.Router
@@ -19,7 +21,8 @@ interface CityListViewModel : ViewModel<CityListState, CityListAction>
 class CityListViewModelImpl(
     private val getCityListInteractor: GetCityListInteractor,
     private val selectCityInteractor: SelectCityInteractor,
-    private val router: Router
+    private val router: Router,
+    private val localizationManager: LocalizationManager
 ) : BaseViewModel<CityListState, CityListAction, CityListActionResult>(CityListState.Loading),
     CityListViewModel {
 
@@ -45,7 +48,8 @@ class CityListViewModelImpl(
             when (result) {
                 is CityListActionResult.Loaded -> CityListState.Data(
                     queryText = "",
-                    cityList = result.cityList
+                    cityList = result.cityList,
+                    cityNameHintText = localizationManager.getString(LocalizedStringKey.CityList_CityNameHint)
                 )
                 is CityListActionResult.CityNameQueryChanged -> reducerError(
                     state,

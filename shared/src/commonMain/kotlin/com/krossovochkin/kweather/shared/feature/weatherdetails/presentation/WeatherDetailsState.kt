@@ -9,13 +9,17 @@ sealed class WeatherDetailsState {
     data class Data(
         val cityNameText: String,
         val temperatureText: String,
-        val weatherConditionsImage: Image
+        val weatherConditionsImage: Image,
+        val changeCityButtonText: String
     ) : WeatherDetailsState()
 
     data class UnknownError(
         val error: Exception
     ) : WeatherDetailsState()
 
-    object CityUnknownError : WeatherDetailsState()
+    data class CityUnknownError(
+        val cityMissingMessageText: String,
+        val selectCityButtonText: String
+    ) : WeatherDetailsState()
 }
 

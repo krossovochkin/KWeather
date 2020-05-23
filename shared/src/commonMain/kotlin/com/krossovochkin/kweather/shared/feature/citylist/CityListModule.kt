@@ -1,5 +1,6 @@
 package com.krossovochkin.kweather.shared.feature.citylist
 
+import com.krossovochkin.kweather.shared.common.localization.LocalizationManager
 import com.krossovochkin.kweather.shared.common.router.Router
 import com.krossovochkin.kweather.shared.common.storage.CurrentCityStorage
 import com.krossovochkin.kweather.shared.common.storage.CurrentCityStorageImpl
@@ -13,14 +14,16 @@ import kotlinx.coroutines.CoroutineScope
 
 class CityListModule(
     private val router: Router,
-    private val storageModule: StorageModule
+    private val storageModule: StorageModule,
+    private val localizationManager: LocalizationManager
 ) {
 
     val viewModel: CityListViewModel
         get() = CityListViewModelImpl(
             router = router,
             getCityListInteractor = getCityListInteractor,
-            selectCityInteractor = selectCityInteractor
+            selectCityInteractor = selectCityInteractor,
+            localizationManager = localizationManager
         )
 
     private val getCityListInteractor: GetCityListInteractor

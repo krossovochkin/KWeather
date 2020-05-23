@@ -1,6 +1,7 @@
 package com.krossovochkin.kweather.shared.feature.weatherdetails
 
 import com.krossovochkin.kweather.shared.common.image.ImageLoader
+import com.krossovochkin.kweather.shared.common.localization.LocalizationManager
 import com.krossovochkin.kweather.shared.common.router.Router
 import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.GetCurrentCityInteractor
 import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.GetCurrentCityInteractorImpl
@@ -25,7 +26,8 @@ import kotlinx.serialization.json.Json
 class WeatherDetailsModule(
     private val storageModule: StorageModule,
     private val router: Router,
-    private val imageLoader: ImageLoader
+    private val imageLoader: ImageLoader,
+    private val localizationManager: LocalizationManager
 ) {
 
     val viewModel: WeatherDetailsViewModel
@@ -33,7 +35,8 @@ class WeatherDetailsModule(
             router = router,
             getWeatherDetailsInteractor = getWeatherDetailsInteractor,
             getCurrentCityInteractor = getCurrentCityInteractor,
-            imageLoader = imageLoader
+            imageLoader = imageLoader,
+            localizationManager = localizationManager
         )
 
 
