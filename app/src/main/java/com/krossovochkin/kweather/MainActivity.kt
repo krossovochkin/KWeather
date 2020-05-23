@@ -19,6 +19,8 @@ import androidx.ui.material.CircularProgressIndicator
 import androidx.ui.material.FilledTextField
 import androidx.ui.material.MaterialTheme
 import androidx.ui.unit.Dp
+import com.krossovochkin.kweather.feature.citylist.CityListScreen
+import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
 import com.krossovochkin.kweather.shared.common.image.ImageLoader
 import com.krossovochkin.kweather.shared.common.router.Router
 import com.krossovochkin.kweather.shared.common.router.RouterDestination
@@ -37,132 +39,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val router: Router = RouterImpl()
-        val storageModule = StorageModule(this.applicationContext)
+        val appModule = (application as App).appModule
 
         setContent {
             MaterialTheme {
-                val screen = router
+                val screen = appModule.router
                     .observeCurrentDestination
-                    .collectAsState(initial = router.currentDestination)
+                    .collectAsState(initial = appModule.router.currentDestination)
                     .value
 
                 when (screen) {
-                    RouterDestination.WeatherDetails -> {
-                        val weatherDetailsViewModel = state {
-                            WeatherDetailsModule(
-                                router = router,
-                                storageModule = storageModule,
-                                imageLoader = ImageLoader
-                            ).viewModel
-                        }.value
-                        val weatherDetailsState = weatherDetailsViewModel
-                            .observeState()
-                            .collectAsState()
-                            .value
-                        WeatherDetailsScreenImpl(
-                            weatherDetailsState,
-                            weatherDetailsViewModel::performAction,
-                            weatherDetailsViewModel::dispose
-                        )
-                    }
-                    RouterDestination.CityList -> {
-                        val cityListViewModel: CityListViewModel = state {
-                            CityListModule(
-                                router = router,
-                                storageModule = storageModule
-                            ).viewModel
-                        }.value
-                        val cityListState = cityListViewModel
-                            .observeState()
-                            .collectAsState()
-                            .value
-                        CityListScreenImpl(
-                            cityListState,
-                            cityListViewModel::performAction,
-                            cityListViewModel::dispose
-                        )
-                    }
+                    RouterDestination.WeatherDetails -> WeatherDetailsScreen(appModule = appModule)
+                    RouterDestination.CityList -> CityListScreen(appModule = appModule)
                 }
             }
         }
     }
 }
 
-@Composable
-fun CityListScreenImpl(
-    cityListState: CityListState?,
-    onAction: (CityListAction) -> Unit,
-    onDispose: () -> Unit
-) {
-    onDispose(callback = { onDispose() })
-    return when (cityListState) {
-        is CityListState.Loading -> {
-            Text(text = "Loading")
-        }
-        is CityListState.Data -> {
-            Column(
-                modifier = Modifier.padding(Dp(16f))
-            ) {
-                FilledTextField(
-                    value = cityListState.queryText,
-                    label = { Text("City name") },
-                    onValueChange = {
-                        onAction(CityListAction.ChangeCityNameQuery(it))
-                    }
-                )
-                AdapterList(data = cityListState.cityList) { city ->
-                    Clickable(onClick = { onAction(CityListAction.SelectCity(city)) }) {
-                        Text(text = city.name)
-                    }
-                }
-            }
-        }
-        is CityListState.Error -> {
-            Text(text = "Error: ${cityListState.error}")
-        }
-        else -> {
-        }
-    }
-}
 
-@Composable
-fun WeatherDetailsScreenImpl(
-    weatherDetailsState: WeatherDetailsState?,
-    onAction: (WeatherDetailsAction) -> Unit,
-    onDispose: () -> Unit
-) {
-    onDispose(callback = { onDispose() })
-    return when (weatherDetailsState) {
-        is WeatherDetailsState.Loading -> {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                gravity = ContentGravity.Center
-            ) {
-                CircularProgressIndicator()
-            }
-        }
-        is WeatherDetailsState.UnknownError -> {
-            Text(text = "Error: ${weatherDetailsState.error}")
-        }
-        is WeatherDetailsState.Data -> {
-            Column(Modifier.padding(Dp(16f))) {
-                Text(text = weatherDetailsState.cityNameText)
-                Text(text = weatherDetailsState.temperatureText)
-                weatherDetailsState.weatherConditionsImage.drawable?.toBitmap()?.asImageAsset()
-                    ?.let { Image(asset = it) }
-                Button(onClick = { onAction(WeatherDetailsAction.OpenSelectCityScreen) }) {
-                    Text(text = "Change city") // TODO: res
-                }
-            }
 
-        }
-        is WeatherDetailsState.CityUnknownError -> {
-            Clickable(onClick = { onAction(WeatherDetailsAction.OpenSelectCityScreen) }) {
-                Text(text = "City is missing, add it first")
-            }
-        }
-        else -> {
-        }
-    }
-}
