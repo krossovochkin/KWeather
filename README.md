@@ -7,8 +7,6 @@ Jetpack Compose Kotlin MPP Weather app
 - Jetpack Compose (for Android app UI)
 - MVI-like app architecture
 
-![](https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/sample.gif?token=AANVRTFUAVZIHQUHIYUKTRC6ZFJQQ)
-
 ## Kotlin MPP Features
 
 - Ktor
@@ -30,4 +28,6 @@ Jetpack Compose Kotlin MPP Weather app
 ## App Features
 
 - Weather details (temperature and weather conditions) for given city
+<img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details.png?raw=true" width="200"/>
 - City selection by name (with text input debounce)
+<img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list.png?raw=true" width="200"/>
