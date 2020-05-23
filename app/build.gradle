@@ -19,7 +19,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "API_KEY", findProperty("kweather_api_key"))
+        }
         release {
+            buildConfigField("String", "API_KEY", findProperty("kweather_api_key"))
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

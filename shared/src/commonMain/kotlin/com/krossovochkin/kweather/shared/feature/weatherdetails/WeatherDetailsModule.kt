@@ -27,7 +27,8 @@ class WeatherDetailsModule(
     private val storageModule: StorageModule,
     private val router: Router,
     private val imageLoader: ImageLoader,
-    private val localizationManager: LocalizationManager
+    private val localizationManager: LocalizationManager,
+    private val apiKey: String
 ) {
 
     val viewModel: WeatherDetailsViewModel
@@ -82,6 +83,4 @@ class WeatherDetailsModule(
 
     private val cityListMapper: CityListMapper
         get() = CityListMapperImpl()
-
-    private val apiKey: String = "2c46923013b1da60e1985cecb0772b6d"
 }

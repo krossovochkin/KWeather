@@ -19,4 +19,6 @@ class AppModule(
     val imageLoader: ImageLoader = ImageLoader
 
     val localizationManager: LocalizationManager = LocalizationManagerImpl(applicationContext)
+
+    val apiKey: String = BuildConfig.API_KEY
 }

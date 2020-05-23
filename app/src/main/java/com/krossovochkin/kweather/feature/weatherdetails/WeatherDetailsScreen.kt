@@ -31,7 +31,8 @@ fun WeatherDetailsScreen(
             router = appModule.router,
             storageModule = appModule.storageModule,
             imageLoader = appModule.imageLoader,
-            localizationManager = appModule.localizationManager
+            localizationManager = appModule.localizationManager,
+            apiKey = appModule.apiKey
         ).viewModel
     }.value
     val weatherDetailsState = weatherDetailsViewModel
