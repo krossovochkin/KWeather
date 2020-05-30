@@ -102,9 +102,11 @@ private fun DataState(
             horizontalArrangement = Arrangement.Center,
             verticalGravity = Alignment.CenterVertically
         ) {
-            state.weatherConditionsImage.drawable?.toBitmap()
+            val imageAsset = state.weatherConditionsImage.drawable?.toBitmap()
                 ?.asImageAsset()
-                ?.let { Image(asset = it) }
+            if (imageAsset != null) {
+                Image(asset = imageAsset)
+            }
             Text(
                 modifier = Modifier.wrapContentWidth(align = Alignment.Start),
                 text = state.temperatureText,

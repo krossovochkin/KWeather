@@ -43,6 +43,17 @@ android {
         kotlinCompilerVersion v.kotlin_compiler
         kotlinCompilerExtensionVersion v.androidx_compose
     }
+
+    packagingOptions {
+        exclude "META-INF/ktor-client-serialization.kotlin_module"
+        exclude "META-INF/ktor-client-json.kotlin_module"
+        exclude "META-INF/ktor-client-core.kotlin_module"
+        exclude "META-INF/ktor-io.kotlin_module"
+        exclude "META-INF/ktor-http.kotlin_module"
+        exclude "META-INF/ktor-http-cio.kotlin_module"
+        exclude "META-INF/ktor-utils.kotlin_module"
+        exclude "META-INF/kotlinx-serialization-runtime.kotlin_module"
+    }
 }
 
 dependencies {
