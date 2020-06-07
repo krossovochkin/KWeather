@@ -1,52 +1,46 @@
 package com.krossovochkin.kweather.shared.feature.citylist
 
-import com.krossovochkin.kweather.shared.common.localization.LocalizationManager
-import com.krossovochkin.kweather.shared.common.router.Router
 import com.krossovochkin.kweather.shared.common.storage.CurrentCityStorage
 import com.krossovochkin.kweather.shared.common.storage.CurrentCityStorageImpl
-import com.krossovochkin.kweather.shared.common.storage.MutableCurrentCityStorage
-import com.krossovochkin.kweather.shared.common.storage.StorageModule
-import com.krossovochkin.kweather.shared.feature.citylist.data.*
+import com.krossovochkin.kweather.shared.common.storage.citylist.DbCityListDatasource
+import com.krossovochkin.kweather.shared.feature.citylist.data.CityListMapper
+import com.krossovochkin.kweather.shared.feature.citylist.data.CityListMapperImpl
+import com.krossovochkin.kweather.shared.feature.citylist.data.CityListRepositoryImpl
 import com.krossovochkin.kweather.shared.feature.citylist.domain.*
 import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListViewModel
 import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListViewModelImpl
-import kotlinx.coroutines.CoroutineScope
+import org.kodein.di.DI
+import org.kodein.di.bind
+import org.kodein.di.instance
+import org.kodein.di.singleton
 
-class CityListModule(
-    private val router: Router,
-    private val storageModule: StorageModule,
-    private val localizationManager: LocalizationManager
-) {
+val cityListModule = DI.Module("CityListModule") {
 
-    val viewModel: CityListViewModel
-        get() = CityListViewModelImpl(
-            router = router,
-            getCityListInteractor = getCityListInteractor,
-            selectCityInteractor = selectCityInteractor,
-            localizationManager = localizationManager
+    bind<CityListViewModel>() with singleton {
+        CityListViewModelImpl(
+            router = instance(),
+            getCityListInteractor = instance(),
+            selectCityInteractor = instance(),
+            localizationManager = instance()
         )
+    }
 
-    private val getCityListInteractor: GetCityListInteractor
-        get() = GetCityListInteractorImpl(
-            cityListRepository = cityListRepository
+    bind<GetCityListInteractor>() with singleton {
+        GetCityListInteractorImpl(
+            cityListRepository = instance()
         )
+    }
 
-    private val selectCityInteractor: SelectCityInteractor
-        get() = SelectCityInteractorImpl(
-            currentCityStorage = currentCityStorage
+    bind<SelectCityInteractor>() with singleton {
+        SelectCityInteractorImpl(
+            currentCityStorage = instance()
         )
+    }
 
-    private val currentCityStorage: MutableCurrentCityStorage
-        get() = CurrentCityStorageImpl(
-            storage = storageModule.storage,
-            cityListMapper = cityListMapper
+    bind<CityListRepository>() with singleton {
+        CityListRepositoryImpl(
+            cityListDatasource = instance(tag = DbCityListDatasource::class),
+            cityListMapper = instance()
         )
-
-    private val cityListRepository: CityListRepository
-        get() = CityListRepositoryImpl(
-            cityListDatasource = storageModule.dbCityListDatasource,
-            cityListMapper = cityListMapper
-        )
-
-    private val cityListMapper: CityListMapper by lazy { CityListMapperImpl() }
+    }
 }

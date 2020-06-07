@@ -17,23 +17,24 @@ import androidx.ui.material.CircularProgressIndicator
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.Surface
 import androidx.ui.unit.Dp
-import com.krossovochkin.kweather.AppModule
-import com.krossovochkin.kweather.shared.feature.weatherdetails.WeatherDetailsModule
 import com.krossovochkin.kweather.shared.feature.weatherdetails.presentation.WeatherDetailsAction
 import com.krossovochkin.kweather.shared.feature.weatherdetails.presentation.WeatherDetailsState
+import com.krossovochkin.kweather.shared.feature.weatherdetails.presentation.WeatherDetailsViewModel
+import com.krossovochkin.kweather.shared.feature.weatherdetails.weatherDetailsModule
+import org.kodein.di.DI
+import org.kodein.di.instance
 
 @Composable
 fun WeatherDetailsScreen(
-    appModule: AppModule
+    parentDi: DI
 ) {
     val weatherDetailsViewModel = state {
-        WeatherDetailsModule(
-            router = appModule.router,
-            storageModule = appModule.storageModule,
-            imageLoader = appModule.imageLoader,
-            localizationManager = appModule.localizationManager,
-            apiKey = appModule.apiKey
-        ).viewModel
+        val di = DI {
+            extend(parentDi)
+            import(weatherDetailsModule)
+        }
+        val viewModel by di.instance<WeatherDetailsViewModel>()
+        viewModel
     }.value
     val weatherDetailsState = weatherDetailsViewModel
         .observeState()

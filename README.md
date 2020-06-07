@@ -13,7 +13,7 @@ Jetpack Compose Kotlin MPP Weather app
 - Coroutines/Flow
 - Kotlin serialization
 - SqlDelight
-- **TBD** Kodein
+- Kodein
 - Localization
 - Image Loading (Coil)
 - Basic navigation

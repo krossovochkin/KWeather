@@ -11,22 +11,24 @@ import androidx.ui.layout.fillMaxWidth
 import androidx.ui.layout.padding
 import androidx.ui.material.*
 import androidx.ui.unit.Dp
-import com.krossovochkin.kweather.AppModule
-import com.krossovochkin.kweather.shared.feature.citylist.CityListModule
+import com.krossovochkin.kweather.shared.feature.citylist.cityListModule
 import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListAction
 import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListState
 import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListViewModel
+import org.kodein.di.DI
+import org.kodein.di.instance
 
 @Composable
 fun CityListScreen(
-    appModule: AppModule
+    parentDi: DI
 ) {
     val cityListViewModel: CityListViewModel = state {
-        CityListModule(
-            router = appModule.router,
-            storageModule = appModule.storageModule,
-            localizationManager = appModule.localizationManager
-        ).viewModel
+        val di = DI {
+            extend(parentDi)
+            import(cityListModule)
+        }
+        val viewModel by di.instance<CityListViewModel>()
+        viewModel
     }.value
     val cityListState = cityListViewModel
         .observeState()

@@ -47,6 +47,7 @@ dependencies {
     commonMainImplementation d.sqldelight_common
     commonMainImplementation d.sqldelight_runtime
     commonMainImplementation d.sqldelight_coroutines_extensions_common
+    commonMainImplementation d.kodein
 
     androidMainImplementation d.kotlin_stdlib
     androidMainImplementation d.ktor_client_android

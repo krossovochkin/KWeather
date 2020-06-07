@@ -10,21 +10,24 @@ import androidx.ui.layout.fillMaxSize
 import androidx.ui.material.CircularProgressIndicator
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.Surface
-import com.krossovochkin.kweather.AppModule
-import com.krossovochkin.kweather.shared.feature.setup.SetupModule
 import com.krossovochkin.kweather.shared.feature.setup.presentation.SetupAction
 import com.krossovochkin.kweather.shared.feature.setup.presentation.SetupState
+import com.krossovochkin.kweather.shared.feature.setup.presentation.SetupViewModel
+import com.krossovochkin.kweather.shared.feature.setup.setupModule
+import org.kodein.di.DI
+import org.kodein.di.instance
 
 @Composable
 fun SetupScreen(
-    appModule: AppModule
+    parentDi: DI
 ) {
     val setupViewModel = state {
-        SetupModule(
-            router = appModule.router,
-            localizationManager = appModule.localizationManager,
-            storageModule = appModule.storageModule
-        ).viewModel
+        val di = DI {
+            extend(parentDi)
+            import(setupModule)
+        }
+        val viewModel by di.instance<SetupViewModel>()
+        viewModel
     }.value
     val setupState = setupViewModel
         .observeState()

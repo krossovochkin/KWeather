@@ -6,19 +6,19 @@ import com.krossovochkin.kweather.shared.common.localization.LocalizationManager
 import com.krossovochkin.kweather.shared.common.localization.LocalizationManagerImpl
 import com.krossovochkin.kweather.shared.common.router.Router
 import com.krossovochkin.kweather.shared.common.router.RouterImpl
-import com.krossovochkin.kweather.shared.common.storage.StorageModule
+import com.krossovochkin.kweather.shared.feature.weatherdetails.DI_TAG_API_KEY
+import org.kodein.di.DI
+import org.kodein.di.bind
+import org.kodein.di.instance
+import org.kodein.di.singleton
 
-class AppModule(
-    applicationContext: Context
-) {
+fun appModule(applicationContext: Context) = DI.Module("AppModule") {
 
-    val router: Router = RouterImpl()
-
-    val storageModule: StorageModule = StorageModule(applicationContext)
-
-    val imageLoader: ImageLoader = ImageLoader
-
-    val localizationManager: LocalizationManager = LocalizationManagerImpl(applicationContext)
-
-    val apiKey: String = BuildConfig.API_KEY
+    bind<Context>() with singleton { applicationContext }
+    bind<Router>() with singleton { RouterImpl() }
+    bind<ImageLoader>() with singleton { ImageLoader }
+    bind<LocalizationManager>() with singleton {
+        LocalizationManagerImpl(instance())
+    }
+    bind<String>(tag = DI_TAG_API_KEY) with singleton { BuildConfig.API_KEY }
 }

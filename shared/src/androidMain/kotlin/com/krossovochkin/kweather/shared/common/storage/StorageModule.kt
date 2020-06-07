@@ -1,27 +1,42 @@
 package com.krossovochkin.kweather.shared.common.storage
 
-import android.content.Context
 import com.krossovochkin.kweather.AppDatabase
+import com.krossovochkin.kweather.shared.common.storage.citylist.CityListDatasource
 import com.krossovochkin.kweather.shared.common.storage.citylist.DbCityListDatasource
 import com.krossovochkin.kweather.shared.common.storage.citylist.FileCityListDatasource
+import com.krossovochkin.kweather.shared.feature.citylist.data.CityListMapper
+import com.krossovochkin.kweather.shared.feature.citylist.data.CityListMapperImpl
 import com.squareup.sqldelight.android.AndroidSqliteDriver
+import org.kodein.di.DI
+import org.kodein.di.bind
+import org.kodein.di.instance
+import org.kodein.di.singleton
 
 private const val APP_DB_NAME = "kweather.db"
 
-actual class StorageModule(
-    private val context: Context
-) {
+actual val storageModule = DI.Module("StorageModule") {
+    bind<Storage>() with singleton { StorageImpl(instance()) }
+    bind<CityListDatasource>(tag = FileCityListDatasource::class) with singleton {
+        FileCityListDatasource(instance())
+    }
 
-    actual val storage: Storage
-        get() = StorageImpl(context)
+    bind<AppDatabase>() with singleton {
+        AppDatabase(AndroidSqliteDriver(AppDatabase.Schema, instance(), APP_DB_NAME))
+    }
+    bind<CityListDatasource>(tag = DbCityListDatasource::class) with singleton {
+        DbCityListDatasource(instance())
+    }
 
-    actual val fileCityListDatasource: FileCityListDatasource
-        get() = FileCityListDatasource(context)
+    bind<MutableCurrentCityStorage>() with singleton {
+        CurrentCityStorageImpl(
+            storage = instance(),
+            cityListMapper = instance()
+        )
+    }
 
-    actual val dbCityListDatasource: DbCityListDatasource
-        get() = DbCityListDatasource(appDatabase)
+    bind<CurrentCityStorage>() with singleton { instance<MutableCurrentCityStorage>() }
 
-    private val appDatabase: AppDatabase by lazy {
-        AppDatabase(AndroidSqliteDriver(AppDatabase.Schema, context, APP_DB_NAME))
+    bind<CityListMapper>() with singleton {
+        CityListMapperImpl()
     }
 }
