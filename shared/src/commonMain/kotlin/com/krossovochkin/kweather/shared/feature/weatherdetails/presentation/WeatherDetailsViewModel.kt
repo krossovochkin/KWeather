@@ -9,12 +9,6 @@ import com.krossovochkin.kweather.shared.common.router.Router
 import com.krossovochkin.kweather.shared.common.router.RouterDestination
 import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.GetCurrentCityInteractor
 import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.GetWeatherDetailsInteractor
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 interface WeatherDetailsViewModel : ViewModel<WeatherDetailsState, WeatherDetailsAction>
@@ -47,7 +41,8 @@ class WeatherDetailsViewModelImpl(
                             cityNameText = result.weatherDetails.city.name,
                             temperatureText = "${result.weatherDetails.temperature}$CELSIUS_DEGREES",
                             weatherConditionsImage = result.weatherConditionsImage,
-                            changeCityButtonText = localizationManager.getString(LocalizedStringKey.WeatherDetails_ChangeCity)
+                            changeCityButtonText = localizationManager
+                                .getString(LocalizedStringKey.WeatherDetails_ChangeCity)
                         )
                     }
                     WeatherDetailsActionResult.LoadErrorCityMissing -> {
@@ -55,7 +50,8 @@ class WeatherDetailsViewModelImpl(
                             cityMissingMessageText = localizationManager.getString(
                                 LocalizedStringKey.WeatherDetails_CityMissingMessage
                             ),
-                            selectCityButtonText = localizationManager.getString(LocalizedStringKey.WeatherDetails_SelectCity)
+                            selectCityButtonText = localizationManager
+                                .getString(LocalizedStringKey.WeatherDetails_SelectCity)
                         )
                     }
                     is WeatherDetailsActionResult.LoadErrorUnknown -> {

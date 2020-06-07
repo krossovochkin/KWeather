@@ -11,7 +11,13 @@ import androidx.ui.foundation.ContentGravity
 import androidx.ui.foundation.Image
 import androidx.ui.foundation.Text
 import androidx.ui.graphics.asImageAsset
-import androidx.ui.layout.*
+import androidx.ui.layout.Arrangement
+import androidx.ui.layout.Column
+import androidx.ui.layout.Row
+import androidx.ui.layout.fillMaxSize
+import androidx.ui.layout.fillMaxWidth
+import androidx.ui.layout.padding
+import androidx.ui.layout.wrapContentWidth
 import androidx.ui.material.Button
 import androidx.ui.material.CircularProgressIndicator
 import androidx.ui.material.MaterialTheme

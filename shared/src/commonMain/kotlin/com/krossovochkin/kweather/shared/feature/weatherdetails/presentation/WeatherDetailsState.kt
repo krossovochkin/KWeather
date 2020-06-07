@@ -22,4 +22,3 @@ sealed class WeatherDetailsState {
         val selectCityButtonText: String
     ) : WeatherDetailsState()
 }
-

@@ -1,14 +1,15 @@
 package com.krossovochkin.kweather.shared.common.presentation
 
-import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListActionResult
-import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.scan
 
 abstract class BaseViewModel<StateT, ActionT, ActionResultT>(
     initialState: StateT

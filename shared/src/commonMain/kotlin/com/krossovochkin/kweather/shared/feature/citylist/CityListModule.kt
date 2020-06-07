@@ -1,12 +1,12 @@
 package com.krossovochkin.kweather.shared.feature.citylist
 
-import com.krossovochkin.kweather.shared.common.storage.CurrentCityStorage
-import com.krossovochkin.kweather.shared.common.storage.CurrentCityStorageImpl
 import com.krossovochkin.kweather.shared.common.storage.citylist.DbCityListDatasource
-import com.krossovochkin.kweather.shared.feature.citylist.data.CityListMapper
-import com.krossovochkin.kweather.shared.feature.citylist.data.CityListMapperImpl
 import com.krossovochkin.kweather.shared.feature.citylist.data.CityListRepositoryImpl
-import com.krossovochkin.kweather.shared.feature.citylist.domain.*
+import com.krossovochkin.kweather.shared.feature.citylist.domain.CityListRepository
+import com.krossovochkin.kweather.shared.feature.citylist.domain.GetCityListInteractor
+import com.krossovochkin.kweather.shared.feature.citylist.domain.GetCityListInteractorImpl
+import com.krossovochkin.kweather.shared.feature.citylist.domain.SelectCityInteractor
+import com.krossovochkin.kweather.shared.feature.citylist.domain.SelectCityInteractorImpl
 import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListViewModel
 import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListViewModelImpl
 import org.kodein.di.DI

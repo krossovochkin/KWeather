@@ -13,7 +13,6 @@ import org.kodein.di.instance
 import org.kodein.di.singleton
 
 fun appModule(applicationContext: Context) = DI.Module("AppModule") {
-
     bind<Context>() with singleton { applicationContext }
     bind<Router>() with singleton { RouterImpl() }
     bind<ImageLoader>() with singleton { ImageLoader }

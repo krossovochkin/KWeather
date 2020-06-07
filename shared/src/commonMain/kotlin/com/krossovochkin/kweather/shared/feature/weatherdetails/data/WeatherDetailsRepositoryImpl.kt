@@ -1,6 +1,5 @@
 package com.krossovochkin.kweather.shared.feature.weatherdetails.data
 
-import com.krossovochkin.kweather.shared.common.domain.CityId
 import com.krossovochkin.kweather.shared.feature.citylist.domain.City
 import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.WeatherDetails
 import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.WeatherDetailsRepository

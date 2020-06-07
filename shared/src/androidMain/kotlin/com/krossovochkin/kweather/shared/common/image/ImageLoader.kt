@@ -1,7 +1,6 @@
 package com.krossovochkin.kweather.shared.common.image
 
 import android.content.Context
-import android.util.Log
 import coil.Coil
 import coil.request.GetRequest
 

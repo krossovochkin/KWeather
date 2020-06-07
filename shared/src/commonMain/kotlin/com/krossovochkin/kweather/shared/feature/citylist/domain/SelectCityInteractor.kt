@@ -9,7 +9,7 @@ interface SelectCityInteractor {
 
 class SelectCityInteractorImpl(
     private val currentCityStorage: MutableCurrentCityStorage
-): SelectCityInteractor {
+) : SelectCityInteractor {
 
     override suspend fun select(city: City) {
         currentCityStorage.saveCity(city)

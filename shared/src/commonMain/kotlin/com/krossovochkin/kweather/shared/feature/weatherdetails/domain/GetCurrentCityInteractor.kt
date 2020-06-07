@@ -16,4 +16,3 @@ class GetCurrentCityInteractorImpl(
         return currentCityStorage.getCity()
     }
 }
-

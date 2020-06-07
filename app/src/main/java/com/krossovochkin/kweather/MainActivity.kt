@@ -16,6 +16,8 @@ import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.instance
 
+private const val BG_COLOR = 0xFFADD8E6
+
 class MainActivity : AppCompatActivity(), DIAware {
 
     private val parentDi by lazy { (application as App).di }
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity(), DIAware {
         setContent {
             MaterialTheme(
                 colors = lightColorPalette(
-                    background = Color(0xFFADD8E6)
+                    background = Color(BG_COLOR)
                 )
             ) {
                 val screen = router
@@ -49,6 +51,3 @@ class MainActivity : AppCompatActivity(), DIAware {
         }
     }
 }
-
-
-

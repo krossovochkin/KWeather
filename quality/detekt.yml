@@ -1,0 +1,33 @@
+comments:
+  UndocumentedPublicClass:
+    active: false
+  UndocumentedPublicFunction:
+    active: false
+  UndocumentedPublicProperty:
+    active: false
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false
+
+formatting:
+  EnumEntryNameCase:
+    active: false
+
+naming:
+  FunctionNaming:
+    active: false
+  MemberNameEqualsClassName:
+    active: false
+
+potential-bugs:
+    LateinitUsage:
+      active: false
+
+style:
+  OptionalWhenBraces:
+    active: false
+  ExpressionBodySyntax:
+    active: false
+  MagicNumber:
+    active: false

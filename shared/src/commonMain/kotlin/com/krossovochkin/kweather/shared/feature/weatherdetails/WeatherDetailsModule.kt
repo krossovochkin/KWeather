@@ -1,9 +1,15 @@
 package com.krossovochkin.kweather.shared.feature.weatherdetails
 
-import com.krossovochkin.kweather.shared.feature.citylist.data.CityListMapper
-import com.krossovochkin.kweather.shared.feature.citylist.data.CityListMapperImpl
-import com.krossovochkin.kweather.shared.feature.weatherdetails.data.*
-import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.*
+import com.krossovochkin.kweather.shared.feature.weatherdetails.data.WeatherDetailsApi
+import com.krossovochkin.kweather.shared.feature.weatherdetails.data.WeatherDetailsApiClient
+import com.krossovochkin.kweather.shared.feature.weatherdetails.data.WeatherDetailsMapper
+import com.krossovochkin.kweather.shared.feature.weatherdetails.data.WeatherDetailsMapperImpl
+import com.krossovochkin.kweather.shared.feature.weatherdetails.data.WeatherDetailsRepositoryImpl
+import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.GetCurrentCityInteractor
+import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.GetCurrentCityInteractorImpl
+import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.GetWeatherDetailsInteractor
+import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.GetWeatherDetailsInteractorImpl
+import com.krossovochkin.kweather.shared.feature.weatherdetails.domain.WeatherDetailsRepository
 import com.krossovochkin.kweather.shared.feature.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.shared.feature.weatherdetails.presentation.WeatherDetailsViewModelImpl
 import io.ktor.client.HttpClient

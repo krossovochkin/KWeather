@@ -18,7 +18,6 @@ val setupModule = DI.Module("SetupModule") {
     bind<SetupViewModel>() with singleton {
         SetupViewModelImpl(
             router = instance(),
-            localizationManager = instance(),
             setupInteractor = instance()
         )
     }

@@ -14,5 +14,5 @@ sealed class WeatherDetailsActionResult {
 
     data class LoadErrorUnknown(
         val e: Exception
-    ): WeatherDetailsActionResult()
+    ) : WeatherDetailsActionResult()
 }

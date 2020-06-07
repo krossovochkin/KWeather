@@ -10,7 +10,6 @@ import androidx.ui.layout.fillMaxSize
 import androidx.ui.material.CircularProgressIndicator
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.Surface
-import com.krossovochkin.kweather.shared.feature.setup.presentation.SetupAction
 import com.krossovochkin.kweather.shared.feature.setup.presentation.SetupState
 import com.krossovochkin.kweather.shared.feature.setup.presentation.SetupViewModel
 import com.krossovochkin.kweather.shared.feature.setup.setupModule
@@ -35,7 +34,6 @@ fun SetupScreen(
         .value
     SetupScreenImpl(
         setupState,
-        setupViewModel::performAction,
         setupViewModel::dispose
     )
 }
@@ -43,7 +41,6 @@ fun SetupScreen(
 @Composable
 private fun SetupScreenImpl(
     setupState: SetupState?,
-    onAction: (SetupAction) -> Unit,
     onDispose: () -> Unit
 ) {
     androidx.compose.onDispose(callback = { onDispose() })
