@@ -44,7 +44,7 @@ class CityListModule(
 
     private val cityListRepository: CityListRepository
         get() = CityListRepositoryImpl(
-            cityListStorage = storageModule.cityListStorage,
+            cityListDatasource = storageModule.dbCityListDatasource,
             cityListMapper = cityListMapper
         )
 

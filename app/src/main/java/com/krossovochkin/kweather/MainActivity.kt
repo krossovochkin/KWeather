@@ -18,6 +18,7 @@ import androidx.ui.layout.padding
 import androidx.ui.material.*
 import androidx.ui.unit.Dp
 import com.krossovochkin.kweather.feature.citylist.CityListScreen
+import com.krossovochkin.kweather.feature.setup.SetupScreen
 import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
 import com.krossovochkin.kweather.shared.common.image.ImageLoader
 import com.krossovochkin.kweather.shared.common.router.Router
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                     .value
 
                 when (screen) {
+                    RouterDestination.Setup -> SetupScreen(appModule = appModule)
                     RouterDestination.WeatherDetails -> WeatherDetailsScreen(appModule = appModule)
                     RouterDestination.CityList -> CityListScreen(appModule = appModule)
                 }

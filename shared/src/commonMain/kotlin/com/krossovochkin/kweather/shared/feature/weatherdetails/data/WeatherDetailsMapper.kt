@@ -22,7 +22,7 @@ class WeatherDetailsMapperImpl : WeatherDetailsMapper {
         return with(dto) {
             WeatherDetails(
                 city = city,
-                temperature = main.temp,
+                temperature = main.temp.toInt(),
                 weatherConditionsImageUrl = "$WEATHER_CONDITIONS_IMAGE_URL${weather.first().icon}@2x.png"
             )
         }

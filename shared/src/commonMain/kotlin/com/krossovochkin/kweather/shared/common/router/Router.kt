@@ -14,7 +14,7 @@ interface Router {
 
 class RouterImpl : Router {
 
-    private val current = MutableStateFlow<RouterDestination>(RouterDestination.WeatherDetails)
+    private val current = MutableStateFlow<RouterDestination>(RouterDestination.Setup)
 
     override val observeCurrentDestination: Flow<RouterDestination> = current
 

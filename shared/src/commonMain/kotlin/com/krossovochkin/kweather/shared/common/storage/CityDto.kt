@@ -1,4 +1,4 @@
-package com.krossovochkin.kweather.shared.feature.citylist.data
+package com.krossovochkin.kweather.shared.common.storage
 
 import kotlinx.serialization.Serializable
 

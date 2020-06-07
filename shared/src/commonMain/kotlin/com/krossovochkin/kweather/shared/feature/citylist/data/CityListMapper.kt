@@ -1,6 +1,7 @@
 package com.krossovochkin.kweather.shared.feature.citylist.data
 
 import com.krossovochkin.kweather.shared.common.domain.CityId
+import com.krossovochkin.kweather.shared.common.storage.CityDto
 import com.krossovochkin.kweather.shared.feature.citylist.domain.City
 
 interface CityListMapper {

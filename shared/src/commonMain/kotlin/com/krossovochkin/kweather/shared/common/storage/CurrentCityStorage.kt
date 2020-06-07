@@ -1,8 +1,6 @@
 package com.krossovochkin.kweather.shared.common.storage
 
-import com.krossovochkin.kweather.shared.feature.citylist.data.CityDto
 import com.krossovochkin.kweather.shared.feature.citylist.data.CityListMapper
-import com.krossovochkin.kweather.shared.feature.citylist.data.CitySerializer
 import com.krossovochkin.kweather.shared.feature.citylist.domain.City
 
 interface CurrentCityStorage {

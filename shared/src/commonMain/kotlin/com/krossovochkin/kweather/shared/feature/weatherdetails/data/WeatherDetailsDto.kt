@@ -10,7 +10,7 @@ data class WeatherDetailsDto(
 
     @Serializable
     data class MainDto(
-        val temp: Int
+        val temp: Double
     )
 
     @Serializable
