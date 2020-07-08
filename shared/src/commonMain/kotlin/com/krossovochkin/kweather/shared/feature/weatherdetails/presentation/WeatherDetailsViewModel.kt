@@ -21,9 +21,10 @@ class WeatherDetailsViewModelImpl(
     private val router: Router,
     private val imageLoader: ImageLoader,
     private val localizationManager: LocalizationManager
-) : BaseViewModel<WeatherDetailsState, WeatherDetailsAction, WeatherDetailsActionResult>(
-    WeatherDetailsState.Loading
-), WeatherDetailsViewModel {
+) : BaseViewModel<WeatherDetailsState,
+    WeatherDetailsAction,
+    WeatherDetailsActionResult>(WeatherDetailsState.Loading),
+    WeatherDetailsViewModel {
 
     init {
         performAction(WeatherDetailsAction.Load)

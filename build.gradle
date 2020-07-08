@@ -13,10 +13,10 @@ buildscript {
 }
 
 plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.9.1"
+    id "io.gitlab.arturbosch.detekt" version "1.10.0"
 }
 dependencies {
-    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.9.1"
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.10.0"
 }
 task detektAll(type: io.gitlab.arturbosch.detekt.Detekt) {
     failFast = true

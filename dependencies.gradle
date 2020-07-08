@@ -7,15 +7,15 @@ v.version_code = 1
 v.version_name = "1.0"
 
 v.kotlin = "1.3.72"
-v.gradle_plugin_android = '4.2.0-alpha01'
+v.gradle_plugin_android = '4.2.0-alpha03'
 
 v.kotlin_compiler = "1.3.70-dev-withExperimentalGoogleExtensions-20200424"
 v.kotlin_coroutines = "1.3.7"
 v.ktor = "1.3.2"
 v.kotlin_serialization = "0.20.0"
 
-v.androidx_compose = "0.1.0-dev13"
-v.androidx_compose_ui = "0.1.0-dev13"
+v.androidx_compose = "0.1.0-dev14"
+v.androidx_compose_ui = "0.1.0-dev14"
 v.androidx_core_ktx = "1.4.0-alpha01"
 v.androidx_appcompat = "1.3.0-alpha01"
 v.material_components = "1.3.0-alpha01"

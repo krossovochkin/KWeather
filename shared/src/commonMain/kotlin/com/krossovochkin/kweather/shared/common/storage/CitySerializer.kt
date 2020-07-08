@@ -10,22 +10,18 @@ object CitySerializer {
     private val listSerializer = serializer.list
 
     fun listFromJson(text: String): List<CityDto> {
-        return json.parse(
-            listSerializer, text)
+        return json.parse(listSerializer, text)
     }
 
     fun listToJson(cityList: List<CityDto>): String {
-        return json.toJson(
-            listSerializer, cityList).toString()
+        return json.toJson(listSerializer, cityList).toString()
     }
 
     fun fromJson(text: String): CityDto {
-        return json.parse(
-            serializer, text)
+        return json.parse(serializer, text)
     }
 
     fun toJson(cityDto: CityDto): String {
-        return json.toJson(
-            serializer, cityDto).toString()
+        return json.toJson(serializer, cityDto).toString()
     }
 }
