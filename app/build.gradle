@@ -69,9 +69,14 @@ dependencies {
 
     implementation d.androidx_core_ktx
     implementation d.androidx_appcompat
-    implementation d.androidx_compose_runtime
-    implementation d.androidx_compose_layout
     implementation d.androidx_compose_material
     implementation d.androidx_compose_tooling
     implementation d.material_components
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs += ["-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check"]
+    }
 }

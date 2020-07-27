@@ -16,7 +16,6 @@ import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
@@ -70,7 +69,9 @@ val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
         HttpClient() {
             install(JsonFeature) {
                 serializer = KotlinxSerializer(
-                    json = Json(JsonConfiguration.Stable.copy(ignoreUnknownKeys = true))
+                    json = Json {
+                        this.ignoreUnknownKeys = true
+                    }
                 )
             }
         }

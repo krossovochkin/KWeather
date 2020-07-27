@@ -30,7 +30,7 @@ fun SetupScreen(
     }.value
     val setupState = setupViewModel
         .observeState()
-        .collectAsState()
+        .collectAsState(SetupState.Loading)
         .value
     SetupScreenImpl(
         setupState,

@@ -44,7 +44,7 @@ fun WeatherDetailsScreen(
     }.value
     val weatherDetailsState = weatherDetailsViewModel
         .observeState()
-        .collectAsState()
+        .collectAsState(WeatherDetailsState.Loading)
         .value
     WeatherDetailsScreenImpl(
         weatherDetailsState,

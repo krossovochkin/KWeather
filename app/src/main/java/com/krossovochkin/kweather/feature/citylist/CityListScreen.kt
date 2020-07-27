@@ -4,11 +4,11 @@ import androidx.compose.Composable
 import androidx.compose.collectAsState
 import androidx.compose.state
 import androidx.ui.core.Modifier
-import androidx.ui.foundation.AdapterList
 import androidx.ui.foundation.Box
-import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.ContentGravity
 import androidx.ui.foundation.Text
+import androidx.ui.foundation.clickable
+import androidx.ui.foundation.lazy.LazyColumnItems
 import androidx.ui.layout.Column
 import androidx.ui.layout.fillMaxSize
 import androidx.ui.layout.fillMaxWidth
@@ -39,7 +39,7 @@ fun CityListScreen(
     }.value
     val cityListState = cityListViewModel
         .observeState()
-        .collectAsState()
+        .collectAsState(CityListState.Loading)
         .value
     CityListScreenImpl(
         cityListState,
@@ -93,14 +93,14 @@ private fun DataState(
                 onAction(CityListAction.ChangeCityNameQuery(it))
             }
         )
-        AdapterList(data = state.cityList) { city ->
-            Clickable(onClick = { onAction(CityListAction.SelectCity(city)) }) {
-                Text(
-                    modifier = Modifier.padding(top = Dp(16f), bottom = Dp(16f)),
-                    text = city.name,
-                    style = MaterialTheme.typography.body1
-                )
-            }
+        LazyColumnItems(items = state.cityList) { city ->
+            Text(
+                modifier = Modifier
+                    .padding(top = Dp(16f), bottom = Dp(16f))
+                    .clickable(onClick = { onAction(CityListAction.SelectCity(city)) }),
+                text = city.name,
+                style = MaterialTheme.typography.body1
+            )
         }
     }
 }

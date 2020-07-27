@@ -4,11 +4,15 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://dl.bintray.com/kotlin/kotlin-eap/"
+        }
     }
     dependencies {
         classpath d.gradle_plugin_kotlin
         classpath d.gradle_plugin_android
         classpath d.gradle_plugin_sqldelight
+        classpath d.gradle_plugin_kotlin_serialization
     }
 }
 
@@ -39,6 +43,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://dl.bintray.com/kotlin/kotlin-eap/"
+        }
     }
 }
 
