@@ -29,8 +29,6 @@ d.gradle_plugin_android = "com.android.tools.build:gradle:$v.gradle_plugin_andro
 d.gradle_plugin_sqldelight = "com.squareup.sqldelight:gradle-plugin:$v.sqldelight"
 d.gradle_plugin_kotlin_serialization = "org.jetbrains.kotlin:kotlin-serialization:$v.kotlin"
 
-d.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$v.kotlin"
-d.kotlin_stdlib_common = "org.jetbrains.kotlin:kotlin-stdlib:$v.kotlin"
 d.kotlin_coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$v.kotlin_coroutines"
 d.kotlin_coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$v.kotlin_coroutines"
 

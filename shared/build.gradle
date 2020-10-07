@@ -35,8 +35,6 @@ kotlin {
 }
 
 dependencies {
-    commonMainImplementation d.kotlin_stdlib
-    commonMainImplementation d.kotlin_stdlib_common
     commonMainImplementation d.ktor_client_core
     commonMainImplementation d.ktor_client_json
     commonMainImplementation d.ktor_client_serialization
@@ -47,7 +45,6 @@ dependencies {
     commonMainImplementation d.sqldelight_coroutines_extensions_common
     commonMainImplementation d.kodein
 
-    androidMainImplementation d.kotlin_stdlib
     androidMainImplementation d.ktor_client_android
     androidMainImplementation d.ktor_client_json_jvm
     androidMainImplementation d.ktor_client_serialization_jvm

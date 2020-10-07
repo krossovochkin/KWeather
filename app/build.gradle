@@ -57,8 +57,6 @@ android {
 }
 
 dependencies {
-
-    implementation d.kotlin_stdlib
     implementation d.kotlin_coroutines_core
     implementation d.kotlin_coroutines_android
 
