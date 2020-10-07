@@ -2,7 +2,7 @@ package com.krossovochkin.kweather.shared.common.image
 
 import android.content.Context
 import coil.Coil
-import coil.request.GetRequest
+import coil.request.ImageRequest
 
 actual object ImageLoader {
 
@@ -15,7 +15,7 @@ actual object ImageLoader {
     }
 
     actual suspend fun load(url: String): Image {
-        val request = GetRequest
+        val request = ImageRequest
             .Builder(context.applicationContext)
             .data(url)
             .build()

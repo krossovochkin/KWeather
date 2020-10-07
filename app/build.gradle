@@ -60,7 +60,6 @@ dependencies {
 
     implementation d.kotlin_stdlib
     implementation d.kotlin_coroutines_core
-    implementation d.kotlin_coroutines_core_common
     implementation d.kotlin_coroutines_android
 
     implementation project(":shared")

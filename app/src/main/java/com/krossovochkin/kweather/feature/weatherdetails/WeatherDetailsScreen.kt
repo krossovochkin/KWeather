@@ -1,28 +1,28 @@
 package com.krossovochkin.kweather.feature.weatherdetails
 
-import androidx.compose.Composable
-import androidx.compose.collectAsState
-import androidx.compose.state
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asImageAsset
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.core.graphics.drawable.toBitmap
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Box
-import androidx.ui.foundation.ContentGravity
-import androidx.ui.foundation.Image
-import androidx.ui.foundation.Text
-import androidx.ui.graphics.asImageAsset
-import androidx.ui.layout.Arrangement
-import androidx.ui.layout.Column
-import androidx.ui.layout.Row
-import androidx.ui.layout.fillMaxSize
-import androidx.ui.layout.fillMaxWidth
-import androidx.ui.layout.padding
-import androidx.ui.layout.wrapContentWidth
-import androidx.ui.material.Button
-import androidx.ui.material.CircularProgressIndicator
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Surface
-import androidx.ui.unit.Dp
 import com.krossovochkin.kweather.shared.feature.weatherdetails.presentation.WeatherDetailsAction
 import com.krossovochkin.kweather.shared.feature.weatherdetails.presentation.WeatherDetailsState
 import com.krossovochkin.kweather.shared.feature.weatherdetails.presentation.WeatherDetailsViewModel
@@ -34,14 +34,14 @@ import org.kodein.di.instance
 fun WeatherDetailsScreen(
     parentDi: DI
 ) {
-    val weatherDetailsViewModel = state {
+    val weatherDetailsViewModel = remember {
         val di = DI {
             extend(parentDi)
             import(weatherDetailsModule)
         }
         val viewModel by di.instance<WeatherDetailsViewModel>()
         viewModel
-    }.value
+    }
     val weatherDetailsState = weatherDetailsViewModel
         .observeState()
         .collectAsState(WeatherDetailsState.Loading)
@@ -59,7 +59,7 @@ private fun WeatherDetailsScreenImpl(
     onAction: (WeatherDetailsAction) -> Unit,
     onDispose: () -> Unit
 ) {
-    androidx.compose.onDispose(callback = { onDispose() })
+    androidx.compose.runtime.onDispose(callback = { onDispose() })
     Surface(color = MaterialTheme.colors.background) {
         when (weatherDetailsState) {
             is WeatherDetailsState.Loading -> LoadingState()
@@ -80,7 +80,7 @@ private fun WeatherDetailsScreenImpl(
 private fun LoadingState() {
     Box(
         modifier = Modifier.fillMaxSize(),
-        gravity = ContentGravity.Center
+        alignment = Alignment.Center
     ) {
         CircularProgressIndicator()
     }
@@ -100,14 +100,14 @@ private fun DataState(
         modifier = Modifier.padding(Dp(16f))
     ) {
         Text(
-            modifier = Modifier.gravity(Alignment.CenterHorizontally),
+            textAlign = TextAlign.Center,
             text = state.cityNameText,
             style = MaterialTheme.typography.h4
         )
         Row(
             modifier = Modifier.weight(1f, fill = true).fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
-            verticalGravity = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically
         ) {
             val imageAsset = state.weatherConditionsImage.drawable?.toBitmap()
                 ?.asImageAsset()
@@ -136,7 +136,7 @@ private fun CityUnknownErrorState(
 ) {
     Column(
         modifier = Modifier.padding(Dp(16f)).fillMaxSize(),
-        horizontalGravity = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             modifier = Modifier.weight(1f, fill = true),

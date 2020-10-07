@@ -27,6 +27,8 @@ potential-bugs:
 style:
   OptionalWhenBraces:
     active: false
+  OptionalUnit:
+    active: false
   ExpressionBodySyntax:
     active: false
   MagicNumber:

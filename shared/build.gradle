@@ -40,9 +40,8 @@ dependencies {
     commonMainImplementation d.ktor_client_core
     commonMainImplementation d.ktor_client_json
     commonMainImplementation d.ktor_client_serialization
-    commonMainImplementation d.kotlin_serialization_runtime
+    commonMainImplementation d.kotlin_serialization_json
     commonMainImplementation d.kotlin_coroutines_core
-    commonMainImplementation d.kotlin_coroutines_core_common
     commonMainImplementation d.sqldelight_common
     commonMainImplementation d.sqldelight_runtime
     commonMainImplementation d.sqldelight_coroutines_extensions_common
@@ -52,7 +51,7 @@ dependencies {
     androidMainImplementation d.ktor_client_android
     androidMainImplementation d.ktor_client_json_jvm
     androidMainImplementation d.ktor_client_serialization_jvm
-    androidMainImplementation d.kotlin_serialization_runtime
+    androidMainImplementation d.kotlin_serialization_json
     androidMainImplementation d.kotlin_coroutines_android
     androidMainImplementation d.coil
     androidMainImplementation d.sqldelight_android

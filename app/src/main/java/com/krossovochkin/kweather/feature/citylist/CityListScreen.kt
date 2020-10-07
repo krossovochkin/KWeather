@@ -1,23 +1,23 @@
 package com.krossovochkin.kweather.feature.citylist
 
-import androidx.compose.Composable
-import androidx.compose.collectAsState
-import androidx.compose.state
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Box
-import androidx.ui.foundation.ContentGravity
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.clickable
-import androidx.ui.foundation.lazy.LazyColumnItems
-import androidx.ui.layout.Column
-import androidx.ui.layout.fillMaxSize
-import androidx.ui.layout.fillMaxWidth
-import androidx.ui.layout.padding
-import androidx.ui.material.CircularProgressIndicator
-import androidx.ui.material.FilledTextField
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Surface
-import androidx.ui.unit.Dp
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import com.krossovochkin.kweather.shared.feature.citylist.cityListModule
 import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListAction
 import com.krossovochkin.kweather.shared.feature.citylist.presentation.CityListState
@@ -29,14 +29,14 @@ import org.kodein.di.instance
 fun CityListScreen(
     parentDi: DI
 ) {
-    val cityListViewModel: CityListViewModel = state {
+    val cityListViewModel: CityListViewModel = remember {
         val di = DI {
             extend(parentDi)
             import(cityListModule)
         }
         val viewModel by di.instance<CityListViewModel>()
         viewModel
-    }.value
+    }
     val cityListState = cityListViewModel
         .observeState()
         .collectAsState(CityListState.Loading)
@@ -54,7 +54,7 @@ private fun CityListScreenImpl(
     onAction: (CityListAction) -> Unit,
     onDispose: () -> Unit
 ) {
-    androidx.compose.onDispose(callback = { onDispose() })
+    androidx.compose.runtime.onDispose(callback = { onDispose() })
     Surface(color = MaterialTheme.colors.background) {
         when (cityListState) {
             is CityListState.Loading -> LoadingState()
@@ -71,7 +71,7 @@ private fun CityListScreenImpl(
 private fun LoadingState() {
     Box(
         modifier = Modifier.fillMaxSize(),
-        gravity = ContentGravity.Center
+        alignment = Alignment.Center
     ) {
         CircularProgressIndicator()
     }
@@ -85,7 +85,7 @@ private fun DataState(
     Column(
         modifier = Modifier.padding(Dp(16f))
     ) {
-        FilledTextField(
+        TextField(
             modifier = Modifier.padding(bottom = Dp(16f)).fillMaxWidth(),
             value = state.queryText,
             label = { Text(state.cityNameHintText) },
@@ -93,7 +93,7 @@ private fun DataState(
                 onAction(CityListAction.ChangeCityNameQuery(it))
             }
         )
-        LazyColumnItems(items = state.cityList) { city ->
+        LazyColumnFor(items = state.cityList) { city ->
             Text(
                 modifier = Modifier
                     .padding(top = Dp(16f), bottom = Dp(16f))

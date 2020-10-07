@@ -2,11 +2,11 @@ package com.krossovochkin.kweather
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.collectAsState
-import androidx.ui.core.setContent
-import androidx.ui.graphics.Color
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.lightColorPalette
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.lightColors
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.setContent
 import com.krossovochkin.kweather.feature.citylist.CityListScreen
 import com.krossovochkin.kweather.feature.setup.SetupScreen
 import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), DIAware {
 
         setContent {
             MaterialTheme(
-                colors = lightColorPalette(
+                colors = lightColors(
                     background = Color(BG_COLOR)
                 )
             ) {
