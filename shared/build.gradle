@@ -31,27 +31,31 @@ kotlin {
         all {
             languageSettings.enableLanguageFeature("InlineClasses")
         }
+        commonMain {
+            dependencies {
+                implementation d.ktor_client_core
+                implementation d.ktor_client_json
+                implementation d.ktor_client_serialization
+                implementation d.kotlin_serialization_json
+                implementation d.kotlin_coroutines_core
+                implementation d.sqldelight_common
+                implementation d.sqldelight_runtime
+                implementation d.sqldelight_coroutines_extensions_common
+                implementation d.kodein
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation d.ktor_client_android
+                implementation d.ktor_client_json_jvm
+                implementation d.ktor_client_serialization_jvm
+                implementation d.kotlin_serialization_json
+                implementation d.kotlin_coroutines_android
+                implementation d.coil
+                implementation d.sqldelight_android
+            }
+        }
     }
-}
-
-dependencies {
-    commonMainImplementation d.ktor_client_core
-    commonMainImplementation d.ktor_client_json
-    commonMainImplementation d.ktor_client_serialization
-    commonMainImplementation d.kotlin_serialization_json
-    commonMainImplementation d.kotlin_coroutines_core
-    commonMainImplementation d.sqldelight_common
-    commonMainImplementation d.sqldelight_runtime
-    commonMainImplementation d.sqldelight_coroutines_extensions_common
-    commonMainImplementation d.kodein
-
-    androidMainImplementation d.ktor_client_android
-    androidMainImplementation d.ktor_client_json_jvm
-    androidMainImplementation d.ktor_client_serialization_jvm
-    androidMainImplementation d.kotlin_serialization_json
-    androidMainImplementation d.kotlin_coroutines_android
-    androidMainImplementation d.coil
-    androidMainImplementation d.sqldelight_android
 }
 
 sqldelight {
