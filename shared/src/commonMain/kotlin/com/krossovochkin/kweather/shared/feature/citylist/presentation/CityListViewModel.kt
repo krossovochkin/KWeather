@@ -8,9 +8,7 @@ import com.krossovochkin.kweather.shared.common.router.Router
 import com.krossovochkin.kweather.shared.common.router.RouterDestination
 import com.krossovochkin.kweather.shared.feature.citylist.domain.GetCityListInteractor
 import com.krossovochkin.kweather.shared.feature.citylist.domain.SelectCityInteractor
-import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
-import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -26,11 +24,10 @@ class CityListViewModelImpl(
 ) : BaseViewModel<CityListState, CityListAction, CityListActionResult>(CityListState.Loading),
     CityListViewModel {
 
-    private val queryChanges = BroadcastChannel<String>(CONFLATED)
+    private val queryChanges = MutableStateFlow("")
 
     init {
         queryChanges
-            .asFlow()
             .debounce(timeoutMillis = 300L)
             .onEach {
                 performAction(CityListAction.Load)
@@ -94,7 +91,7 @@ class CityListViewModelImpl(
             }
             is CityListAction.ChangeCityNameQuery -> {
                 scope.launch {
-                    queryChanges.send(action.query)
+                    queryChanges.value = action.query
                     onActionResult(CityListActionResult.CityNameQueryChanged(action.query))
                 }
             }
