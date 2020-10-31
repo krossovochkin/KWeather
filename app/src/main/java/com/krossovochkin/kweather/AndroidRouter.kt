@@ -13,6 +13,10 @@ class AndroidRouter(
 ) : Router {
 
     override fun navigateTo(destination: RouterDestination) {
+        val currentDestinationId = navController.currentDestination?.id
+        if (currentDestinationId != null) {
+            navController.popBackStack(currentDestinationId, true)
+        }
         navController.navigate(destination.route)
     }
 }
