@@ -4,4 +4,3 @@ interface Router {
 
     fun navigateTo(destination: RouterDestination)
 }
-
