@@ -5,7 +5,9 @@ import com.krossovochkin.kweather.shared.common.presentation.ViewModel
 import com.krossovochkin.kweather.shared.common.router.Router
 import com.krossovochkin.kweather.shared.common.router.RouterDestination
 import com.krossovochkin.kweather.shared.feature.setup.domain.SetupInteractor
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 interface SetupViewModel : ViewModel<SetupState, SetupAction>
 
@@ -28,7 +30,9 @@ class SetupViewModelImpl(
             SetupAction.Load -> {
                 scope.launch {
                     setupInteractor.setup()
-                    router.navigateTo(RouterDestination.WeatherDetails)
+                    withContext(Dispatchers.Main) {
+                        router.navigateTo(RouterDestination.WeatherDetails)
+                    }
                 }
             }
         }

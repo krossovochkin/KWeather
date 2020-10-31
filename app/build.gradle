@@ -66,8 +66,10 @@ dependencies {
 
     implementation d.androidx_core_ktx
     implementation d.androidx_appcompat
+    implementation d.androidx_compose_foundation
     implementation d.androidx_compose_material
     implementation d.androidx_compose_tooling
+    implementation d.androidx_compose_navigation
     implementation d.material_components
 }
 

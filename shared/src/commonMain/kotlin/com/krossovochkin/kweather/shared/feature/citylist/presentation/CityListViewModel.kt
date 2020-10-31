@@ -8,11 +8,13 @@ import com.krossovochkin.kweather.shared.common.router.Router
 import com.krossovochkin.kweather.shared.common.router.RouterDestination
 import com.krossovochkin.kweather.shared.feature.citylist.domain.GetCityListInteractor
 import com.krossovochkin.kweather.shared.feature.citylist.domain.SelectCityInteractor
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 interface CityListViewModel : ViewModel<CityListState, CityListAction>
 
@@ -86,7 +88,9 @@ class CityListViewModelImpl(
             is CityListAction.SelectCity -> {
                 scope.launch {
                     selectCityInteractor.select(action.city)
-                    router.navigateTo(RouterDestination.WeatherDetails)
+                    withContext(Dispatchers.Main) {
+                        router.navigateTo(RouterDestination.WeatherDetails)
+                    }
                 }
             }
             is CityListAction.ChangeCityNameQuery -> {
