@@ -42,6 +42,8 @@ class WeatherDetailsViewModelImpl(
                             cityNameText = result.weatherDetails.city.name,
                             temperatureText = "${result.weatherDetails.temperature}$CELSIUS_DEGREES",
                             weatherConditionsImage = result.weatherConditionsImage,
+                            weatherConditionsImageContentDescription = localizationManager
+                                .getString(LocalizedStringKey.WeatherDetails_WeatherConditionsImageContentDescription),
                             changeCityButtonText = localizationManager
                                 .getString(LocalizedStringKey.WeatherDetails_ChangeCity)
                         )

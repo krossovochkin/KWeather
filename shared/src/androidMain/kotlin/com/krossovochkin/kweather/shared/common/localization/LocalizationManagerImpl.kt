@@ -18,6 +18,7 @@ class LocalizationManagerImpl(
             LocalizedStringKey.WeatherDetails_ChangeCity -> R.string.weatherDetails_changeCity
             LocalizedStringKey.WeatherDetails_CityMissingMessage -> R.string.weatherDetails_cityMissingMessage
             LocalizedStringKey.WeatherDetails_SelectCity -> R.string.weatherDetails_selectCity
+            LocalizedStringKey.WeatherDetails_WeatherConditionsImageContentDescription -> R.string.weatherDetails_weatherConditionsImageContentDescription
             LocalizedStringKey.CityList_CityNameHint -> R.string.cityList_cityNameHint
         }
     }

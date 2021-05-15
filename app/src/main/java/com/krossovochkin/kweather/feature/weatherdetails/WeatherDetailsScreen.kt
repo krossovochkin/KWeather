@@ -1,7 +1,6 @@
 package com.krossovochkin.kweather.feature.weatherdetails
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,12 +13,14 @@ import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asImageAsset
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.core.graphics.drawable.toBitmap
@@ -59,7 +60,7 @@ private fun WeatherDetailsScreenImpl(
     onAction: (WeatherDetailsAction) -> Unit,
     onDispose: () -> Unit
 ) {
-    androidx.compose.runtime.onDispose(callback = { onDispose() })
+    DisposableEffect(null) { onDispose { onDispose() } }
     Surface(color = MaterialTheme.colors.background) {
         when (weatherDetailsState) {
             is WeatherDetailsState.Loading -> LoadingState()
@@ -80,7 +81,7 @@ private fun WeatherDetailsScreenImpl(
 private fun LoadingState() {
     Box(
         modifier = Modifier.fillMaxSize(),
-        alignment = Alignment.Center
+        contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()
     }
@@ -105,14 +106,19 @@ private fun DataState(
             style = MaterialTheme.typography.h4
         )
         Row(
-            modifier = Modifier.weight(1f, fill = true).fillMaxWidth(),
+            modifier = Modifier
+                .weight(1f, fill = true)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val imageAsset = state.weatherConditionsImage.drawable?.toBitmap()
-                ?.asImageAsset()
-            if (imageAsset != null) {
-                Image(asset = imageAsset)
+            val imageBitmap = state.weatherConditionsImage.drawable?.toBitmap()
+                ?.asImageBitmap()
+            if (imageBitmap != null) {
+                Image(
+                    bitmap = imageBitmap,
+                    contentDescription = state.weatherConditionsImageContentDescription
+                )
             }
             Text(
                 modifier = Modifier.wrapContentWidth(align = Alignment.Start),
@@ -135,7 +141,9 @@ private fun CityUnknownErrorState(
     onAction: (WeatherDetailsAction) -> Unit
 ) {
     Column(
-        modifier = Modifier.padding(Dp(16f)).fillMaxSize(),
+        modifier = Modifier
+            .padding(Dp(16f))
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(

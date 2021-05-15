@@ -1,4 +1,3 @@
-enableFeaturePreview('GRADLE_METADATA')
 include ':shared'
 include ':app'
 rootProject.name = "KWeather"

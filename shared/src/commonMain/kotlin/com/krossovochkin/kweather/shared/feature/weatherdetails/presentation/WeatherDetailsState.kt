@@ -10,6 +10,7 @@ sealed class WeatherDetailsState {
         val cityNameText: String,
         val temperatureText: String,
         val weatherConditionsImage: Image,
+        val weatherConditionsImageContentDescription: String,
         val changeCityButtonText: String
     ) : WeatherDetailsState()
 

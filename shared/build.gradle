@@ -9,6 +9,16 @@ android {
     compileSdkVersion v.compile_sdk_version
     buildToolsVersion v.build_tools_version
 
+    // Workaround as per https://stackoverflow.com/a/66433024/1533933
+    configurations {
+        androidTestApi {}
+        androidTestDebugApi {}
+        androidTestReleaseApi {}
+        testApi {}
+        testDebugApi {}
+        testReleaseApi {}
+    }
+
     sourceSets {
         main {
             manifest.srcFile 'src/androidMain/AndroidManifest.xml'

@@ -6,6 +6,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -43,7 +44,7 @@ private fun SetupScreenImpl(
     setupState: SetupState?,
     onDispose: () -> Unit
 ) {
-    androidx.compose.runtime.onDispose(callback = { onDispose() })
+    DisposableEffect(null) { onDispose { onDispose() } }
     Surface(color = MaterialTheme.colors.background) {
         when (setupState) {
             is SetupState.Loading -> LoadingState()
@@ -55,7 +56,7 @@ private fun SetupScreenImpl(
 private fun LoadingState() {
     Box(
         modifier = Modifier.fillMaxSize(),
-        alignment = Alignment.Center
+        contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()
     }
