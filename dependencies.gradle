@@ -7,7 +7,7 @@ v.version_code = 1
 v.version_name = "1.0"
 
 v.kotlin = "1.4.32"
-v.gradle_plugin_android = '7.0.0-alpha15'
+v.gradle_plugin_android = '7.1.0-alpha01'
 
 v.kotlin_compiler = "1.4.32"
 v.kotlin_coroutines = "1.4.0"

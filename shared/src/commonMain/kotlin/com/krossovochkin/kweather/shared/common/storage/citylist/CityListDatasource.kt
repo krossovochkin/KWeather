@@ -7,6 +7,4 @@ interface CityListDatasource {
     suspend fun getCityList(query: String): List<CityDto>
 
     suspend fun getCityList(query: String, limit: Int): List<CityDto>
-
-    suspend fun setCityList(cityList: List<CityDto>)
 }

@@ -20,3 +20,12 @@ INSERT INTO cities(id, name) VALUES(?, ?);
 
 deleteAll:
 DELETE FROM cities;
+
+beginTransaction:
+BEGIN;
+
+commitTransaction:
+COMMIT;
+
+rollbackTransaction:
+ROLLBACK;

@@ -28,13 +28,4 @@ class DbCityListDatasource(
                 .executeAsList()
         }
     }
-
-    override suspend fun setCityList(cityList: List<CityDto>) {
-        dao.transaction {
-            dao.deleteAll()
-            cityList.forEach { city ->
-                dao.insert(city.id.toLong(), city.name)
-            }
-        }
-    }
 }
