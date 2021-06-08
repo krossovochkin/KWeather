@@ -33,8 +33,6 @@ actual class FileCityListProvider(
 
             var hasItems = false
 
-            var count = 0
-
             var nextToken = tokenizer.next()
             while (nextToken.type != JsonToken.Type.END_ARRAY) {
                 if (!currentCoroutineContext().isActive) {
@@ -51,8 +49,6 @@ actual class FileCityListProvider(
                 emit(tokenizer.parseJsonElement(startToken = nextToken).toDto())
 
                 nextToken = tokenizer.next()
-
-                Log.e("TESTUUU", "count=${count++}")
             }
         }
     }
