@@ -1,8 +1,6 @@
 plugins {
     id 'kotlin-multiplatform'
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.plugin.serialization'
-    id 'com.squareup.sqldelight'
 }
 
 android {
@@ -43,35 +41,20 @@ kotlin {
         }
         commonMain {
             dependencies {
-                implementation d.ktor_client_core
-                implementation d.ktor_client_json
-                implementation d.ktor_client_serialization
-                implementation d.kotlin_serialization_json
-                implementation d.kotlin_coroutines_core
-                implementation d.sqldelight_common
-                implementation d.sqldelight_runtime
-                implementation d.sqldelight_coroutines_extensions_common
-                implementation d.kodein
+                api d.project.core
+                api d.project.feature_setup
+                api d.project.feature_city_list
+                api d.project.feature_weather_details
             }
         }
         androidMain {
             dependencies {
-                implementation d.ktor_client_android
-                implementation d.ktor_client_json_jvm
-                implementation d.ktor_client_serialization_jvm
-                implementation d.kotlin_serialization_json
-                implementation d.kotlin_coroutines_android
-                implementation d.coil
-                implementation d.sqldelight_android
+                api d.project.core
+                api d.project.feature_setup
+                api d.project.feature_city_list
+                api d.project.feature_weather_details
             }
         }
-    }
-}
-
-sqldelight {
-    AppDatabase {
-        packageName = "com.krossovochkin.kweather"
-        sourceFolders = ["sqldelight"]
     }
 }
 

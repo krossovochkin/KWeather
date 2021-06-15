@@ -10,10 +10,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.krossovochkin.kweather.core.router.RouterDestination
 import com.krossovochkin.kweather.feature.citylist.CityListScreen
 import com.krossovochkin.kweather.feature.setup.SetupScreen
 import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
-import com.krossovochkin.kweather.shared.common.router.RouterDestination
 import org.kodein.di.DI
 
 private const val BG_COLOR = 0xFFADD8E6

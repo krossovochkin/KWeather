@@ -1,3 +1,7 @@
-include ':shared'
-include ':app'
 rootProject.name = "KWeather"
+include ':app'
+include ':shared'
+include ':core'
+include ':feature-setup'
+include ':feature-city-list'
+include ':feature-weather-details'

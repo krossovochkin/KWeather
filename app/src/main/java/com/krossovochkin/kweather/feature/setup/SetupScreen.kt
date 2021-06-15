@@ -11,9 +11,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.krossovochkin.kweather.shared.feature.setup.presentation.SetupState
-import com.krossovochkin.kweather.shared.feature.setup.presentation.SetupViewModel
-import com.krossovochkin.kweather.shared.feature.setup.setupModule
+import com.krossovochkin.kweather.setup.presentation.SetupState
+import com.krossovochkin.kweather.setup.presentation.SetupViewModel
+import com.krossovochkin.kweather.setup.setupModule
 import org.kodein.di.DI
 import org.kodein.di.instance
 

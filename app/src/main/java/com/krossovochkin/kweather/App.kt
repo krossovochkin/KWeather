@@ -1,8 +1,8 @@
 package com.krossovochkin.kweather
 
 import android.app.Application
-import com.krossovochkin.kweather.shared.common.image.ImageLoader
-import com.krossovochkin.kweather.shared.common.storage.storageModule
+import com.krossovochkin.kweather.core.image.ImageLoader
+import com.krossovochkin.kweather.core.storage.storageModule
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 

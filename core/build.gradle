@@ -1,0 +1,83 @@
+plugins {
+    id 'kotlin-multiplatform'
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'com.squareup.sqldelight'
+}
+
+android {
+    compileSdkVersion v.compile_sdk_version
+    buildToolsVersion v.build_tools_version
+
+    // Workaround as per https://stackoverflow.com/a/66433024/1533933
+    configurations {
+        androidTestApi {}
+        androidTestDebugApi {}
+        androidTestReleaseApi {}
+        testApi {}
+        testDebugApi {}
+        testReleaseApi {}
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'src/androidMain/AndroidManifest.xml'
+            java.srcDirs = ['src/androidMain/kotlin']
+            res.srcDirs = ['src/androidMain/res']
+            assets.srcDirs = ['src/androidMain/assets']
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+kotlin {
+    android()
+
+    sourceSets {
+        all {
+            languageSettings.enableLanguageFeature("InlineClasses")
+        }
+        commonMain {
+            dependencies {
+                implementation d.ktor_client_core
+                implementation d.ktor_client_json
+                implementation d.ktor_client_serialization
+                implementation d.kotlin_serialization_json
+                implementation d.kotlin_coroutines_core
+                implementation d.sqldelight_common
+                implementation d.sqldelight_runtime
+                implementation d.sqldelight_coroutines_extensions_common
+                implementation d.kodein
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation d.ktor_client_android
+                implementation d.ktor_client_json_jvm
+                implementation d.ktor_client_serialization_jvm
+                implementation d.kotlin_serialization_json
+                implementation d.kotlin_coroutines_android
+                implementation d.coil
+                implementation d.sqldelight_android
+            }
+        }
+    }
+}
+
+sqldelight {
+    AppDatabase {
+        packageName = "com.krossovochkin.kweather"
+        sourceFolders = ["sqldelight"]
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs += ["-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check"]
+    }
+}

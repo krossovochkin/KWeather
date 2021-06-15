@@ -62,5 +62,11 @@ d.sqldelight_coroutines_extensions_jvm = "com.squareup.sqldelight:coroutines-ext
 
 d.kodein = "org.kodein.di:kodein-di:$v.kodein"
 
+d.project = [:]
+d.project.core = project(":core")
+d.project.feature_setup = project(":feature-setup")
+d.project.feature_city_list = project(":feature-city-list")
+d.project.feature_weather_details = project(":feature-weather-details")
+
 ext.v = v
 ext.d = d

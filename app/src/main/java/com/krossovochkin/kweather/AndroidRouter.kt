@@ -2,8 +2,8 @@ package com.krossovochkin.kweather
 
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
-import com.krossovochkin.kweather.shared.common.router.Router
-import com.krossovochkin.kweather.shared.common.router.RouterDestination
+import com.krossovochkin.kweather.core.router.Router
+import com.krossovochkin.kweather.core.router.RouterDestination
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.singleton
