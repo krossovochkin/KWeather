@@ -9,8 +9,8 @@ class CityListDao(
 
     private val dao = db.citiesQueries
 
-    fun selectByQueryLimit(query: String, limit: Int): List<Cities> {
-        return dao.selectByQueryLimit(query, limit.toLong()).executeAsList()
+    fun selectAllLimit(limit: Int): List<Cities> {
+        return dao.selectAllLimit(limit.toLong()).executeAsList()
     }
 
     fun beginTransaction() {

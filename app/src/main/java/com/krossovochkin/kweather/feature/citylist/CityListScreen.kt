@@ -19,7 +19,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.krossovochkin.kweather.citylist.cityListModule
 import com.krossovochkin.kweather.citylist.presentation.CityListAction
 import com.krossovochkin.kweather.citylist.presentation.CityListState
@@ -87,11 +87,11 @@ private fun DataState(
     onAction: (CityListAction) -> Unit
 ) {
     Column(
-        modifier = Modifier.padding(Dp(16f))
+        modifier = Modifier.padding(16.dp)
     ) {
         TextField(
             modifier = Modifier
-                .padding(bottom = Dp(16f))
+                .padding(bottom = 16.dp)
                 .fillMaxWidth(),
             value = state.queryText,
             label = { Text(state.cityNameHintText) },
@@ -103,7 +103,7 @@ private fun DataState(
             items(state.cityList) { city ->
                 Text(
                     modifier = Modifier
-                        .padding(top = Dp(16f), bottom = Dp(16f))
+                        .padding(top = 16.dp, bottom = 16.dp)
                         .clickable(onClick = { onAction(CityListAction.SelectCity(city)) }),
                     text = city.name,
                     style = MaterialTheme.typography.body1

@@ -39,7 +39,6 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerVersion v.kotlin_compiler
         kotlinCompilerExtensionVersion v.androidx_compose
     }
 
@@ -69,11 +68,12 @@ dependencies {
     implementation d.androidx_compose_material
     implementation d.androidx_compose_navigation
     implementation d.material_components
+    implementation d.accompanist_coil
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        freeCompilerArgs += ["-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check"]
+        freeCompilerArgs += ["-Xskip-prerelease-check"]
     }
 }

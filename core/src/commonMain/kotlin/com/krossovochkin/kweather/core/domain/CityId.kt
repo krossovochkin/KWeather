@@ -1,5 +1,6 @@
 package com.krossovochkin.kweather.core.domain
 
-inline class CityId(
+@JvmInline
+value class CityId(
     val id: Int
 )

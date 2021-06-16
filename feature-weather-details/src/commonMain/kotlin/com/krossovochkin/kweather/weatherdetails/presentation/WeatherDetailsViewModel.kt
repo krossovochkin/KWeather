@@ -1,6 +1,5 @@
 package com.krossovochkin.kweather.weatherdetails.presentation
 
-import com.krossovochkin.kweather.core.image.ImageLoader
 import com.krossovochkin.kweather.core.localization.LocalizationManager
 import com.krossovochkin.kweather.core.presentation.BaseViewModel
 import com.krossovochkin.kweather.core.presentation.ViewModel
@@ -19,7 +18,6 @@ class WeatherDetailsViewModelImpl(
     private val getWeatherDetailsInteractor: GetWeatherDetailsInteractor,
     private val getCurrentCityInteractor: GetCurrentCityInteractor,
     private val router: Router,
-    private val imageLoader: ImageLoader,
     private val localizationManager: LocalizationManager<LocalizedStringKey>
 ) : BaseViewModel<WeatherDetailsState,
     WeatherDetailsAction,
@@ -41,7 +39,7 @@ class WeatherDetailsViewModelImpl(
                         WeatherDetailsState.Data(
                             cityNameText = result.weatherDetails.city.name,
                             temperatureText = "${result.weatherDetails.temperature}$CELSIUS_DEGREES",
-                            weatherConditionsImage = result.weatherConditionsImage,
+                            weatherConditionsImageUrl = result.weatherDetails.weatherConditionsImageUrl,
                             weatherConditionsImageContentDescription = localizationManager
                                 .getString(LocalizedStringKey.WeatherDetails_WeatherConditionsImageContentDescription),
                             changeCityButtonText = localizationManager
@@ -78,12 +76,7 @@ class WeatherDetailsViewModelImpl(
                             onActionResult(WeatherDetailsActionResult.LoadErrorCityMissing)
                         } else {
                             val data = getWeatherDetailsInteractor.get(city = city)
-                            onActionResult(
-                                WeatherDetailsActionResult.Loaded(
-                                    weatherDetails = data,
-                                    weatherConditionsImage = imageLoader.load(data.weatherConditionsImageUrl)
-                                )
-                            )
+                            onActionResult(WeatherDetailsActionResult.Loaded(weatherDetails = data))
                         }
                     } catch (e: Exception) {
                         onActionResult(WeatherDetailsActionResult.LoadErrorUnknown(e))

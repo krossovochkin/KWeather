@@ -11,7 +11,7 @@ interface WeatherDetailsMapper {
     ): WeatherDetails
 }
 
-private const val WEATHER_CONDITIONS_IMAGE_URL = "http://openweathermap.org/img/wn/"
+private const val WEATHER_CONDITIONS_IMAGE_URL = "https://openweathermap.org/img/wn/"
 
 class WeatherDetailsMapperImpl : WeatherDetailsMapper {
 

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,10 +21,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
-import androidx.core.graphics.drawable.toBitmap
+import androidx.compose.ui.unit.dp
+import com.google.accompanist.coil.rememberCoilPainter
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsAction
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsState
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
@@ -100,7 +100,7 @@ private fun DataState(
     onAction: (WeatherDetailsAction) -> Unit
 ) {
     Column(
-        modifier = Modifier.padding(Dp(16f))
+        modifier = Modifier.padding(16.dp)
     ) {
         Text(
             textAlign = TextAlign.Center,
@@ -114,14 +114,11 @@ private fun DataState(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val imageBitmap = state.weatherConditionsImage.drawable?.toBitmap()
-                ?.asImageBitmap()
-            if (imageBitmap != null) {
-                Image(
-                    bitmap = imageBitmap,
-                    contentDescription = state.weatherConditionsImageContentDescription
-                )
-            }
+            Image(
+                modifier = Modifier.defaultMinSize(minWidth = 48.dp, minHeight = 48.dp),
+                painter = rememberCoilPainter(state.weatherConditionsImageUrl),
+                contentDescription = state.weatherConditionsImageContentDescription
+            )
             Text(
                 modifier = Modifier.wrapContentWidth(align = Alignment.Start),
                 text = state.temperatureText,
@@ -144,7 +141,7 @@ private fun CityUnknownErrorState(
 ) {
     Column(
         modifier = Modifier
-            .padding(Dp(16f))
+            .padding(16.dp)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

@@ -30,7 +30,6 @@ val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
             router = instance(),
             getWeatherDetailsInteractor = instance(),
             getCurrentCityInteractor = instance(),
-            imageLoader = instance(),
             localizationManager = instance()
         )
     }

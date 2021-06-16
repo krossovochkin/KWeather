@@ -62,7 +62,6 @@ kotlin {
                 implementation d.ktor_client_serialization_jvm
                 implementation d.kotlin_serialization_json
                 implementation d.kotlin_coroutines_android
-                implementation d.coil
                 implementation d.sqldelight_android
                 implementation d.project.core
             }
@@ -80,6 +79,6 @@ sqldelight {
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        freeCompilerArgs += ["-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check"]
+        freeCompilerArgs += ["-Xskip-prerelease-check"]
     }
 }

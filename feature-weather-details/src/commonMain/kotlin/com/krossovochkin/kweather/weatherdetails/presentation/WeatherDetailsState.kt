@@ -1,7 +1,5 @@
 package com.krossovochkin.kweather.weatherdetails.presentation
 
-import com.krossovochkin.kweather.core.image.Image
-
 sealed class WeatherDetailsState {
 
     object Loading : WeatherDetailsState()
@@ -9,7 +7,7 @@ sealed class WeatherDetailsState {
     data class Data(
         val cityNameText: String,
         val temperatureText: String,
-        val weatherConditionsImage: Image,
+        val weatherConditionsImageUrl: String,
         val weatherConditionsImageContentDescription: String,
         val changeCityButtonText: String
     ) : WeatherDetailsState()

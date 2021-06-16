@@ -7,7 +7,7 @@ class DbCityListInitializer(
     private val dao: CityListDao
 ) {
     val isInitialized: Boolean
-        get() = dao.selectByQueryLimit("", 1).isNotEmpty()
+        get() = dao.selectAllLimit(1).isNotEmpty()
 
     fun startSetup() {
         dao.beginTransaction()
