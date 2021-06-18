@@ -58,7 +58,7 @@ dependencies {
     implementation d.kotlin_coroutines_core
     implementation d.kotlin_coroutines_android
 
-    implementation project(":shared")
+    implementation d.project.shared
 
     implementation d.kodein
 
@@ -69,11 +69,4 @@ dependencies {
     implementation d.androidx_compose_navigation
     implementation d.material_components
     implementation d.accompanist_coil
-}
-
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-        freeCompilerArgs += ["-Xskip-prerelease-check"]
-    }
 }

@@ -1,0 +1,41 @@
+apply plugin: "kotlin-multiplatform"
+apply plugin: "com.android.library"
+
+android {
+    compileSdkVersion v.compile_sdk_version
+    buildToolsVersion v.build_tools_version
+
+    // Workaround as per https://stackoverflow.com/a/66433024/1533933
+    configurations {
+        androidTestApi {}
+        androidTestDebugApi {}
+        androidTestReleaseApi {}
+        testApi {}
+        testDebugApi {}
+        testReleaseApi {}
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'src/androidMain/AndroidManifest.xml'
+            java.srcDirs = ['src/androidMain/kotlin']
+            res.srcDirs = ['src/androidMain/res']
+            assets.srcDirs = ['src/androidMain/assets']
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+kotlin {
+    android()
+
+    sourceSets {
+        all {
+            languageSettings.enableLanguageFeature("InlineClasses")
+        }
+    }
+}
