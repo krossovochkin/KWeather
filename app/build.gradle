@@ -71,7 +71,7 @@ dependencies {
     implementation d.accompanist_coil
 }
 
-def getApiKey() {
+String getApiKey() {
     def ciKey = System.getenv()['API_KEY']
     def localKey = findProperty("kweather_api_key")
     if (ciKey != null) {
