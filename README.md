@@ -1,3 +1,5 @@
+[![pipeline](https://github.com/krossovochkin/KWeather/actions/workflows/main.yml/badge.svg)](https://github.com/krossovochkin/KWeather/actions/workflows/main.yml)
+
 # KWeather
 Jetpack Compose Kotlin MPP Weather app
 
