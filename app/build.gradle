@@ -79,6 +79,7 @@ String getApiKey() {
     } else if (localKey != null) {
         return localKey
     } else {
-        throw Exception("Can't find API key")
+        println("Can't find API key")
+        return ""
     }
 }
