@@ -2,6 +2,13 @@ package com.krossovochkin.kweather.setup.data.json
 
 import com.krossovochkin.kweather.setup.data.json.JsonToken.Type
 
+@Suppress(
+    "ComplexMethod",
+    "TooManyFunctions",
+    "ComplexCondition",
+    "ThrowsCount",
+    "LoopWithTooManyJumpStatements"
+)
 internal class JsonTokenizer(
     private val iterator: JsonCharIterator
 ) : AbstractIterator<JsonToken>() {
