@@ -16,10 +16,18 @@ actual class LocalizationManagerImpl(
     @StringRes
     private fun map(key: LocalizedStringKey): Int {
         return when (key) {
-            LocalizedStringKey.WeatherDetails_ChangeCity -> R.string.weatherDetails_changeCity
-            LocalizedStringKey.WeatherDetails_CityMissingMessage -> R.string.weatherDetails_cityMissingMessage
-            LocalizedStringKey.WeatherDetails_SelectCity -> R.string.weatherDetails_selectCity
-            LocalizedStringKey.WeatherDetails_WeatherConditionsImageContentDescription -> R.string.weatherDetails_weatherConditionsImageContentDescription
+            LocalizedStringKey.WeatherDetails_ChangeCity -> {
+                R.string.weatherDetails_changeCity
+            }
+            LocalizedStringKey.WeatherDetails_CityMissingMessage -> {
+                R.string.weatherDetails_cityMissingMessage
+            }
+            LocalizedStringKey.WeatherDetails_SelectCity -> {
+                R.string.weatherDetails_selectCity
+            }
+            LocalizedStringKey.WeatherDetails_WeatherConditionsImageContentDescription -> {
+                R.string.weatherDetails_weatherConditionsImageContentDescription
+            }
         }
     }
 }

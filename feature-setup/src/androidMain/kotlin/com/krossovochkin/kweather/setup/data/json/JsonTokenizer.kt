@@ -117,8 +117,9 @@ internal class JsonTokenizer(
                         append(current)
                         moveNext()
                         if (current == '\"' || current == '\\' || current == '/' || current == 'b' ||
-                                current == 'f' || current == 'n' || current == 'r' || current == 't' ||
-                                current == 'u') {
+                            current == 'f' || current == 'n' || current == 'r' || current == 't' ||
+                            current == 'u'
+                        ) {
                             if (current == '/') {
                                 setLength(this.length - 1)
                             }

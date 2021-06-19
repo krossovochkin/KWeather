@@ -1,8 +1,8 @@
 package com.krossovochkin.kweather.weatherdetails.data
 
 import com.krossovochkin.kweather.core.domain.CityId
-import io.ktor.client.*
-import io.ktor.client.request.*
+import io.ktor.client.HttpClient
+import io.ktor.client.request.get
 
 private const val BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 

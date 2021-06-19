@@ -12,9 +12,9 @@ import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInterac
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetailsRepository
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModelImpl
-import io.ktor.client.*
+import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.json.serializer.KotlinxSerializer
 import kotlinx.serialization.json.Json
 import org.kodein.di.DI
 import org.kodein.di.bind
