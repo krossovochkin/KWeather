@@ -11,6 +11,15 @@ kotlin {
                 implementation d.kotlin_serialization_json
             }
         }
+        commonTest {
+            dependencies {
+                implementation d.project.core_test
+                implementation kotlin("test")
+                implementation "io.mockk:mockk:1.11.0"
+                implementation d.kotlin_coroutines_core
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0'
+            }
+        }
         androidMain {
             dependencies {
                 implementation d.ktor_client_android
