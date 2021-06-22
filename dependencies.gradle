@@ -27,6 +27,8 @@ v.accompanist_coil = "0.11.1"
 v.sqldelight = "1.5.0"
 v.kodein = "7.5.1"
 
+v.test_mockk = "1.11.0"
+
 def d = [:]
 d.gradle_plugin_kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$v.kotlin"
 d.gradle_plugin_android = "com.android.tools.build:gradle:$v.gradle_plugin_android"
@@ -35,6 +37,7 @@ d.gradle_plugin_kotlin_serialization = "org.jetbrains.kotlin:kotlin-serializatio
 
 d.kotlin_coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$v.kotlin_coroutines"
 d.kotlin_coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$v.kotlin_coroutines"
+d.kotlin_coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$v.kotlin_coroutines"
 
 d.androidx_annotation = "androidx.annotation:annotation:$v.androidx_annotation"
 d.androidx_core_ktx = "androidx.core:core-ktx:$v.androidx_core_ktx"
@@ -61,6 +64,8 @@ d.sqldelight_android = "com.squareup.sqldelight:android-driver:$v.sqldelight"
 d.sqldelight_coroutines_extensions_jvm = "com.squareup.sqldelight:coroutines-extensions-jvm:$v.sqldelight"
 
 d.kodein = "org.kodein.di:kodein-di:$v.kodein"
+
+d.test_mockk = "io.mockk:mockk:$v.test_mockk"
 
 d.project = [:]
 d.project.shared = project(":shared")

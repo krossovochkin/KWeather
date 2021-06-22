@@ -12,5 +12,4 @@ data class CityListDto(
         val id: Int,
         val name: String
     )
-
 }

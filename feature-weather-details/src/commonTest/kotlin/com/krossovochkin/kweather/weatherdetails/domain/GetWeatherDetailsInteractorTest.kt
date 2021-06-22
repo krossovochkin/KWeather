@@ -1,7 +1,6 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
 import com.krossovochkin.core.test.runBlockingTest
-import com.krossovochkin.kweather.core.domain.TestCityBuilder
 import com.krossovochkin.kweather.core.domain.TestCityIdBuilder
 import kotlin.test.Test
 import kotlin.test.assertEquals

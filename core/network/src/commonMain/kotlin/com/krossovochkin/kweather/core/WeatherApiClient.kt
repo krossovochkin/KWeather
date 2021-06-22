@@ -14,10 +14,10 @@ class WeatherApiClient(
 ) : WeatherApi {
 
     override suspend fun getCityList(query: String): CityListDto {
-        return client.get("$BASE_URL/find?q=${query}&appid=$apiKey&units=$UNITS")
+        return client.get("$BASE_URL/find?q=$query&appid=$apiKey&units=$UNITS")
     }
 
     override suspend fun getWeatherDetails(cityId: Int): WeatherDetailsDto {
-        return client.get("$BASE_URL/weather?id=${cityId}&appid=$apiKey&units=$UNITS")
+        return client.get("$BASE_URL/weather?id=$cityId&appid=$apiKey&units=$UNITS")
     }
 }

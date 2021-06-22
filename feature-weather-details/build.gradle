@@ -4,17 +4,13 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.project.core_network
+                api d.project.core_network
             }
         }
         commonTest {
             dependencies {
-                //TODO
-                implementation d.project.core_test
                 implementation kotlin("test")
-                implementation "io.mockk:mockk:1.11.0"
-                implementation d.kotlin_coroutines_core
-                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0'
+                implementation d.project.core_test
             }
         }
     }

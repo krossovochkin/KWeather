@@ -4,13 +4,16 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.kotlin_coroutines_core
-                implementation d.project.core
+                api d.project.core
+                api d.kotlin_coroutines_core
+                api d.test_mockk
+
             }
         }
         androidMain {
             dependencies {
-                implementation d.kotlin_coroutines_android
+                api d.kotlin_coroutines_android
+                api d.kotlin_coroutines_test
             }
         }
     }
