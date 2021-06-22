@@ -1,17 +1,17 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
-import com.krossovochkin.kweather.core.domain.City
+import com.krossovochkin.kweather.core.domain.CityId
 
 interface GetWeatherDetailsInteractor {
 
-    suspend fun get(city: City): WeatherDetails
+    suspend fun get(cityId: CityId): WeatherDetails
 }
 
 class GetWeatherDetailsInteractorImpl(
     private val weatherDetailsRepository: WeatherDetailsRepository
 ) : GetWeatherDetailsInteractor {
 
-    override suspend fun get(city: City): WeatherDetails {
-        return weatherDetailsRepository.getWeatherDetails(city)
+    override suspend fun get(cityId: CityId): WeatherDetails {
+        return weatherDetailsRepository.getWeatherDetails(cityId)
     }
 }

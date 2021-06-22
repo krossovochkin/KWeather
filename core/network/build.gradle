@@ -1,0 +1,24 @@
+apply from: "../../module_default.gradle"
+apply plugin: "org.jetbrains.kotlin.plugin.serialization"
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation d.kodein
+                implementation d.ktor_client_core
+                implementation d.ktor_client_json
+                implementation d.ktor_client_serialization
+                implementation d.kotlin_serialization_json
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation d.ktor_client_android
+                implementation d.ktor_client_json_jvm
+                implementation d.ktor_client_serialization_jvm
+                implementation d.kotlin_serialization_json
+            }
+        }
+    }
+}

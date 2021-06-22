@@ -1,1 +1,11 @@
 apply from: "../feature_default.gradle"
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                api d.project.core_network
+            }
+        }
+    }
+}

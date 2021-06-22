@@ -1,16 +1,16 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
-import com.krossovochkin.kweather.core.domain.City
+import com.krossovochkin.kweather.core.domain.CityId
 
 class TestWeatherDetailsRepository : WeatherDetailsRepository {
 
-    private var weatherDetailsMap = mutableMapOf<City, WeatherDetails>()
+    private var weatherDetailsMap = mutableMapOf<CityId, WeatherDetails>()
 
-    override suspend fun getWeatherDetails(city: City): WeatherDetails {
-        return weatherDetailsMap[city]!!
+    override suspend fun getWeatherDetails(cityId: CityId): WeatherDetails {
+        return weatherDetailsMap[cityId]!!
     }
 
-    fun put(city: City, weatherDetails: WeatherDetails) {
-        weatherDetailsMap[city] = weatherDetails
+    fun put(cityId: CityId, weatherDetails: WeatherDetails) {
+        weatherDetailsMap[cityId] = weatherDetails
     }
 }

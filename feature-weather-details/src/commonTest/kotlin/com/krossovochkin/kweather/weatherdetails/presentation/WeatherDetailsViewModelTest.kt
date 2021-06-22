@@ -3,9 +3,9 @@ package com.krossovochkin.kweather.weatherdetails.presentation
 import com.krossovochkin.core.test.runBlockingTest
 import com.krossovochkin.kweather.core.localization.TestLocalizationManager
 import com.krossovochkin.kweather.core.router.TestRouter
-import com.krossovochkin.kweather.core.storage.TestCurrentCityStorage
-import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractor
-import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractorImpl
+import com.krossovochkin.kweather.core.storage.TestCurrentCityIdStorage
+import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityIdInteractor
+import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityIdInteractorImpl
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractor
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractorImpl
 import com.krossovochkin.kweather.weatherdetails.domain.TestWeatherDetailsRepository
@@ -14,10 +14,11 @@ import kotlin.test.Test
 
 class WeatherDetailsViewModelTest {
 
-    private val currentCityStorage = TestCurrentCityStorage()
-    private val currentCityInteractor: GetCurrentCityInteractor = GetCurrentCityInteractorImpl(
-        currentCityStorage = currentCityStorage
-    )
+    private val currentCityIdStorage = TestCurrentCityIdStorage()
+    private val currentCityIdInteractor: GetCurrentCityIdInteractor =
+        GetCurrentCityIdInteractorImpl(
+            currentCityIdStorage = currentCityIdStorage
+        )
 
     private val weatherDetailsRepository = TestWeatherDetailsRepository()
     private val getWeatherDetailsInteractor: GetWeatherDetailsInteractor =
@@ -34,7 +35,7 @@ class WeatherDetailsViewModelTest {
     fun test() {
         viewModel = WeatherDetailsViewModelImpl(
             getWeatherDetailsInteractor = getWeatherDetailsInteractor,
-            getCurrentCityInteractor = currentCityInteractor,
+            getCurrentCityIdInteractor = currentCityIdInteractor,
             router = router,
             localizationManager = localizationManager
         )

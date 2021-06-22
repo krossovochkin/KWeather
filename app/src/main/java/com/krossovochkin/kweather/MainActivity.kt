@@ -12,7 +12,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.krossovochkin.kweather.core.router.RouterDestination
 import com.krossovochkin.kweather.feature.citylist.CityListScreen
-import com.krossovochkin.kweather.feature.setup.SetupScreen
 import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
 import org.kodein.di.DI
 
@@ -40,11 +39,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 NavHost(
                     navController = navController,
-                    startDestination = RouterDestination.Setup.route
+                    startDestination = RouterDestination.WeatherDetails.route
                 ) {
-                    composable(RouterDestination.Setup.route) {
-                        SetupScreen(parentDi = di)
-                    }
                     composable(RouterDestination.CityList.route) {
                         CityListScreen(parentDi = di)
                     }

@@ -1,11 +1,10 @@
 package com.krossovochkin.kweather.core.domain
 
-private const val DEFAULT_CITY_ID = 100
 private const val DEFAULT_CITY_NAME = "Minsk"
 
 class TestCityBuilder {
 
-    private var id: CityId = CityId(DEFAULT_CITY_ID)
+    private var id: CityId = TestCityIdBuilder().build()
     private var name: String = DEFAULT_CITY_NAME
 
     fun setId(id: CityId) = apply {

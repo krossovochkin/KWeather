@@ -5,7 +5,6 @@ kotlin {
         commonMain {
             dependencies {
                 api d.project.core
-                api d.project.feature_setup
                 api d.project.feature_city_list
                 api d.project.feature_weather_details
             }
@@ -13,7 +12,6 @@ kotlin {
         androidMain {
             dependencies {
                 api d.project.core
-                api d.project.feature_setup
                 api d.project.feature_city_list
                 api d.project.feature_weather_details
             }

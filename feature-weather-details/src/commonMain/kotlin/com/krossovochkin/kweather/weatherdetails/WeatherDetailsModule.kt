@@ -1,21 +1,15 @@
 package com.krossovochkin.kweather.weatherdetails
 
-import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsApi
-import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsApiClient
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsMapper
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsMapperImpl
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsRepositoryImpl
-import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractor
-import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractorImpl
+import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityIdInteractor
+import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityIdInteractorImpl
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractor
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractorImpl
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetailsRepository
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModelImpl
-import io.ktor.client.HttpClient
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import kotlinx.serialization.json.Json
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
@@ -29,7 +23,7 @@ val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
         WeatherDetailsViewModelImpl(
             router = instance(),
             getWeatherDetailsInteractor = instance(),
-            getCurrentCityInteractor = instance(),
+            getCurrentCityIdInteractor = instance(),
             localizationManager = instance()
         )
     }
@@ -40,9 +34,9 @@ val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
         )
     }
 
-    bind<GetCurrentCityInteractor>() with singleton {
-        GetCurrentCityInteractorImpl(
-            currentCityStorage = instance()
+    bind<GetCurrentCityIdInteractor>() with singleton {
+        GetCurrentCityIdInteractorImpl(
+            currentCityIdStorage = instance()
         )
     }
 
@@ -53,26 +47,7 @@ val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
         )
     }
 
-    bind<WeatherDetailsApi>() with singleton {
-        WeatherDetailsApiClient(
-            client = instance(),
-            apiKey = instance(tag = DI_TAG_API_KEY)
-        )
-    }
-
     bind<WeatherDetailsMapper>() with singleton {
         WeatherDetailsMapperImpl()
-    }
-
-    bind<HttpClient>() with singleton {
-        HttpClient() {
-            install(JsonFeature) {
-                serializer = KotlinxSerializer(
-                    json = Json {
-                        this.ignoreUnknownKeys = true
-                    }
-                )
-            }
-        }
     }
 }

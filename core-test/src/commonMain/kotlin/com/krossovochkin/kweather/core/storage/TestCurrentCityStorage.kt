@@ -1,16 +1,16 @@
 package com.krossovochkin.kweather.core.storage
 
-import com.krossovochkin.kweather.core.domain.City
+import com.krossovochkin.kweather.core.domain.CityId
 
-class TestCurrentCityStorage : CurrentCityStorage {
+class TestCurrentCityIdStorage : CurrentCityIdStorage {
 
-    private var city: City? = null
+    private var id: CityId? = null
 
-    override suspend fun getCity(): City? {
-        return city
+    override suspend fun getCityId(): CityId? {
+        return id
     }
 
-    fun setCity(city: City) {
-        this.city = city
+    fun setCityId(id: CityId) {
+        this.id = id
     }
 }
