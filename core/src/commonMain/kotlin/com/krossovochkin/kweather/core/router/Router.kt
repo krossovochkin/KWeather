@@ -2,5 +2,5 @@ package com.krossovochkin.kweather.core.router
 
 interface Router {
 
-    fun navigateTo(destination: RouterDestination)
+    suspend fun navigateTo(destination: RouterDestination)
 }

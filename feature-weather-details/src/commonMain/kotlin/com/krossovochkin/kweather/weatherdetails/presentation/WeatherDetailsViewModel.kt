@@ -84,7 +84,7 @@ class WeatherDetailsViewModelImpl(
                 }
             }
             WeatherDetailsAction.OpenSelectCityScreen -> {
-                router.navigateTo(RouterDestination.CityList)
+                scope.launch { router.navigateTo(RouterDestination.CityList) }
             }
         }
     }
