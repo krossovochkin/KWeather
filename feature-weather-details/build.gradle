@@ -5,6 +5,7 @@ kotlin {
         commonMain {
             dependencies {
                 api d.project.core_network
+                api d.project.core_presentation
             }
         }
         commonTest {

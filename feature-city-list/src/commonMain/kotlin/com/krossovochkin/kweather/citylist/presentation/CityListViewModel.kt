@@ -4,8 +4,8 @@ import com.krossovochkin.kweather.citylist.domain.GetCityListInteractor
 import com.krossovochkin.kweather.citylist.domain.SelectCityInteractor
 import com.krossovochkin.kweather.citylist.presentation.localization.LocalizedStringKey
 import com.krossovochkin.kweather.core.localization.LocalizationManager
-import com.krossovochkin.kweather.core.presentation.BaseViewModel
-import com.krossovochkin.kweather.core.presentation.ViewModel
+import com.krossovochkin.core.presentation.BaseViewModel
+import com.krossovochkin.core.presentation.ViewModel
 import com.krossovochkin.kweather.core.router.Router
 import com.krossovochkin.kweather.core.router.RouterDestination
 import kotlinx.coroutines.flow.MutableStateFlow

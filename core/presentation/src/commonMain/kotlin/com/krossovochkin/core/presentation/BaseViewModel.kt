@@ -1,4 +1,4 @@
-package com.krossovochkin.kweather.core.presentation
+package com.krossovochkin.core.presentation
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob

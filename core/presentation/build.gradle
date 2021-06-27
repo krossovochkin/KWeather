@@ -1,0 +1,16 @@
+apply from: "../../module_default.gradle"
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation d.kotlin_coroutines_core
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation d.kotlin_coroutines_android
+            }
+        }
+    }
+}

@@ -1,8 +1,8 @@
 package com.krossovochkin.kweather.weatherdetails.presentation
 
+import com.krossovochkin.core.presentation.BaseViewModel
+import com.krossovochkin.core.presentation.ViewModel
 import com.krossovochkin.kweather.core.localization.LocalizationManager
-import com.krossovochkin.kweather.core.presentation.BaseViewModel
-import com.krossovochkin.kweather.core.presentation.ViewModel
 import com.krossovochkin.kweather.core.router.Router
 import com.krossovochkin.kweather.core.router.RouterDestination
 import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityIdInteractor
