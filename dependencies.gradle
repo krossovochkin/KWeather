@@ -80,8 +80,8 @@ d.project.core_test = project(":core:test")
 
 d.project.service_storage_current_city = project(":service:storage-current-city")
 
-d.project.feature_city_list = project(":feature-city-list")
-d.project.feature_weather_details = project(":feature-weather-details")
+d.project.feature_city_list = project(":feature:city-list")
+d.project.feature_weather_details = project(":feature:weather-details")
 
 ext.v = v
 ext.d = d

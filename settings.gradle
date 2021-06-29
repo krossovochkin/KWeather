@@ -13,6 +13,6 @@ include ':core:test'
 
 include ':service:storage-current-city'
 
-include ':feature-city-list'
-include ':feature-weather-details'
+include ':feature:city-list'
+include ':feature:weather-details'
 

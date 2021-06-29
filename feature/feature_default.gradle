@@ -1,4 +1,4 @@
-apply from: "../module_default.gradle"
+apply from: "../../module_default.gradle"
 
 kotlin {
     sourceSets {
@@ -10,6 +10,7 @@ kotlin {
         }
         androidMain {
             dependencies {
+                implementation d.androidx_annotation
                 implementation d.kotlin_coroutines_android
             }
         }
