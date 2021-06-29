@@ -7,7 +7,7 @@ interface GetWeatherDetailsInteractor {
     suspend fun get(cityId: CityId): WeatherDetails
 }
 
-class GetWeatherDetailsInteractorImpl(
+internal class GetWeatherDetailsInteractorImpl(
     private val weatherDetailsRepository: WeatherDetailsRepository
 ) : GetWeatherDetailsInteractor {
 

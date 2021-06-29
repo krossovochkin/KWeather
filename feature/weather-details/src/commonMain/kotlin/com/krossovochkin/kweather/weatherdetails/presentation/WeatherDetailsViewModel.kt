@@ -2,6 +2,7 @@ package com.krossovochkin.kweather.weatherdetails.presentation
 
 import com.krossovochkin.core.presentation.BaseViewModel
 import com.krossovochkin.core.presentation.ViewModel
+import com.krossovochkin.i18n.LocalizationManager
 import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityIdInteractor
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractor
 import com.krossovochkin.kweather.weatherdetails.presentation.localization.LocalizedStringKey
@@ -16,7 +17,7 @@ class WeatherDetailsViewModelImpl(
     private val getWeatherDetailsInteractor: GetWeatherDetailsInteractor,
     private val getCurrentCityIdInteractor: GetCurrentCityIdInteractor,
     private val router: Router,
-    private val localizationManager: com.krossovochkin.i18n.LocalizationManager<LocalizedStringKey>
+    private val localizationManager: LocalizationManager<LocalizedStringKey>
 ) : BaseViewModel<WeatherDetailsState,
     WeatherDetailsAction,
     WeatherDetailsActionResult>(WeatherDetailsState.Loading),

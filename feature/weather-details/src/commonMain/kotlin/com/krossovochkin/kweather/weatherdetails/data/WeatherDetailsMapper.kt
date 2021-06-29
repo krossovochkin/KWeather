@@ -5,14 +5,14 @@ import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.CityId
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetails
 
-interface WeatherDetailsMapper {
+internal interface WeatherDetailsMapper {
 
     fun map(dto: WeatherDetailsDto): WeatherDetails
 }
 
 private const val WEATHER_CONDITIONS_IMAGE_URL = "https://openweathermap.org/img/wn/"
 
-class WeatherDetailsMapperImpl : WeatherDetailsMapper {
+internal class WeatherDetailsMapperImpl : WeatherDetailsMapper {
 
     override fun map(dto: WeatherDetailsDto): WeatherDetails {
         return with(dto) {

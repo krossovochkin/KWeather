@@ -5,7 +5,7 @@ import com.krossovochkin.storage.Storage
 
 private const val KEY_CURRENT_CITY_ID = "KEY_CURRENT_CITY_ID"
 
-class CurrentCityIdStorageImpl(
+internal class CurrentCityIdStorageImpl(
     private val storage: Storage,
 ) : MutableCurrentCityIdStorage {
 

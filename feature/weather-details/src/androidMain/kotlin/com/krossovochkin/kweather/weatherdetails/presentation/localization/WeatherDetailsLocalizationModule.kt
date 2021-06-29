@@ -6,7 +6,7 @@ import org.kodein.di.bind
 import org.kodein.di.instance
 import org.kodein.di.singleton
 
-actual val weatherDetailsLocalizationModule = DI.Module("WeatherDetailsLocalizationModule") {
+internal actual val weatherDetailsLocalizationModule = DI.Module("WeatherDetailsLocalizationModule") {
     bind<LocalizationManager<LocalizedStringKey>>() with singleton {
         LocalizationManagerImpl(
             context = instance()

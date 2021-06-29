@@ -3,7 +3,7 @@ package com.krossovochkin.kweather.citylist.data
 import com.krossovochkin.kweather.core.CityListApi
 import com.krossovochkin.kweather.domain.City
 
-class NetworkCityListDatasource(
+internal class NetworkCityListDatasource(
     private val api: CityListApi,
     private val mapper: CityListMapper
 ) : CityListDatasource {

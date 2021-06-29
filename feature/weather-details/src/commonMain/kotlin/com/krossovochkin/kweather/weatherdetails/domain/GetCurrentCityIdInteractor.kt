@@ -8,7 +8,7 @@ interface GetCurrentCityIdInteractor {
     suspend fun get(): CityId?
 }
 
-class GetCurrentCityIdInteractorImpl(
+internal class GetCurrentCityIdInteractorImpl(
     private val currentCityIdStorage: CurrentCityIdStorage
 ) : GetCurrentCityIdInteractor {
 

@@ -5,7 +5,7 @@ import com.krossovochkin.kweather.domain.CityId
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetails
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetailsRepository
 
-class WeatherDetailsRepositoryImpl(
+internal class WeatherDetailsRepositoryImpl(
     private val weatherDetailsApi: WeatherDetailsApi,
     private val weatherDetailsMapper: WeatherDetailsMapper
 ) : WeatherDetailsRepository {

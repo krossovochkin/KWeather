@@ -9,7 +9,7 @@ interface GetCityListInteractor {
 
 private const val QUERY_MIN_LENGTH = 3
 
-class GetCityListInteractorImpl(
+internal class GetCityListInteractorImpl(
     private val cityListRepository: CityListRepository
 ) : GetCityListInteractor {
 

@@ -5,7 +5,7 @@ import androidx.annotation.StringRes
 import com.krossovochkin.i18n.LocalizationManager
 import com.krossovochkin.kweather.weatherdetails.R
 
-actual class LocalizationManagerImpl(
+internal actual class LocalizationManagerImpl(
     private val context: Context
 ) : LocalizationManager<LocalizedStringKey> {
 

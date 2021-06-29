@@ -4,14 +4,14 @@ import com.krossovochkin.kweather.core.dto.CityListDto.CityDto
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.CityId
 
-interface CityListMapper {
+internal interface CityListMapper {
 
     fun map(dto: CityDto): City
 
     fun map(city: City): CityDto
 }
 
-class CityListMapperImpl : CityListMapper {
+internal class CityListMapperImpl : CityListMapper {
 
     override fun map(dto: CityDto): City {
         return with(dto) {

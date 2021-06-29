@@ -7,7 +7,7 @@ interface SelectCityInteractor {
     suspend fun select(city: com.krossovochkin.kweather.domain.City)
 }
 
-class SelectCityInteractorImpl(
+internal class SelectCityInteractorImpl(
     private val currentCityStorage: MutableCurrentCityIdStorage
 ) : SelectCityInteractor {
 

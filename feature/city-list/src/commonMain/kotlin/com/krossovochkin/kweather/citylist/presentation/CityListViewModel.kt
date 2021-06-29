@@ -2,6 +2,7 @@ package com.krossovochkin.kweather.citylist.presentation
 
 import com.krossovochkin.core.presentation.BaseViewModel
 import com.krossovochkin.core.presentation.ViewModel
+import com.krossovochkin.i18n.LocalizationManager
 import com.krossovochkin.kweather.citylist.domain.GetCityListInteractor
 import com.krossovochkin.kweather.citylist.domain.SelectCityInteractor
 import com.krossovochkin.kweather.citylist.presentation.localization.LocalizedStringKey
@@ -18,7 +19,7 @@ class CityListViewModelImpl(
     private val getCityListInteractor: GetCityListInteractor,
     private val selectCityInteractor: SelectCityInteractor,
     private val router: Router,
-    private val localizationManager: com.krossovochkin.i18n.LocalizationManager<LocalizedStringKey>
+    private val localizationManager: LocalizationManager<LocalizedStringKey>
 ) : BaseViewModel<CityListState, CityListAction, CityListActionResult>(CityListState.Loading),
     CityListViewModel {
 
