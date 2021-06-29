@@ -72,7 +72,7 @@ d.project.shared = project(":shared")
 d.project.core = project(":core")
 d.project.core_network = project(":core:network")
 d.project.core_presentation = project(":core:presentation")
-d.project.core_test = project(":core-test")
+d.project.core_test = project(":core:test")
 d.project.feature_city_list = project(":feature-city-list")
 d.project.feature_weather_details = project(":feature-weather-details")
 

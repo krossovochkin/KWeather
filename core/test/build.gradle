@@ -1,4 +1,4 @@
-apply from: "../module_default.gradle"
+apply from: "../../module_default.gradle"
 
 kotlin {
     sourceSets {

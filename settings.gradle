@@ -2,7 +2,7 @@ rootProject.name = "KWeather"
 include ':app'
 include ':shared'
 include ':core'
-include ':core-test'
+include ':core:test'
 include ':core:network'
 include ':core:presentation'
 include ':feature-city-list'
