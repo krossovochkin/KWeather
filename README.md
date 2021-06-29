@@ -29,7 +29,6 @@ Jetpack Compose Kotlin MPP Weather app
 
 ## App Features
 
-- Setup (populate local database for better performance) on first app start
 - Weather details (temperature and weather conditions) for given city
 <img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details.png" width="200"/>
 - City selection by name (with text input debounce)
