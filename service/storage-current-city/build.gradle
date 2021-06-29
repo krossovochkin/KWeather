@@ -1,0 +1,13 @@
+apply from: "../../module_default.gradle"
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                api d.project.core_domain
+                implementation d.kodein
+                implementation d.project.core_storage
+            }
+        }
+    }
+}

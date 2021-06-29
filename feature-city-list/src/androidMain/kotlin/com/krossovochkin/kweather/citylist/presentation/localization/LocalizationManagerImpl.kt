@@ -2,8 +2,8 @@ package com.krossovochkin.kweather.citylist.presentation.localization
 
 import android.content.Context
 import androidx.annotation.StringRes
+import com.krossovochkin.i18n.LocalizationManager
 import com.krossovochkin.kweather.citylist.R
-import com.krossovochkin.kweather.core.localization.LocalizationManager
 
 actual class LocalizationManagerImpl(
     private val context: Context

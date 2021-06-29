@@ -1,6 +1,6 @@
 package com.krossovochkin.kweather.citylist.presentation
 
-import com.krossovochkin.kweather.core.domain.City
+import com.krossovochkin.kweather.domain.City
 
 sealed class CityListState {
 

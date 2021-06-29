@@ -12,12 +12,17 @@ import com.krossovochkin.kweather.citylist.domain.SelectCityInteractor
 import com.krossovochkin.kweather.citylist.domain.SelectCityInteractorImpl
 import com.krossovochkin.kweather.citylist.presentation.CityListViewModel
 import com.krossovochkin.kweather.citylist.presentation.CityListViewModelImpl
+import com.krossovochkin.kweather.citylist.presentation.localization.cityListLocalizationModule
+import com.krossovochkin.kweather.service.storagecurrentcity.currentCityIdStorageModule
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
 import org.kodein.di.singleton
 
 val cityListModule = DI.Module("CityListModule") {
+
+    import(currentCityIdStorageModule)
+    import(cityListLocalizationModule)
 
     bind<CityListViewModel>() with singleton {
         CityListViewModelImpl(

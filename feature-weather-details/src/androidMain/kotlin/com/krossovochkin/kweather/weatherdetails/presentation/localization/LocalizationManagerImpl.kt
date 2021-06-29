@@ -2,7 +2,7 @@ package com.krossovochkin.kweather.weatherdetails.presentation.localization
 
 import android.content.Context
 import androidx.annotation.StringRes
-import com.krossovochkin.kweather.core.localization.LocalizationManager
+import com.krossovochkin.i18n.LocalizationManager
 import com.krossovochkin.kweather.weatherdetails.R
 
 actual class LocalizationManagerImpl(

@@ -1,13 +1,11 @@
 package com.krossovochkin.kweather.citylist.presentation
 
+import com.krossovochkin.core.presentation.BaseViewModel
+import com.krossovochkin.core.presentation.ViewModel
 import com.krossovochkin.kweather.citylist.domain.GetCityListInteractor
 import com.krossovochkin.kweather.citylist.domain.SelectCityInteractor
 import com.krossovochkin.kweather.citylist.presentation.localization.LocalizedStringKey
-import com.krossovochkin.kweather.core.localization.LocalizationManager
-import com.krossovochkin.core.presentation.BaseViewModel
-import com.krossovochkin.core.presentation.ViewModel
-import com.krossovochkin.kweather.core.router.Router
-import com.krossovochkin.kweather.core.router.RouterDestination
+import com.krossovochkin.navigation.Router
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
@@ -20,7 +18,7 @@ class CityListViewModelImpl(
     private val getCityListInteractor: GetCityListInteractor,
     private val selectCityInteractor: SelectCityInteractor,
     private val router: Router,
-    private val localizationManager: LocalizationManager<LocalizedStringKey>
+    private val localizationManager: com.krossovochkin.i18n.LocalizationManager<LocalizedStringKey>
 ) : BaseViewModel<CityListState, CityListAction, CityListActionResult>(CityListState.Loading),
     CityListViewModel {
 
@@ -86,7 +84,7 @@ class CityListViewModelImpl(
             is CityListAction.SelectCity -> {
                 scope.launch {
                     selectCityInteractor.select(action.city)
-                    router.navigateTo(RouterDestination.WeatherDetails)
+                    router.navigateTo(com.krossovochkin.navigation.RouterDestination.WeatherDetails)
                 }
             }
             is CityListAction.ChangeCityNameQuery -> {

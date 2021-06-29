@@ -6,6 +6,10 @@ kotlin {
             dependencies {
                 api d.project.core_network
                 api d.project.core_presentation
+                api d.project.core_domain
+                implementation d.project.core_i18n
+                implementation d.project.core_navigation
+                implementation d.project.service_storage_current_city
             }
         }
     }

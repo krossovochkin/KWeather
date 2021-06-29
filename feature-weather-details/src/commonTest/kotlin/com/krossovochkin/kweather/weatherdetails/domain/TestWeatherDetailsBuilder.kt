@@ -1,7 +1,7 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
-import com.krossovochkin.kweather.core.domain.City
 import com.krossovochkin.kweather.core.domain.TestCityBuilder
+import com.krossovochkin.kweather.domain.City
 
 private const val DEFAULT_TEMPERATURE = 28
 private const val DEFAULT_WEATHER_CONDITIONS_IMAGE_URL =

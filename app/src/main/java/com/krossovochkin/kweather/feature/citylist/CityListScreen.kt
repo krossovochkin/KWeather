@@ -24,7 +24,6 @@ import com.krossovochkin.kweather.citylist.cityListModule
 import com.krossovochkin.kweather.citylist.presentation.CityListAction
 import com.krossovochkin.kweather.citylist.presentation.CityListState
 import com.krossovochkin.kweather.citylist.presentation.CityListViewModel
-import com.krossovochkin.kweather.citylist.presentation.localization.cityListLocalizationModule
 import org.kodein.di.DI
 import org.kodein.di.instance
 
@@ -35,7 +34,6 @@ fun CityListScreen(
     val cityListViewModel: CityListViewModel = remember {
         val di = DI {
             extend(parentDi)
-            import(cityListLocalizationModule)
             import(cityListModule)
         }
         val viewModel by di.instance<CityListViewModel>()

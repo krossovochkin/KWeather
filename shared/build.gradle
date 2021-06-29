@@ -12,6 +12,8 @@ kotlin {
         androidMain {
             dependencies {
                 api d.project.core
+                api d.project.core_navigation
+                api d.project.core_storage
                 api d.project.feature_city_list
                 api d.project.feature_weather_details
             }

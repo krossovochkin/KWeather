@@ -1,8 +1,8 @@
 package com.krossovochkin.kweather.weatherdetails.data
 
-import com.krossovochkin.kweather.core.domain.City
-import com.krossovochkin.kweather.core.domain.CityId
 import com.krossovochkin.kweather.core.dto.WeatherDetailsDto
+import com.krossovochkin.kweather.domain.City
+import com.krossovochkin.kweather.domain.CityId
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetails
 
 interface WeatherDetailsMapper {

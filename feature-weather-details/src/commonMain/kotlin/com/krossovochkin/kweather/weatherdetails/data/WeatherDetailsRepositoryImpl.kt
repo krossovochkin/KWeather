@@ -1,7 +1,7 @@
 package com.krossovochkin.kweather.weatherdetails.data
 
 import com.krossovochkin.kweather.core.WeatherDetailsApi
-import com.krossovochkin.kweather.core.domain.CityId
+import com.krossovochkin.kweather.domain.CityId
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetails
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetailsRepository
 

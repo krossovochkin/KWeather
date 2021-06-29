@@ -2,7 +2,7 @@ package com.krossovochkin.kweather
 
 import android.app.Application
 import com.krossovochkin.kweather.core.networkModule
-import com.krossovochkin.kweather.core.storage.storageModule
+import com.krossovochkin.storage.storageModule
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 

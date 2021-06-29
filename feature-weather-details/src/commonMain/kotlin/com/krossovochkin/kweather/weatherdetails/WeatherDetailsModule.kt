@@ -1,5 +1,6 @@
 package com.krossovochkin.kweather.weatherdetails
 
+import com.krossovochkin.kweather.service.storagecurrentcity.currentCityIdStorageModule
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsMapper
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsMapperImpl
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsRepositoryImpl
@@ -10,6 +11,7 @@ import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInterac
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetailsRepository
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModelImpl
+import com.krossovochkin.kweather.weatherdetails.presentation.localization.weatherDetailsLocalizationModule
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
@@ -18,6 +20,9 @@ import org.kodein.di.singleton
 const val DI_TAG_API_KEY = "DI_TAG_API_KEY"
 
 val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
+
+    import(currentCityIdStorageModule)
+    import(weatherDetailsLocalizationModule)
 
     bind<WeatherDetailsViewModel>() with singleton {
         WeatherDetailsViewModelImpl(

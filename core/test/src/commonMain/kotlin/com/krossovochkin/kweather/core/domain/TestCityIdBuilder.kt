@@ -10,7 +10,7 @@ class TestCityIdBuilder {
         this.id = id
     }
 
-    fun build(): CityId {
-        return CityId(id)
+    fun build(): com.krossovochkin.kweather.domain.CityId {
+        return com.krossovochkin.kweather.domain.CityId(id)
     }
 }

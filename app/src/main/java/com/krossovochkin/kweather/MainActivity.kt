@@ -7,13 +7,17 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.krossovochkin.kweather.core.router.RouterDestination
 import com.krossovochkin.kweather.feature.citylist.CityListScreen
 import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
+import com.krossovochkin.navigation.RouterDestination
+import com.krossovochkin.navigation.navigationModule
 import org.kodein.di.DI
+import org.kodein.di.bind
+import org.kodein.di.singleton
 
 private const val BG_COLOR = 0xFFADD8E6
 
@@ -34,7 +38,8 @@ class MainActivity : AppCompatActivity() {
                 val di = remember {
                     DI.lazy {
                         extend(parentDi)
-                        import(routerModule(navController))
+                        bind<NavController>() with singleton { navController }
+                        import(navigationModule)
                     }
                 }
                 NavHost(

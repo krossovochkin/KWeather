@@ -1,6 +1,6 @@
 package com.krossovochkin.kweather.citylist.presentation.localization
 
-import com.krossovochkin.kweather.core.localization.LocalizationManager
+import com.krossovochkin.i18n.LocalizationManager
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance

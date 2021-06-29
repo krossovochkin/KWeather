@@ -1,6 +1,6 @@
 package com.krossovochkin.kweather.citylist.data
 
-import com.krossovochkin.kweather.core.domain.City
+import com.krossovochkin.kweather.domain.City
 
 interface CityListDatasource {
 

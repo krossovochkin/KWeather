@@ -1,6 +1,6 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
-import com.krossovochkin.kweather.core.domain.CityId
+import com.krossovochkin.kweather.domain.CityId
 
 interface WeatherDetailsRepository {
 

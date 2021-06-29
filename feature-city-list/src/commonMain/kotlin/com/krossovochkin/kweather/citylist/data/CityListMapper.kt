@@ -1,8 +1,8 @@
 package com.krossovochkin.kweather.citylist.data
 
-import com.krossovochkin.kweather.core.domain.City
-import com.krossovochkin.kweather.core.domain.CityId
 import com.krossovochkin.kweather.core.dto.CityListDto.CityDto
+import com.krossovochkin.kweather.domain.City
+import com.krossovochkin.kweather.domain.CityId
 
 interface CityListMapper {
 

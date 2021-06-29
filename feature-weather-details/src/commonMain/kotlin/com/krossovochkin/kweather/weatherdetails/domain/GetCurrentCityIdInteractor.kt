@@ -1,7 +1,7 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
-import com.krossovochkin.kweather.core.domain.CityId
-import com.krossovochkin.kweather.core.storage.CurrentCityIdStorage
+import com.krossovochkin.kweather.domain.CityId
+import com.krossovochkin.kweather.service.storagecurrentcity.CurrentCityIdStorage
 
 interface GetCurrentCityIdInteractor {
 

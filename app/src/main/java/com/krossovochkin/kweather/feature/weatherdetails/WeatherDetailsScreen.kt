@@ -27,7 +27,6 @@ import com.google.accompanist.coil.rememberCoilPainter
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsAction
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsState
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
-import com.krossovochkin.kweather.weatherdetails.presentation.localization.weatherDetailsLocalizationModule
 import com.krossovochkin.kweather.weatherdetails.weatherDetailsModule
 import org.kodein.di.DI
 import org.kodein.di.instance
@@ -39,7 +38,6 @@ fun WeatherDetailsScreen(
     val weatherDetailsViewModel = remember {
         val di = DI {
             extend(parentDi)
-            import(weatherDetailsLocalizationModule)
             import(weatherDetailsModule)
         }
         val viewModel by di.instance<WeatherDetailsViewModel>()
