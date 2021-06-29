@@ -12,4 +12,3 @@ interface Storage {
 
     suspend fun remove(key: String)
 }
-

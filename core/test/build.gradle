@@ -5,9 +5,12 @@ kotlin {
         commonMain {
             dependencies {
                 api d.project.core
+                implementation d.project.core_domain
+                implementation d.project.core_navigation
+                implementation d.project.core_i18n
+                implementation d.project.service_storage_current_city
                 api d.kotlin_coroutines_core
                 api d.test_mockk
-
             }
         }
         androidMain {

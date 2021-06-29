@@ -1,5 +1,7 @@
 package com.krossovochkin.kweather.core.domain
 
+import com.krossovochkin.kweather.domain.CityId
+
 private const val DEFAULT_CITY_ID = 100
 
 class TestCityIdBuilder {
@@ -10,7 +12,7 @@ class TestCityIdBuilder {
         this.id = id
     }
 
-    fun build(): com.krossovochkin.kweather.domain.CityId {
-        return com.krossovochkin.kweather.domain.CityId(id)
+    fun build(): CityId {
+        return CityId(id)
     }
 }

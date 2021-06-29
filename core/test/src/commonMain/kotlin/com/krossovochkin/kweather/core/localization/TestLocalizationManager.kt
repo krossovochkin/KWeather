@@ -1,6 +1,8 @@
 package com.krossovochkin.kweather.core.localization
 
-class TestLocalizationManager<KeyT> : com.krossovochkin.i18n.LocalizationManager<KeyT> {
+import com.krossovochkin.i18n.LocalizationManager
+
+class TestLocalizationManager<KeyT> : LocalizationManager<KeyT> {
 
     private val translations = mutableMapOf<KeyT, String>()
 
