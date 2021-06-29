@@ -70,7 +70,6 @@ d.test_mockk = "io.mockk:mockk:$v.test_mockk"
 d.project = [:]
 d.project.shared = project(":shared")
 
-d.project.core = project(":core")
 d.project.core_i18n = project(":core:i18n")
 d.project.core_network = project(":core:network")
 d.project.core_presentation = project(":core:presentation")

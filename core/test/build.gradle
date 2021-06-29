@@ -4,7 +4,6 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api d.project.core
                 implementation d.project.core_domain
                 implementation d.project.core_navigation
                 implementation d.project.core_i18n

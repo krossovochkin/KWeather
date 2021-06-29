@@ -6,13 +6,11 @@ kotlin {
             dependencies {
                 implementation d.kotlin_coroutines_core
                 implementation d.kodein
-                implementation d.project.core
             }
         }
         androidMain {
             dependencies {
                 implementation d.kotlin_coroutines_android
-                implementation d.project.core
             }
         }
     }
