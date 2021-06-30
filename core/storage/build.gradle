@@ -5,6 +5,15 @@ kotlin {
         commonMain {
             dependencies {
                 implementation d.kodein
+                implementation d.settings
+                implementation d.settings_coroutines
+                implementation d.kotlin_coroutines_core
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation d.androidx_preference
+                implementation d.kotlin_coroutines_android
             }
         }
     }

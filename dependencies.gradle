@@ -21,11 +21,13 @@ v.androidx_compose_tooling = "1.0.0-beta08"
 v.androidx_compose_navigation = "2.4.0-alpha02"
 v.androidx_core_ktx = "1.6.0-beta02"
 v.androidx_appcompat = "1.4.0-alpha02"
+v.androidx_preference = "1.1.1"
 v.material_components = "1.4.0-rc01"
 v.accompanist_coil = "0.11.1"
 
 v.sqldelight = "1.5.0"
 v.kodein = "7.5.1"
+v.settings = "0.7.7"
 
 v.test_mockk = "1.11.0"
 
@@ -42,6 +44,7 @@ d.kotlin_coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$v.kot
 d.androidx_annotation = "androidx.annotation:annotation:$v.androidx_annotation"
 d.androidx_core_ktx = "androidx.core:core-ktx:$v.androidx_core_ktx"
 d.androidx_appcompat = "androidx.appcompat:appcompat:$v.androidx_appcompat"
+d.androidx_preference = "androidx.preference:preference-ktx:$v.androidx_preference"
 d.androidx_compose_foundation = "androidx.compose.foundation:foundation:$v.androidx_compose_foundation"
 d.androidx_compose_material = "androidx.compose.material:material:$v.androidx_compose_material"
 d.androidx_compose_navigation = "androidx.navigation:navigation-compose:$v.androidx_compose_navigation"
@@ -64,6 +67,8 @@ d.sqldelight_android = "com.squareup.sqldelight:android-driver:$v.sqldelight"
 d.sqldelight_coroutines_extensions_jvm = "com.squareup.sqldelight:coroutines-extensions-jvm:$v.sqldelight"
 
 d.kodein = "org.kodein.di:kodein-di:$v.kodein"
+d.settings = "com.russhwolf:multiplatform-settings:$v.settings"
+d.settings_coroutines = "com.russhwolf:multiplatform-settings-coroutines:$v.settings"
 
 d.test_mockk = "io.mockk:mockk:$v.test_mockk"
 
