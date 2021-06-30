@@ -7,11 +7,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         gradlePluginPortal()
-        maven {
-            url "https://dl.bintray.com/kotlin/kotlin-eap/"
-        }
     }
     dependencies {
         classpath d.gradle_plugin_kotlin
@@ -46,10 +42,7 @@ task detektAll(type: io.gitlab.arturbosch.detekt.Detekt) {
 allprojects {
     repositories {
         google()
-        jcenter()
-        maven {
-            url "https://dl.bintray.com/kotlin/kotlin-eap/"
-        }
+        mavenCentral()
     }
 }
 
