@@ -1,3 +1,6 @@
+apply plugin: "com.github.ben-manes.versions"
+apply plugin: "io.gitlab.arturbosch.detekt"
+
 buildscript {
     apply from: 'dependencies.gradle'
 
@@ -5,6 +8,7 @@ buildscript {
         google()
         mavenCentral()
         jcenter()
+        gradlePluginPortal()
         maven {
             url "https://dl.bintray.com/kotlin/kotlin-eap/"
         }
@@ -14,14 +18,13 @@ buildscript {
         classpath d.gradle_plugin_android
         classpath d.gradle_plugin_sqldelight
         classpath d.gradle_plugin_kotlin_serialization
+        classpath d.gradle_plugin_versions
+        classpath d.gradle_plugin_detekt
     }
 }
 
-plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.17.1"
-}
 dependencies {
-    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.17.1"
+    detektPlugins d.quality_detekt_formatting
 }
 task detektAll(type: io.gitlab.arturbosch.detekt.Detekt) {
     failFast = true
