@@ -3,6 +3,7 @@ package com.krossovochkin.kweather.weatherdetails.data
 import com.krossovochkin.kweather.core.dto.WeatherDetailsDto
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.CityId
+import com.krossovochkin.kweather.domain.Location
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetails
 
 internal interface WeatherDetailsMapper {
@@ -19,9 +20,13 @@ internal class WeatherDetailsMapperImpl : WeatherDetailsMapper {
             WeatherDetails(
                 city = City(
                     id = CityId(dto.id),
-                    name = dto.name
+                    name = dto.name,
+                    location = Location(
+                        latitude = location.latitude,
+                        longitude = location.longitude
+                    )
                 ),
-                temperature = main.temp.toInt(),
+                temperature = main.temperature.toInt(),
                 weatherConditionsImageUrl = "$WEATHER_CONDITIONS_IMAGE_URL${weather.first().icon}@2x.png"
             )
         }

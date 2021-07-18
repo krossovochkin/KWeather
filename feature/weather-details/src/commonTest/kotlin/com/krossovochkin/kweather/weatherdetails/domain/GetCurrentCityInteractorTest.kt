@@ -1,18 +1,18 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
 import com.krossovochkin.core.test.runBlockingTest
-import com.krossovochkin.kweather.core.domain.TestCityIdBuilder
-import com.krossovochkin.kweather.core.storage.TestCurrentCityIdStorage
+import com.krossovochkin.kweather.core.domain.TestCityBuilder
+import com.krossovochkin.kweather.core.storage.TestCurrentCityStorage
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-class GetCurrentCityIdInteractorTest {
+class GetCurrentCityInteractorTest {
 
-    private val storage = TestCurrentCityIdStorage()
+    private val storage = TestCurrentCityStorage()
 
-    private val interactor: GetCurrentCityIdInteractor = GetCurrentCityIdInteractorImpl(
-        currentCityIdStorage = storage
+    private val interactor: GetCurrentCityInteractor = GetCurrentCityInteractorImpl(
+        currentCityStorage = storage
     )
 
     @Test
@@ -24,13 +24,13 @@ class GetCurrentCityIdInteractorTest {
 
     @Test
     fun `if current city set then returns that city id`() {
-        val cityId = TestCityIdBuilder().build()
+        val city = TestCityBuilder().build()
 
-        storage.setCityId(cityId)
+        storage.setCity(city)
 
         runBlockingTest {
             assertEquals(
-                expected = cityId,
+                expected = city,
                 actual = interactor.get()
             )
         }

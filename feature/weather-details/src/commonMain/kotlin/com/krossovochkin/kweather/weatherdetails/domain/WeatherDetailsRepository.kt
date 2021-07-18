@@ -1,8 +1,8 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
-import com.krossovochkin.kweather.domain.CityId
+import com.krossovochkin.kweather.domain.City
 
 internal interface WeatherDetailsRepository {
 
-    suspend fun getWeatherDetails(cityId: CityId): WeatherDetails
+    suspend fun getWeatherDetails(city: City): WeatherDetails
 }

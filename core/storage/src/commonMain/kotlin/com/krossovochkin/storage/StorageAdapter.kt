@@ -25,6 +25,14 @@ internal class StorageAdapter(
         return suspendSettings.putString(key, value)
     }
 
+    override suspend fun getDouble(key: String): Double? {
+        return suspendSettings.getDoubleOrNull(key)
+    }
+
+    override suspend fun putDouble(key: String, value: Double) {
+        return suspendSettings.putDouble(key, value)
+    }
+
     override suspend fun remove(key: String) {
         return suspendSettings.remove(key)
     }

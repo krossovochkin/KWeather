@@ -14,5 +14,8 @@ interface CityListApi {
 
 interface WeatherDetailsApi {
 
-    suspend fun getWeatherDetails(cityId: Int): WeatherDetailsDto
+    suspend fun getWeatherDetails(
+        latitude: Double,
+        longitude: Double
+    ): WeatherDetailsDto
 }

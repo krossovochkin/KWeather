@@ -3,7 +3,7 @@ package com.krossovochkin.kweather.weatherdetails.presentation
 import com.krossovochkin.core.presentation.BaseViewModel
 import com.krossovochkin.core.presentation.ViewModel
 import com.krossovochkin.i18n.LocalizationManager
-import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityIdInteractor
+import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractor
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractor
 import com.krossovochkin.kweather.weatherdetails.presentation.localization.LocalizedStringKey
 import com.krossovochkin.navigation.Router
@@ -15,7 +15,7 @@ private const val CELSIUS_DEGREES = "°C"
 
 class WeatherDetailsViewModelImpl(
     private val getWeatherDetailsInteractor: GetWeatherDetailsInteractor,
-    private val getCurrentCityIdInteractor: GetCurrentCityIdInteractor,
+    private val getCurrentCityInteractor: GetCurrentCityInteractor,
     private val router: Router,
     private val localizationManager: LocalizationManager<LocalizedStringKey>
 ) : BaseViewModel<WeatherDetailsState,
@@ -70,11 +70,11 @@ class WeatherDetailsViewModelImpl(
             WeatherDetailsAction.Load -> {
                 scope.launch {
                     try {
-                        val cityId = getCurrentCityIdInteractor.get()
-                        if (cityId == null) {
+                        val city = getCurrentCityInteractor.get()
+                        if (city == null) {
                             onActionResult(WeatherDetailsActionResult.LoadErrorCityMissing)
                         } else {
-                            val data = getWeatherDetailsInteractor.get(cityId = cityId)
+                            val data = getWeatherDetailsInteractor.get(city)
                             onActionResult(WeatherDetailsActionResult.Loaded(weatherDetails = data))
                         }
                     } catch (e: Exception) {

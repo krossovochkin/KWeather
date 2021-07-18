@@ -1,11 +1,11 @@
 package com.krossovochkin.kweather.weatherdetails
 
-import com.krossovochkin.kweather.service.storagecurrentcity.currentCityIdStorageModule
+import com.krossovochkin.kweather.service.storagecurrentcity.currentCityStorageModule
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsMapper
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsMapperImpl
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsRepositoryImpl
-import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityIdInteractor
-import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityIdInteractorImpl
+import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractor
+import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractorImpl
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractor
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractorImpl
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetailsRepository
@@ -21,14 +21,14 @@ const val DI_TAG_API_KEY = "DI_TAG_API_KEY"
 
 val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
 
-    import(currentCityIdStorageModule)
+    import(currentCityStorageModule)
     import(weatherDetailsLocalizationModule)
 
     bind<WeatherDetailsViewModel>() with singleton {
         WeatherDetailsViewModelImpl(
             router = instance(),
             getWeatherDetailsInteractor = instance(),
-            getCurrentCityIdInteractor = instance(),
+            getCurrentCityInteractor = instance(),
             localizationManager = instance()
         )
     }
@@ -39,9 +39,9 @@ val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
         )
     }
 
-    bind<GetCurrentCityIdInteractor>() with singleton {
-        GetCurrentCityIdInteractorImpl(
-            currentCityIdStorage = instance()
+    bind<GetCurrentCityInteractor>() with singleton {
+        GetCurrentCityInteractorImpl(
+            currentCityStorage = instance()
         )
     }
 

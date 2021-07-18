@@ -10,5 +10,9 @@ interface Storage {
 
     suspend fun putString(key: String, value: String)
 
+    suspend fun getDouble(key: String): Double?
+
+    suspend fun putDouble(key: String, value: Double)
+
     suspend fun remove(key: String)
 }

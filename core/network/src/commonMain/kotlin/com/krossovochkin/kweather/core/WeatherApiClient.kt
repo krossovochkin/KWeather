@@ -17,7 +17,10 @@ class WeatherApiClient(
         return client.get("$BASE_URL/find?q=$query&appid=$apiKey&units=$UNITS")
     }
 
-    override suspend fun getWeatherDetails(cityId: Int): WeatherDetailsDto {
-        return client.get("$BASE_URL/weather?id=$cityId&appid=$apiKey&units=$UNITS")
+    override suspend fun getWeatherDetails(
+        latitude: Double,
+        longitude: Double
+    ): WeatherDetailsDto {
+        return client.get("$BASE_URL/weather?lat=$latitude&lon=$longitude&appid=$apiKey&units=$UNITS")
     }
 }
