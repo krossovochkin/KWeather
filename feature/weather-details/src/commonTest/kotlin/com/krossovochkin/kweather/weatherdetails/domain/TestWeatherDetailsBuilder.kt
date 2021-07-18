@@ -4,7 +4,6 @@ import com.krossovochkin.kweather.core.domain.TestCityBuilder
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.WeatherDetails
 
-
 class TestWeatherDetailsBuilder {
 
     private var city: City = TestCityBuilder().build()

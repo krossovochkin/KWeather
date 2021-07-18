@@ -17,12 +17,20 @@ internal class WeatherDetailsMapperImpl : WeatherDetailsMapper {
         return with(dto) {
             WeatherDetails(
                 city = city,
-                currentWeatherData = WeatherDetails.WeatherData(
-                    temperature = currentWeatherData.temperature.toInt(),
-                    conditionImageUrl = mapConditionImageUrl(
-                        icon = currentWeatherData.conditions.first().icon
+                currentWeatherData = with(currentWeatherData) {
+                    WeatherDetails.WeatherData(
+                        temperature = temperature.toInt(),
+                        temperatureFeelsLike = temperatureFeelsLike.toInt(),
+                        pressure = pressure,
+                        humidity = humidity,
+                        windSpeed = windSpeed,
+                        windDegree = windDegree,
+                        conditionImageUrl = mapConditionImageUrl(
+                            icon = conditions.first().icon
+                        ),
+                        conditionDescription = conditions.first().description
                     )
-                )
+                }
             )
         }
     }

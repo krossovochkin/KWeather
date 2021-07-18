@@ -7,6 +7,12 @@ data class WeatherDetails(
 
     data class WeatherData(
         val temperature: Int,
-        val conditionImageUrl: String
+        val temperatureFeelsLike: Int,
+        val pressure: Int,
+        val humidity: Int,
+        val windSpeed: Double,
+        val windDegree: Int,
+        val conditionImageUrl: String,
+        val conditionDescription: String
     )
 }
