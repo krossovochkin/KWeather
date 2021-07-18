@@ -37,10 +37,16 @@ class WeatherDetailsViewModelImpl(
                     is WeatherDetailsActionResult.Loaded -> {
                         WeatherDetailsState.Data(
                             cityNameText = result.weatherDetails.city.name,
-                            temperatureText = "${result.weatherDetails.temperature}$CELSIUS_DEGREES",
-                            weatherConditionsImageUrl = result.weatherDetails.weatherConditionsImageUrl,
-                            weatherConditionsImageContentDescription = localizationManager
-                                .getString(LocalizedStringKey.WeatherDetails_WeatherConditionsImageContentDescription),
+                            currentWeatherData = with(result.weatherDetails.currentWeatherData) {
+                                WeatherDetailsState.Data.CurrentWeatherData(
+                                    temperatureText = "${temperature}$CELSIUS_DEGREES",
+                                    weatherConditionsImageUrl = conditionImageUrl,
+                                    weatherConditionsImageContentDescription = localizationManager
+                                        .getString(
+                                            LocalizedStringKey.WeatherDetails_WeatherConditionsImageContentDescription
+                                        ),
+                                )
+                            },
                             changeCityButtonText = localizationManager
                                 .getString(LocalizedStringKey.WeatherDetails_ChangeCity)
                         )

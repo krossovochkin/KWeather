@@ -23,7 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.rememberImagePainter
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsAction
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsState
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
@@ -114,12 +114,12 @@ private fun DataState(
         ) {
             Image(
                 modifier = Modifier.defaultMinSize(minWidth = 48.dp, minHeight = 48.dp),
-                painter = rememberCoilPainter(state.weatherConditionsImageUrl),
-                contentDescription = state.weatherConditionsImageContentDescription
+                painter = rememberImagePainter(state.currentWeatherData.weatherConditionsImageUrl),
+                contentDescription = state.currentWeatherData.weatherConditionsImageContentDescription
             )
             Text(
                 modifier = Modifier.wrapContentWidth(align = Alignment.Start),
-                text = state.temperatureText,
+                text = state.currentWeatherData.temperatureText,
                 style = MaterialTheme.typography.h5
             )
         }

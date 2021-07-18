@@ -6,11 +6,16 @@ sealed class WeatherDetailsState {
 
     data class Data(
         val cityNameText: String,
-        val temperatureText: String,
-        val weatherConditionsImageUrl: String,
-        val weatherConditionsImageContentDescription: String,
+        val currentWeatherData: CurrentWeatherData,
         val changeCityButtonText: String
-    ) : WeatherDetailsState()
+    ) : WeatherDetailsState() {
+
+        data class CurrentWeatherData(
+            val temperatureText: String,
+            val weatherConditionsImageUrl: String,
+            val weatherConditionsImageContentDescription: String,
+        )
+    }
 
     data class UnknownError(
         val error: Exception

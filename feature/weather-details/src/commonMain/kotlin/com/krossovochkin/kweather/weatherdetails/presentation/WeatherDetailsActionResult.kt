@@ -1,6 +1,6 @@
 package com.krossovochkin.kweather.weatherdetails.presentation
 
-import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetails
+import com.krossovochkin.kweather.domain.WeatherDetails
 
 sealed class WeatherDetailsActionResult {
 

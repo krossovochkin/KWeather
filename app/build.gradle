@@ -68,7 +68,7 @@ dependencies {
     implementation d.androidx_compose_material
     implementation d.androidx_compose_navigation
     implementation d.material_components
-    implementation d.accompanist_coil
+    implementation d.coil
 }
 
 String getApiKey() {

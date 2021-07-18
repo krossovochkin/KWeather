@@ -21,6 +21,6 @@ class WeatherApiClient(
         latitude: Double,
         longitude: Double
     ): WeatherDetailsDto {
-        return client.get("$BASE_URL/weather?lat=$latitude&lon=$longitude&appid=$apiKey&units=$UNITS")
+        return client.get("$BASE_URL/onecall?lat=$latitude&lon=$longitude&appid=$apiKey&units=$UNITS")
     }
 }
