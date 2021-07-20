@@ -17,20 +17,26 @@ internal class WeatherDetailsMapperImpl : WeatherDetailsMapper {
         return with(dto) {
             WeatherDetails(
                 city = city,
-                currentWeatherData = with(currentWeatherData) {
-                    WeatherDetails.WeatherData(
-                        temperature = temperature.toInt(),
-                        temperatureFeelsLike = temperatureFeelsLike.toInt(),
-                        pressure = pressure,
-                        humidity = humidity,
-                        windSpeed = windSpeed,
-                        windDegree = windDegree,
-                        conditionImageUrl = mapConditionImageUrl(
-                            icon = conditions.first().icon
-                        ),
-                        conditionDescription = conditions.first().description
-                    )
-                }
+                currentWeatherData = currentWeatherData.let(::mapWeatherData),
+                hourlyWeatherData = hourlyWeatherData.map(::mapWeatherData),
+                dailyWeatherData = dailyWeatherData.map(::mapWeatherData),
+            )
+        }
+    }
+
+    private fun mapWeatherData(weatherDataDto: WeatherDetailsDto.WeatherDataDto): WeatherDetails.WeatherData {
+        return with(weatherDataDto) {
+            WeatherDetails.WeatherData(
+                temperature = temperature.toInt(),
+                temperatureFeelsLike = temperatureFeelsLike.toInt(),
+                pressure = pressure,
+                humidity = humidity,
+                windSpeed = windSpeed,
+                windDegree = windDegree,
+                conditionImageUrl = mapConditionImageUrl(
+                    icon = conditions.first().icon
+                ),
+                conditionDescription = conditions.first().description
             )
         }
     }

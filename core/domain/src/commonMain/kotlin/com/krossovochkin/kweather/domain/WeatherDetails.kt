@@ -2,7 +2,9 @@ package com.krossovochkin.kweather.domain
 
 data class WeatherDetails(
     val city: City,
-    val currentWeatherData: WeatherData
+    val currentWeatherData: WeatherData,
+    val hourlyWeatherData: List<WeatherData>,
+    val dailyWeatherData: List<WeatherData>,
 ) {
 
     data class WeatherData(
@@ -13,6 +15,6 @@ data class WeatherDetails(
         val windSpeed: Double,
         val windDegree: Int,
         val conditionImageUrl: String,
-        val conditionDescription: String
+        val conditionDescription: String,
     )
 }

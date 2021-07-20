@@ -7,6 +7,10 @@ import kotlinx.serialization.Serializable
 data class WeatherDetailsDto(
     @SerialName("current")
     val currentWeatherData: WeatherDataDto,
+    @SerialName("hourly")
+    val hourlyWeatherData: List<WeatherDataDto>,
+    @SerialName("daily")
+    val dailyWeatherData: List<WeatherDataDto>,
 ) {
 
     @Serializable
@@ -24,7 +28,7 @@ data class WeatherDetailsDto(
         @SerialName("wind_deg")
         val windDegree: Int,
         @SerialName("weather")
-        val conditions: List<WeatherConditionDto>
+        val conditions: List<WeatherConditionDto>,
     ) {
 
         @Serializable
@@ -32,7 +36,7 @@ data class WeatherDetailsDto(
             @SerialName("icon")
             val icon: String,
             @SerialName("description")
-            val description: String
+            val description: String,
         )
     }
 }
