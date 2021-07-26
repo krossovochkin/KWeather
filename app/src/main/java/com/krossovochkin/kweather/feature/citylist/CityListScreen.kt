@@ -93,9 +93,7 @@ private fun DataState(
     state: CityListState.Data,
     onAction: (CityListAction) -> Unit
 ) {
-    Column(
-
-    ) {
+    Column {
         TopAppBar(
             contentPadding = PaddingValues(
                 start = 16.dp,
