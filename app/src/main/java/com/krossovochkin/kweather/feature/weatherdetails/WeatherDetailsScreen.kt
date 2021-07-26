@@ -127,9 +127,6 @@ private fun DataState(
     state: WeatherDetailsState.Data,
     onAction: (WeatherDetailsAction) -> Unit
 ) {
-    val currentTab = remember { mutableStateOf(WeatherTab.Today) }
-    val titles = WeatherTab.values().map { it.text }
-
     Column {
         TopAppBar(
             contentPadding = PaddingValues(
@@ -151,24 +148,15 @@ private fun DataState(
             }
         }
 
-        TabRow(selectedTabIndex = currentTab.value.index) {
-            titles.forEachIndexed { index, title ->
-                Tab(
-                    selected = currentTab.value.index == index,
-                    onClick = { currentTab.value = WeatherTab.fromIndex(index) }
-                ) {
-                    Text(
-                        modifier = Modifier.padding(16.dp),
-                        text = title
-                    )
-                }
+        TabController(
+            defaultTab = WeatherTab.Today,
+            title = { it.text }
+        ) { currentTab ->
+            when (currentTab) {
+                WeatherTab.Today -> TodayDataState(weatherData = state.todayWeatherData)
+                WeatherTab.Tomorrow -> TomorrowDataState(weatherData = state.tomorrowWeatherData)
+                WeatherTab.Week -> WeekDataState(weekWeatherData = state.weekWeatherData)
             }
-        }
-
-        when (currentTab.value) {
-            WeatherTab.Today -> TodayDataState(weatherData = state.todayWeatherData)
-            WeatherTab.Tomorrow -> TomorrowDataState(weatherData = state.tomorrowWeatherData)
-            WeatherTab.Week -> WeekDataState(weekWeatherData = state.weekWeatherData)
         }
 
         Button(
@@ -180,6 +168,33 @@ private fun DataState(
             Text(text = state.changeCityButtonText)
         }
     }
+}
+
+@Composable
+private inline fun <reified T : Enum<T>> TabController(
+    defaultTab: T,
+    crossinline title: (T) -> String,
+    block: @Composable (T) -> Unit
+) {
+    val currentTab = remember { mutableStateOf(defaultTab) }
+
+    TabRow(selectedTabIndex = currentTab.value.ordinal) {
+        Class.forName(T::class.qualifiedName!!).enumConstants
+            .map { it as T }
+            .forEachIndexed { index, value ->
+                Tab(
+                    selected = currentTab.value.ordinal == index,
+                    onClick = { currentTab.value = value }
+                ) {
+                    Text(
+                        modifier = Modifier.padding(16.dp),
+                        text = title(value)
+                    )
+                }
+            }
+    }
+
+    block(currentTab.value)
 }
 
 @Composable
