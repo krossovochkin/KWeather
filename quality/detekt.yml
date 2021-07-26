@@ -1,3 +1,7 @@
 exceptions:
   TooGenericExceptionCaught:
     active: false
+
+complexity:
+  TooManyFunctions:
+    active: false

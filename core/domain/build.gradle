@@ -1,1 +1,11 @@
 apply from: "../../module_default.gradle"
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation d.kotlin_datetime
+            }
+        }
+    }
+}

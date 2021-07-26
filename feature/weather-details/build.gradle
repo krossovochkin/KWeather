@@ -10,6 +10,7 @@ kotlin {
                 implementation d.project.core_i18n
                 implementation d.project.core_navigation
                 implementation d.project.service_storage_current_city
+                implementation d.kotlin_datetime
             }
         }
         commonTest {

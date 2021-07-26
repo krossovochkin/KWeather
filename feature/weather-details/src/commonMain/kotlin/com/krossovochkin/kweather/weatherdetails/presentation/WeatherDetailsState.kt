@@ -6,14 +6,32 @@ sealed class WeatherDetailsState {
 
     data class Data(
         val cityNameText: String,
-        val currentWeatherData: CurrentWeatherData,
+        val todayWeatherData: OneDayWeatherData,
+        val tomorrowWeatherData: OneDayWeatherData,
+        val weekWeatherData: List<DailyWeatherData>,
         val changeCityButtonText: String
     ) : WeatherDetailsState() {
 
-        data class CurrentWeatherData(
+        data class OneDayWeatherData(
+            val currentTemperatureText: String?,
+            val weatherConditionsImageUrl: String,
+            val weatherConditionsImageContentDescription: String,
+            val hourlyWeatherData: List<HourlyWeatherData>
+        )
+
+        data class HourlyWeatherData(
+            val dateTimeText: String,
             val temperatureText: String,
             val weatherConditionsImageUrl: String,
             val weatherConditionsImageContentDescription: String,
+        )
+
+        data class DailyWeatherData(
+            val dateTimeText: String,
+            val temperatureText: String,
+            val weatherConditionsImageUrl: String,
+            val weatherConditionsImageContentDescription: String,
+            val weatherConditionsDescription: String
         )
     }
 

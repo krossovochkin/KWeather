@@ -1,18 +1,19 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
 import com.krossovochkin.kweather.domain.WeatherDetails
+import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_CONDITION_DESCRIPTION
+import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_CONDITION_IMAGE_URL
+import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_HUMIDITY
+import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_LOCAL_DATE_TIME
+import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_PRESSURE
+import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_TEMPERATURE
+import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_WIND_DEGREE
+import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_WIND_SPEED
+import kotlinx.datetime.LocalDateTime
 
-private const val DEFAULT_TEMPERATURE = 20
-private const val DEFAULT_PRESSURE = 1010
-private const val DEFAULT_HUMIDITY = 54
-private const val DEFAULT_WIND_SPEED = 3.26
-private const val DEFAULT_WIND_DEGREE = 271
-private const val DEFAULT_CONDITION_IMAGE_URL =
-    "https://openweathermap.org/img/wn/01d@2x.png"
-private const val DEFAULT_CONDITION_DESCRIPTION = "scattered clouds"
+class TestHourlyWeatherDataBuilder {
 
-class TestWeatherDataBuilder {
-
+    private var localDateTime: LocalDateTime = DEFAULT_LOCAL_DATE_TIME
     private var temperature: Int = DEFAULT_TEMPERATURE
     private var temperatureFeelsLike: Int = DEFAULT_TEMPERATURE
     private var pressure: Int = DEFAULT_PRESSURE
@@ -21,6 +22,10 @@ class TestWeatherDataBuilder {
     private var windDegree: Int = DEFAULT_WIND_DEGREE
     private var conditionImageUrl: String = DEFAULT_CONDITION_IMAGE_URL
     private var conditionDescription: String = DEFAULT_CONDITION_DESCRIPTION
+
+    fun setLocalDateTime(localDateTime: LocalDateTime) = apply {
+        this.localDateTime = localDateTime
+    }
 
     fun setTemperature(temperature: Int) = apply {
         this.temperature = temperature
@@ -54,8 +59,9 @@ class TestWeatherDataBuilder {
         this.conditionDescription = conditionDescription
     }
 
-    fun build(): WeatherDetails.WeatherData {
-        return WeatherDetails.WeatherData(
+    fun build(): WeatherDetails.HourlyWeatherData {
+        return WeatherDetails.HourlyWeatherData(
+            localDateTime = localDateTime,
             temperature = temperature,
             temperatureFeelsLike = temperatureFeelsLike,
             pressure = pressure,

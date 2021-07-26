@@ -67,6 +67,7 @@ dependencies {
     implementation d.androidx_compose_foundation
     implementation d.androidx_compose_material
     implementation d.androidx_compose_navigation
+    implementation d.androidx_compose_ui_tooling
     implementation d.material_components
     implementation d.coil
 }

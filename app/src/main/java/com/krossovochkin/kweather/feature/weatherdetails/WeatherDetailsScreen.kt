@@ -4,24 +4,31 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Tab
+import androidx.compose.material.TabRow
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsAction
@@ -92,19 +99,81 @@ private fun UnknownErrorState(state: WeatherDetailsState.UnknownError) {
     Text(text = "${state.error}")
 }
 
+private enum class WeatherTab(
+    val index: Int,
+    val text: String
+) {
+    Today(0, "Today"),
+    Tomorrow(1, "Tomorrow"),
+    Week(2, "Week")
+    ;
+
+    companion object {
+        fun fromIndex(index: Int): WeatherTab {
+            return values().first { it.index == index }
+        }
+    }
+}
+
 @Composable
 private fun DataState(
     state: WeatherDetailsState.Data,
     onAction: (WeatherDetailsAction) -> Unit
 ) {
+    val currentTab = remember { mutableStateOf(WeatherTab.Today) }
+    val titles = WeatherTab.values().map { it.text }
+
+    Column {
+        TopAppBar(
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp
+            )
+        ) {
+            Text(
+                text = state.cityNameText,
+                style = MaterialTheme.typography.h6
+            )
+        }
+
+        TabRow(selectedTabIndex = currentTab.value.index) {
+            titles.forEachIndexed { index, title ->
+                Tab(
+                    selected = currentTab.value.index == index,
+                    onClick = { currentTab.value = WeatherTab.fromIndex(index) }
+                ) {
+                    Text(
+                        modifier = Modifier.padding(16.dp),
+                        text = title
+                    )
+                }
+            }
+        }
+
+        when (currentTab.value) {
+            WeatherTab.Today -> MainDataState(weatherData = state.todayWeatherData)
+            WeatherTab.Tomorrow -> MainDataState(weatherData = state.tomorrowWeatherData)
+            WeatherTab.Week -> FutureDataState(weekWeatherData = state.weekWeatherData)
+        }
+
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp),
+            onClick = { onAction(WeatherDetailsAction.OpenSelectCityScreen) }
+        ) {
+            Text(text = state.changeCityButtonText)
+        }
+    }
+}
+
+@Composable
+private fun MainDataState(
+    weatherData: WeatherDetailsState.Data.OneDayWeatherData
+) {
     Column(
         modifier = Modifier.padding(16.dp)
     ) {
-        Text(
-            textAlign = TextAlign.Center,
-            text = state.cityNameText,
-            style = MaterialTheme.typography.h4
-        )
         Row(
             modifier = Modifier
                 .weight(1f, fill = true)
@@ -113,22 +182,73 @@ private fun DataState(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                modifier = Modifier.defaultMinSize(minWidth = 48.dp, minHeight = 48.dp),
-                painter = rememberImagePainter(state.currentWeatherData.weatherConditionsImageUrl),
-                contentDescription = state.currentWeatherData.weatherConditionsImageContentDescription
+                modifier = Modifier.size(96.dp),
+                painter = rememberImagePainter(weatherData.weatherConditionsImageUrl),
+                contentDescription = weatherData.weatherConditionsImageContentDescription
             )
+            weatherData.currentTemperatureText?.let { temperatureText ->
+                Text(
+                    modifier = Modifier.wrapContentWidth(align = Alignment.Start),
+                    text = temperatureText,
+                    style = MaterialTheme.typography.h5
+                )
+            }
+        }
+        LazyRow {
+            items(weatherData.hourlyWeatherData) { HourlyWeatherItem(it) }
+        }
+    }
+}
+
+@Composable
+private fun FutureDataState(weekWeatherData: List<WeatherDetailsState.Data.DailyWeatherData>) {
+    LazyColumn {
+        items(weekWeatherData) { DailyWeatherItem(it) }
+    }
+}
+
+@Composable
+private fun HourlyWeatherItem(
+    weatherData: WeatherDetailsState.Data.HourlyWeatherData
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            modifier = Modifier.size(48.dp),
+            painter = rememberImagePainter(weatherData.weatherConditionsImageUrl),
+            contentDescription = weatherData.weatherConditionsImageContentDescription
+        )
+        Text(
+            modifier = Modifier.wrapContentWidth(align = Alignment.CenterHorizontally),
+            text = weatherData.temperatureText,
+            style = MaterialTheme.typography.body1
+        )
+        Text(
+            modifier = Modifier.wrapContentWidth(align = Alignment.CenterHorizontally),
+            text = weatherData.dateTimeText,
+            style = MaterialTheme.typography.body1
+        )
+    }
+}
+
+@Composable
+private fun DailyWeatherItem(
+    weatherData: WeatherDetailsState.Data.DailyWeatherData
+) {
+    Row {
+        Column(Modifier.weight(1f)) {
             Text(
-                modifier = Modifier.wrapContentWidth(align = Alignment.Start),
-                text = state.currentWeatherData.temperatureText,
-                style = MaterialTheme.typography.h5
+                text = weatherData.dateTimeText
             )
+            Text(text = weatherData.weatherConditionsDescription)
         }
-        Button(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = { onAction(WeatherDetailsAction.OpenSelectCityScreen) }
-        ) {
-            Text(text = state.changeCityButtonText)
-        }
+        Image(
+            modifier = Modifier.size(96.dp),
+            painter = rememberImagePainter(weatherData.weatherConditionsImageUrl),
+            contentDescription = weatherData.weatherConditionsImageContentDescription
+        )
+        Text(text = weatherData.temperatureText)
     }
 }
 
