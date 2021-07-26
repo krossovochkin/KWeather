@@ -1,21 +1,22 @@
 package com.krossovochkin.kweather.feature.weatherdetails
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
@@ -151,9 +152,9 @@ private fun DataState(
         }
 
         when (currentTab.value) {
-            WeatherTab.Today -> MainDataState(weatherData = state.todayWeatherData)
-            WeatherTab.Tomorrow -> MainDataState(weatherData = state.tomorrowWeatherData)
-            WeatherTab.Week -> FutureDataState(weekWeatherData = state.weekWeatherData)
+            WeatherTab.Today -> TodayDataState(weatherData = state.todayWeatherData)
+            WeatherTab.Tomorrow -> TomorrowDataState(weatherData = state.tomorrowWeatherData)
+            WeatherTab.Week -> WeekDataState(weekWeatherData = state.weekWeatherData)
         }
 
         Button(
@@ -168,32 +169,52 @@ private fun DataState(
 }
 
 @Composable
-private fun MainDataState(
+private fun TodayDataState(
     weatherData: WeatherDetailsState.Data.OneDayWeatherData
 ) {
     Column(
         modifier = Modifier.padding(16.dp)
     ) {
-        Row(
-            modifier = Modifier
-                .weight(1f, fill = true)
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                modifier = Modifier.size(96.dp),
-                painter = rememberImagePainter(weatherData.weatherConditionsImageUrl),
-                contentDescription = weatherData.weatherConditionsImageContentDescription
+        Spacer(modifier = Modifier.weight(1f))
+        Row {
+            Text(
+                text = weatherData.temperatureDayText,
+                style = MaterialTheme.typography.subtitle1
             )
-            weatherData.currentTemperatureText?.let { temperatureText ->
+            Spacer(Modifier.width(8.dp))
+            Text(
+                text = weatherData.temperatureNightText,
+                style = MaterialTheme.typography.subtitle1
+            )
+        }
+        Row {
+            weatherData.temperatureCurrentText?.let { temperatureText ->
                 Text(
-                    modifier = Modifier.wrapContentWidth(align = Alignment.Start),
                     text = temperatureText,
-                    style = MaterialTheme.typography.h5
+                    style = MaterialTheme.typography.h1
                 )
             }
+            Spacer(modifier = Modifier.weight(1f))
+            Image(
+                modifier = Modifier.size(144.dp),
+                painter = rememberImagePainter(weatherData.weatherConditionImageUrl),
+                contentDescription = weatherData.weatherConditionImageContentDescription
+            )
         }
+        Row {
+            weatherData.temperatureFeelsLikeText?.let { temperatureText ->
+                Text(
+                    text = temperatureText,
+                    style = MaterialTheme.typography.subtitle1
+                )
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = weatherData.weatherConditionDescription,
+                style = MaterialTheme.typography.subtitle1
+            )
+        }
+        Spacer(modifier = Modifier.weight(3f))
         LazyRow {
             items(weatherData.hourlyWeatherData) { HourlyWeatherItem(it) }
         }
@@ -201,9 +222,56 @@ private fun MainDataState(
 }
 
 @Composable
-private fun FutureDataState(weekWeatherData: List<WeatherDetailsState.Data.DailyWeatherData>) {
+private fun TomorrowDataState(
+    weatherData: WeatherDetailsState.Data.OneDayWeatherData
+) {
+    Column(
+        modifier = Modifier.padding(16.dp)
+    ) {
+        Spacer(modifier = Modifier.weight(1f))
+
+        Row {
+            Column {
+                Row {
+                    Text(
+                        text = weatherData.temperatureDayText,
+                        style = MaterialTheme.typography.subtitle1
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text(
+                        text = weatherData.temperatureNightText,
+                        style = MaterialTheme.typography.subtitle1
+                    )
+                }
+                Spacer(Modifier.size(24.dp))
+                Text(
+                    text = weatherData.weatherConditionDescription,
+                    style = MaterialTheme.typography.h4
+                )
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            Image(
+                modifier = Modifier.size(144.dp),
+                painter = rememberImagePainter(weatherData.weatherConditionImageUrl),
+                contentDescription = weatherData.weatherConditionImageContentDescription
+            )
+        }
+        Spacer(modifier = Modifier.weight(3f))
+        LazyRow {
+            items(weatherData.hourlyWeatherData) {
+                HourlyWeatherItem(it)
+            }
+        }
+    }
+}
+
+@Composable
+private fun WeekDataState(weekWeatherData: List<WeatherDetailsState.Data.DailyWeatherData>) {
     LazyColumn {
-        items(weekWeatherData) { DailyWeatherItem(it) }
+        items(weekWeatherData) {
+            DailyWeatherItem(it)
+            Divider()
+        }
     }
 }
 
@@ -212,22 +280,21 @@ private fun HourlyWeatherItem(
     weatherData: WeatherDetailsState.Data.HourlyWeatherData
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(horizontal = 8.dp)
     ) {
+        Text(
+            text = weatherData.temperatureText,
+            style = MaterialTheme.typography.body1
+        )
         Image(
             modifier = Modifier.size(48.dp),
             painter = rememberImagePainter(weatherData.weatherConditionsImageUrl),
             contentDescription = weatherData.weatherConditionsImageContentDescription
         )
         Text(
-            modifier = Modifier.wrapContentWidth(align = Alignment.CenterHorizontally),
-            text = weatherData.temperatureText,
-            style = MaterialTheme.typography.body1
-        )
-        Text(
-            modifier = Modifier.wrapContentWidth(align = Alignment.CenterHorizontally),
             text = weatherData.dateTimeText,
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.body2
         )
     }
 }
@@ -236,19 +303,35 @@ private fun HourlyWeatherItem(
 private fun DailyWeatherItem(
     weatherData: WeatherDetailsState.Data.DailyWeatherData
 ) {
-    Row {
+    Row(
+        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Column(Modifier.weight(1f)) {
             Text(
-                text = weatherData.dateTimeText
+                text = weatherData.dateTimeText,
+                style = MaterialTheme.typography.body1
             )
-            Text(text = weatherData.weatherConditionsDescription)
+            Text(
+                text = weatherData.weatherConditionsDescription,
+                style = MaterialTheme.typography.body2
+            )
         }
         Image(
-            modifier = Modifier.size(96.dp),
+            modifier = Modifier.size(72.dp),
             painter = rememberImagePainter(weatherData.weatherConditionsImageUrl),
             contentDescription = weatherData.weatherConditionsImageContentDescription
         )
-        Text(text = weatherData.temperatureText)
+        Column {
+            Text(
+                text = weatherData.temperatureDayText,
+                style = MaterialTheme.typography.body1
+            )
+            Text(
+                text = weatherData.temperatureNightText,
+                style = MaterialTheme.typography.body2
+            )
+        }
     }
 }
 

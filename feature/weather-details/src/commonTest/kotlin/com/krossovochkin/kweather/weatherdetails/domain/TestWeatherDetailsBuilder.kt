@@ -7,8 +7,8 @@ import com.krossovochkin.kweather.domain.WeatherDetails
 class TestWeatherDetailsBuilder {
 
     private var city: City = TestCityBuilder().build()
-    private var todayWeatherData = TestTodayWeatherDataBuilder().build()
-    private var tomorrowWeatherData = TestTomorrowWeatherDataBuilder().build()
+    private var todayWeatherData = TestOneDayWeatherDataBuilder().build()
+    private var tomorrowWeatherData = TestOneDayWeatherDataBuilder().build()
     private var weekWeatherData = listOf(
         TestDailyWeatherDataBuilder().build()
     )

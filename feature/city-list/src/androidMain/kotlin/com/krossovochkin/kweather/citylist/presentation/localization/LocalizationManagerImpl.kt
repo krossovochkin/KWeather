@@ -13,6 +13,10 @@ internal actual class LocalizationManagerImpl(
         return context.getString(map(key))
     }
 
+    override fun getString(key: LocalizedStringKey, vararg params: Any): String {
+        return context.getString(map(key), *params)
+    }
+
     @StringRes
     private fun map(key: LocalizedStringKey): Int {
         return when (key) {

@@ -39,8 +39,6 @@ data class WeatherDetailsDto(
         val timestamp: Long,
         @SerialName("temp")
         val temperature: TemperatureDataDto,
-        @SerialName("feels_like")
-        val temperatureFeelsLike: TemperatureDataDto,
         @SerialName("pressure")
         val pressure: Int,
         @SerialName("humidity")
@@ -56,7 +54,9 @@ data class WeatherDetailsDto(
         @Serializable
         data class TemperatureDataDto(
             @SerialName("day")
-            val temperatureDay: Double
+            val temperatureDay: Double,
+            @SerialName("night")
+            val temperatureNight: Double,
         )
     }
 

@@ -4,29 +4,12 @@ import kotlinx.datetime.LocalDateTime
 
 data class WeatherDetails(
     val city: City,
-    val todayWeatherData: TodayWeatherData,
-    val tomorrowWeatherData: TomorrowWeatherData,
+    val todayWeatherData: OneDayWeatherData,
+    val tomorrowWeatherData: OneDayWeatherData,
     val weekWeatherData: List<DailyWeatherData>,
 ) {
 
-    data class TodayWeatherData(
-        val currentWeatherData: CurrentWeatherData,
-        val hourlyWeatherData: List<HourlyWeatherData>
-    ) {
-
-        data class CurrentWeatherData(
-            val temperature: Int,
-            val temperatureFeelsLike: Int,
-            val pressure: Int,
-            val humidity: Int,
-            val windSpeed: Double,
-            val windDegree: Int,
-            val conditionImageUrl: String,
-            val conditionDescription: String,
-        )
-    }
-
-    data class TomorrowWeatherData(
+    data class OneDayWeatherData(
         val weatherData: DailyWeatherData,
         val hourlyWeatherData: List<HourlyWeatherData>
     )
@@ -46,7 +29,6 @@ data class WeatherDetails(
     data class DailyWeatherData(
         val localDateTime: LocalDateTime,
         val temperature: TemperatureData,
-        val temperatureFeelsLike: TemperatureData,
         val pressure: Int,
         val humidity: Int,
         val windSpeed: Double,
@@ -57,6 +39,9 @@ data class WeatherDetails(
 
         data class TemperatureData(
             val temperatureDay: Int,
+            val temperatureNight: Int,
+            val temperatureCurrent: Int?,
+            val temperatureFeelsLike: Int?
         )
     }
 }

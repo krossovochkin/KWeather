@@ -13,6 +13,10 @@ internal actual class LocalizationManagerImpl(
         return context.getString(map(key))
     }
 
+    override fun getString(key: LocalizedStringKey, vararg params: Any): String {
+        return context.getString(map(key), *params)
+    }
+
     @StringRes
     private fun map(key: LocalizedStringKey): Int {
         return when (key) {
@@ -27,6 +31,15 @@ internal actual class LocalizationManagerImpl(
             }
             LocalizedStringKey.WeatherDetails_WeatherConditionsImageContentDescription -> {
                 R.string.weatherDetails_weatherConditionsImageContentDescription
+            }
+            LocalizedStringKey.WeatherDetails_TemperatureDay -> {
+                R.string.weatherDetails_temperatureDay
+            }
+            LocalizedStringKey.WeatherDetails_TemperatureNight -> {
+                R.string.weatherDetails_temperatureNight
+            }
+            LocalizedStringKey.WeatherDetails_TemperatureFeelsLike -> {
+                R.string.weatherDetails_temperatureFeelsLike
             }
         }
     }

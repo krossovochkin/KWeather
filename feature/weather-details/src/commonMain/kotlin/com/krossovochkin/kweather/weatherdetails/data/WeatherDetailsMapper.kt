@@ -25,7 +25,11 @@ internal class WeatherDetailsMapperImpl : WeatherDetailsMapper {
 
         return WeatherDetails(
             city = city,
-            todayWeatherData = mapTodayWeatherData(dto, hourlyWeatherData[0]),
+            todayWeatherData = mapTodayWeatherData(
+                dto = dto,
+                dailyWeatherData = dto.dailyWeatherData[0],
+                hourlyWeatherData = hourlyWeatherData[0]
+            ),
             tomorrowWeatherData = mapTomorrowWeatherData(dto, hourlyWeatherData[1]),
             weekWeatherData = mapWeekWeatherData(dto),
         )
@@ -61,13 +65,19 @@ internal class WeatherDetailsMapperImpl : WeatherDetailsMapper {
 
     private fun mapTodayWeatherData(
         dto: WeatherDetailsDto,
+        dailyWeatherData: WeatherDetailsDto.DailyWeatherDataDto,
         hourlyWeatherData: List<WeatherDetails.HourlyWeatherData>
-    ): WeatherDetails.TodayWeatherData {
-        return WeatherDetails.TodayWeatherData(
-            currentWeatherData = with(dto.currentWeatherData) {
-                WeatherDetails.TodayWeatherData.CurrentWeatherData(
-                    temperature = temperature.toInt(),
-                    temperatureFeelsLike = temperatureFeelsLike.toInt(),
+    ): WeatherDetails.OneDayWeatherData {
+        return WeatherDetails.OneDayWeatherData(
+            weatherData = with(dto.currentWeatherData) {
+                WeatherDetails.DailyWeatherData(
+                    localDateTime = mapTime(timestamp),
+                    temperature = WeatherDetails.DailyWeatherData.TemperatureData(
+                        temperatureDay = dailyWeatherData.temperature.temperatureDay.toInt(),
+                        temperatureNight = dailyWeatherData.temperature.temperatureNight.toInt(),
+                        temperatureCurrent = temperature.toInt(),
+                        temperatureFeelsLike = temperatureFeelsLike.toInt(),
+                    ),
                     pressure = pressure,
                     humidity = humidity,
                     windSpeed = windSpeed,
@@ -83,8 +93,8 @@ internal class WeatherDetailsMapperImpl : WeatherDetailsMapper {
     private fun mapTomorrowWeatherData(
         dto: WeatherDetailsDto,
         hourlyWeatherData: List<WeatherDetails.HourlyWeatherData>
-    ): WeatherDetails.TomorrowWeatherData {
-        return WeatherDetails.TomorrowWeatherData(
+    ): WeatherDetails.OneDayWeatherData {
+        return WeatherDetails.OneDayWeatherData(
             weatherData = mapDailyWeatherData(dto.dailyWeatherData[1]),
             hourlyWeatherData = hourlyWeatherData
         )
@@ -120,8 +130,11 @@ internal class WeatherDetailsMapperImpl : WeatherDetailsMapper {
         return with(weatherDataDto) {
             WeatherDetails.DailyWeatherData(
                 localDateTime = mapTime(timestamp),
-                temperature = mapDailyTemperatureData(temperature),
-                temperatureFeelsLike = mapDailyTemperatureData(temperatureFeelsLike),
+                temperature = mapDailyTemperatureData(
+                    temperatureDataDto = temperature,
+                    temperatureCurrent = null,
+                    temperatureFeelsLike = null
+                ),
                 pressure = pressure,
                 humidity = humidity,
                 windSpeed = windSpeed,
@@ -135,11 +148,16 @@ internal class WeatherDetailsMapperImpl : WeatherDetailsMapper {
     }
 
     private fun mapDailyTemperatureData(
-        temperatureDataDto: WeatherDetailsDto.DailyWeatherDataDto.TemperatureDataDto
+        temperatureDataDto: WeatherDetailsDto.DailyWeatherDataDto.TemperatureDataDto,
+        temperatureCurrent: Double?,
+        temperatureFeelsLike: Double?
     ): WeatherDetails.DailyWeatherData.TemperatureData {
         return with(temperatureDataDto) {
             WeatherDetails.DailyWeatherData.TemperatureData(
-                temperatureDay = temperatureDay.toInt()
+                temperatureDay = temperatureDay.toInt(),
+                temperatureNight = temperatureNight.toInt(),
+                temperatureCurrent = temperatureCurrent?.toInt(),
+                temperatureFeelsLike = temperatureFeelsLike?.toInt(),
             )
         }
     }

@@ -63,25 +63,41 @@ class WeatherDetailsViewModelImpl(
         return with(weatherDetails) {
             WeatherDetailsState.Data(
                 cityNameText = city.name,
-                todayWeatherData = with(todayWeatherData) {
-                    WeatherDetailsState.Data.OneDayWeatherData(
-                        currentTemperatureText = mapTemperature(currentWeatherData.temperature),
-                        weatherConditionsImageUrl = currentWeatherData.conditionImageUrl,
-                        weatherConditionsImageContentDescription = currentWeatherData.conditionDescription,
-                        hourlyWeatherData = hourlyWeatherData.map(::mapHourlyData)
-                    )
-                },
-                tomorrowWeatherData = with(tomorrowWeatherData) {
-                    WeatherDetailsState.Data.OneDayWeatherData(
-                        currentTemperatureText = null,
-                        weatherConditionsImageUrl = weatherData.conditionImageUrl,
-                        weatherConditionsImageContentDescription = weatherData.conditionDescription,
-                        hourlyWeatherData = hourlyWeatherData.map(::mapHourlyData)
-                    )
-                },
+                todayWeatherData = mapOneDayWeatherData(todayWeatherData),
+                tomorrowWeatherData = mapOneDayWeatherData(tomorrowWeatherData),
                 weekWeatherData = weekWeatherData.map(::mapDailyData),
                 changeCityButtonText = localizationManager
                     .getString(LocalizedStringKey.WeatherDetails_ChangeCity)
+            )
+        }
+    }
+
+    private fun mapOneDayWeatherData(
+        oneDayWeatherData: WeatherDetails.OneDayWeatherData
+    ): WeatherDetailsState.Data.OneDayWeatherData {
+        return with(oneDayWeatherData) {
+            WeatherDetailsState.Data.OneDayWeatherData(
+                temperatureDayText = localizationManager.getString(
+                    LocalizedStringKey.WeatherDetails_TemperatureDay,
+                    mapTemperature(weatherData.temperature.temperatureDay)
+                ),
+                temperatureNightText = localizationManager.getString(
+                    LocalizedStringKey.WeatherDetails_TemperatureNight,
+                    mapTemperature(weatherData.temperature.temperatureNight)
+                ),
+                temperatureCurrentText = weatherData.temperature
+                    .temperatureCurrent?.let(::mapTemperature),
+                temperatureFeelsLikeText = weatherData.temperature
+                    .temperatureFeelsLike?.let { temperature ->
+                        localizationManager.getString(
+                            LocalizedStringKey.WeatherDetails_TemperatureFeelsLike,
+                            mapTemperature(temperature)
+                        )
+                    },
+                weatherConditionImageUrl = weatherData.conditionImageUrl,
+                weatherConditionImageContentDescription = weatherData.conditionDescription,
+                weatherConditionDescription = weatherData.conditionDescription,
+                hourlyWeatherData = hourlyWeatherData.map(::mapHourlyData)
             )
         }
     }
@@ -107,8 +123,9 @@ class WeatherDetailsViewModelImpl(
     ): WeatherDetailsState.Data.DailyWeatherData {
         return with(weatherDetailsData) {
             WeatherDetailsState.Data.DailyWeatherData(
-                dateTimeText = mapDate(weatherDetailsData.localDateTime),
-                temperatureText = mapTemperature(weatherDetailsData.temperature.temperatureDay),
+                dateTimeText = mapWeekdayWithDate(weatherDetailsData.localDateTime),
+                temperatureDayText = mapTemperature(weatherDetailsData.temperature.temperatureDay),
+                temperatureNightText = mapTemperature(weatherDetailsData.temperature.temperatureNight),
                 weatherConditionsImageUrl = conditionImageUrl,
                 weatherConditionsImageContentDescription = localizationManager
                     .getString(
@@ -129,8 +146,12 @@ class WeatherDetailsViewModelImpl(
         return "$hourText:$minuteText"
     }
 
-    private fun mapDate(dateTime: LocalDateTime): String {
-        return "${dateTime.dayOfMonth} ${dateTime.month.name}"
+    private fun mapWeekdayWithDate(dateTime: LocalDateTime): String {
+        val weekday = dateTime.dayOfWeek.name.lowercase()
+            .replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
+        val month = dateTime.month.name.lowercase()
+            .replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
+        return "$weekday, ${dateTime.dayOfMonth} $month"
     }
 
     override fun performAction(action: WeatherDetailsAction) {

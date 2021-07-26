@@ -13,9 +13,13 @@ sealed class WeatherDetailsState {
     ) : WeatherDetailsState() {
 
         data class OneDayWeatherData(
-            val currentTemperatureText: String?,
-            val weatherConditionsImageUrl: String,
-            val weatherConditionsImageContentDescription: String,
+            val temperatureDayText: String,
+            val temperatureNightText: String,
+            val temperatureCurrentText: String?,
+            val temperatureFeelsLikeText: String?,
+            val weatherConditionImageUrl: String,
+            val weatherConditionImageContentDescription: String,
+            val weatherConditionDescription: String,
             val hourlyWeatherData: List<HourlyWeatherData>
         )
 
@@ -28,7 +32,8 @@ sealed class WeatherDetailsState {
 
         data class DailyWeatherData(
             val dateTimeText: String,
-            val temperatureText: String,
+            val temperatureDayText: String,
+            val temperatureNightText: String,
             val weatherConditionsImageUrl: String,
             val weatherConditionsImageContentDescription: String,
             val weatherConditionsDescription: String

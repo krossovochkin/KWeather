@@ -14,7 +14,6 @@ class TestDailyWeatherDataBuilder {
 
     private var localDateTime: LocalDateTime = DEFAULT_LOCAL_DATE_TIME
     private var temperature = TestTemperatureDataBuilder().build()
-    private var temperatureFeelsLike = TestTemperatureDataBuilder().build()
     private var pressure: Int = DEFAULT_PRESSURE
     private var humidity: Int = DEFAULT_HUMIDITY
     private var windSpeed: Double = DEFAULT_WIND_SPEED
@@ -26,7 +25,6 @@ class TestDailyWeatherDataBuilder {
         return WeatherDetails.DailyWeatherData(
             localDateTime = localDateTime,
             temperature = temperature,
-            temperatureFeelsLike = temperatureFeelsLike,
             pressure = pressure,
             humidity = humidity,
             windSpeed = windSpeed,

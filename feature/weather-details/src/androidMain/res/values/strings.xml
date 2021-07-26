@@ -4,4 +4,7 @@
     <string name="weatherDetails_cityMissingMessage">City is missing, add it first</string>
     <string name="weatherDetails_selectCity">Select city</string>
     <string name="weatherDetails_weatherConditionsImageContentDescription">Weather conditions image</string>
+    <string name="weatherDetails_temperatureDay">Day: %1$s</string>
+    <string name="weatherDetails_temperatureNight">Night: %1$s</string>
+    <string name="weatherDetails_temperatureFeelsLike">Feels like: %1$s</string>
 </resources>
