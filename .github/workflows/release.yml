@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+      - name: Setup Gradle
+        run: chmod +x gradlew
+      - name: Test
+        run: ./gradlew detektAll lintDebug testDebug
+      - name: Prepare keystore
+        run: |
+          echo "${{ secrets.RELEASE_KEY_STORE }}" >> keystore_base64.txt
+          openssl base64 -d < keystore_base64.txt >> release-keystore-kweather.jks
+      - name: Build Release APK
+        run: ./gradlew aRelease
+        env:
+          RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SERVER_ADDRESS }}
+          server_port: 465
+          subject: Github Actions job result
+          to: ${{ secrets.EMAIL }}
+          from: Luke Skywalker
+          body: Build job of ${{github.repository}} completed successfully!
+          attachments: ./app/build/outputs/apk/release/app-release.apk
