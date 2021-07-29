@@ -26,6 +26,7 @@ jobs:
           RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
           RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+          API_KEY: ${{ secrets.API_KEY }}
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
