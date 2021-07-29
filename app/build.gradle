@@ -1,7 +1,6 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply from: "$rootDir/quality/lint.gradle"
 
 android {
     compileSdkVersion v.compile_sdk_version

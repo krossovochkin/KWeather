@@ -1,5 +1,6 @@
 apply plugin: "kotlin-multiplatform"
 apply plugin: "com.android.library"
+apply from: "$rootDir/quality/lint.gradle"
 
 android {
     compileSdkVersion v.compile_sdk_version
