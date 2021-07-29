@@ -16,6 +16,8 @@ jobs:
         run: chmod +x gradlew
       - name: Test
         run: ./gradlew detektAll lintDebug testDebug
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
       - name: Prepare keystore
         run: |
           echo "${{ secrets.RELEASE_KEY_STORE }}" >> keystore_base64.txt
