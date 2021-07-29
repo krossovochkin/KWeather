@@ -33,7 +33,9 @@ jobs:
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: ${{ secrets.SERVER_ADDRESS }}
-          server_port: 465
+          server_port: ${{ secrets.SERVER_PORT }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
           subject: Github Actions job result
           to: ${{ secrets.EMAIL }}
           from: Luke Skywalker
