@@ -15,7 +15,7 @@ jobs:
       - name: Setup Gradle
         run: chmod +x gradlew
       - name: Test
-        run: ./gradlew detektAll lintDebug testDebug --stacktrace
+        run: ./gradlew detektAll lintDebug testDebug
       - name: Prepare keystore
         run: |
           echo "${{ secrets.RELEASE_KEY_STORE }}" >> keystore_base64.txt
