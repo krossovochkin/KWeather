@@ -30,11 +30,11 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
-            buildConfigField("String", "API_KEY", "${getProperty('API_KEY')}")
+            buildConfigField("String", "API_KEY", "${getApiKey()}")
         }
         release {
             signingConfig signingConfigs.release
-            buildConfigField("String", "API_KEY", "${getProperty('API_KEY')}")
+            buildConfigField("String", "API_KEY", "${getApiKey()}")
 
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -84,14 +84,14 @@ dependencies {
     implementation d.coil
 }
 
-String getProperty(String key) {
-    def ciKey = System.getenv()[key]
-    def localKey = findProperty(key)
+String getApiKey() {
+    def ciKey = System.getenv()['API_KEY']
+    def localKey = findProperty("kweather_api_key")
     if (ciKey != null) {
         return ciKey
     } else if (localKey != null) {
         return localKey
     } else {
-        ""
+        throw Exception("Can't find API key")
     }
 }
