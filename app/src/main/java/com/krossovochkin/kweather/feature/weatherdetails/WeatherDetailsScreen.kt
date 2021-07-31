@@ -107,19 +107,11 @@ private fun UnknownErrorState(state: WeatherDetailsState.UnknownError) {
 }
 
 private enum class WeatherTab(
-    val index: Int,
     val text: String
 ) {
-    Today(0, "Today"),
-    Tomorrow(1, "Tomorrow"),
-    Week(2, "Week")
-    ;
-
-    companion object {
-        fun fromIndex(index: Int): WeatherTab {
-            return values().first { it.index == index }
-        }
-    }
+    Today("Today"),
+    Tomorrow("Tomorrow"),
+    Week("Week")
 }
 
 @Composable
@@ -149,6 +141,7 @@ private fun DataState(
         }
 
         TabController(
+            tabs = WeatherTab.values().toList(),
             defaultTab = WeatherTab.Today,
             title = { it.text }
         ) { currentTab ->
@@ -171,20 +164,20 @@ private fun DataState(
 }
 
 @Composable
-private inline fun <reified T : Enum<T>> TabController(
+private fun <T> TabController(
+    tabs: List<T>,
     defaultTab: T,
-    crossinline title: (T) -> String,
+    title: (T) -> String,
     block: @Composable (T) -> Unit
 ) {
-    val currentTab = remember { mutableStateOf(defaultTab) }
+    val currentTabIndex = remember { mutableStateOf(tabs.indexOf(defaultTab)) }
 
-    TabRow(selectedTabIndex = currentTab.value.ordinal) {
-        Class.forName(T::class.qualifiedName!!).enumConstants
-            .map { it as T }
+    TabRow(selectedTabIndex = currentTabIndex.value) {
+        tabs
             .forEachIndexed { index, value ->
                 Tab(
-                    selected = currentTab.value.ordinal == index,
-                    onClick = { currentTab.value = value }
+                    selected = currentTabIndex.value == index,
+                    onClick = { currentTabIndex.value = index }
                 ) {
                     Text(
                         modifier = Modifier.padding(16.dp),
@@ -194,7 +187,7 @@ private inline fun <reified T : Enum<T>> TabController(
             }
     }
 
-    block(currentTab.value)
+    block(tabs[currentTabIndex.value])
 }
 
 @Composable
