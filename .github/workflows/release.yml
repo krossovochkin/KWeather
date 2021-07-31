@@ -17,6 +17,9 @@ jobs:
       - name: Test
         run: ./gradlew detektAll lintDebug testDebug
         env:
+          RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
           API_KEY: ${{ secrets.API_KEY }}
       - name: Prepare keystore
         run: |
