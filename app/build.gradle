@@ -19,9 +19,9 @@ android {
     signingConfigs {
         release {
             storeFile file("$rootDir/release-keystore-kweather.jks")
-            storePassword getProperty('RELEASE_STORE_PASSWORD')
-            keyAlias getProperty('RELEASE_KEY_ALIAS')
-            keyPassword getProperty('RELEASE_KEY_PASSWORD')
+            storePassword System.getenv()['RELEASE_STORE_PASSWORD']
+            keyAlias System.getenv()['RELEASE_KEY_ALIAS']
+            keyPassword System.getenv()['RELEASE_KEY_PASSWORD']
             v1SigningEnabled true
             v2SigningEnabled true
         }
