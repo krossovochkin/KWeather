@@ -92,6 +92,6 @@ String getProperty(String key) {
     } else if (localKey != null) {
         return localKey
     } else {
-        throw Exception("Can't find property")
+        ""
     }
 }
