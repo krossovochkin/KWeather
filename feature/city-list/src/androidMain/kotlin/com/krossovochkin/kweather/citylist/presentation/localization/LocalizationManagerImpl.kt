@@ -21,6 +21,7 @@ internal actual class LocalizationManagerImpl(
     private fun map(key: LocalizedStringKey): Int {
         return when (key) {
             LocalizedStringKey.CityList_CityNameHint -> R.string.cityList_cityNameHint
+            LocalizedStringKey.CityList_UseCurrentLocation -> R.string.cityList_useCurrentLocation
         }
     }
 }

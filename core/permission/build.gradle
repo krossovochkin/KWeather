@@ -1,0 +1,18 @@
+apply from: "../../module_default.gradle"
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation d.kodein
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation d.androidx_appcompat
+                implementation d.androidx_activity
+                implementation d.project.core_lifecycle
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+apply from: "../../module_default.gradle"
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation d.project.core_domain
+                implementation d.project.core_permission
+                implementation d.kodein
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation d.gms_location
+                implementation d.project.core_lifecycle
+            }
+        }
+    }
+}

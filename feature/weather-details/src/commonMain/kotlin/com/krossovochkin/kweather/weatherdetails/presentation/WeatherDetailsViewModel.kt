@@ -3,11 +3,13 @@ package com.krossovochkin.kweather.weatherdetails.presentation
 import com.krossovochkin.core.presentation.BaseViewModel
 import com.krossovochkin.core.presentation.ViewModel
 import com.krossovochkin.i18n.LocalizationManager
+import com.krossovochkin.kweather.domain.CityId
 import com.krossovochkin.kweather.domain.WeatherDetails
 import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractor
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractor
 import com.krossovochkin.kweather.weatherdetails.presentation.localization.LocalizedStringKey
 import com.krossovochkin.navigation.Router
+import com.krossovochkin.location.LocationProvider
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 
@@ -19,7 +21,8 @@ class WeatherDetailsViewModelImpl(
     private val getWeatherDetailsInteractor: GetWeatherDetailsInteractor,
     private val getCurrentCityInteractor: GetCurrentCityInteractor,
     private val router: Router,
-    private val localizationManager: LocalizationManager<LocalizedStringKey>
+    private val localizationManager: LocalizationManager<LocalizedStringKey>,
+    private val locationProvider: LocationProvider
 ) : BaseViewModel<WeatherDetailsState,
     WeatherDetailsAction,
     WeatherDetailsActionResult>(WeatherDetailsState.Loading),
@@ -159,10 +162,15 @@ class WeatherDetailsViewModelImpl(
             WeatherDetailsAction.Load -> {
                 scope.launch {
                     try {
-                        val city = getCurrentCityInteractor.get()
+                        var city = getCurrentCityInteractor.get()
                         if (city == null) {
                             onActionResult(WeatherDetailsActionResult.LoadErrorCityMissing)
                         } else {
+                            if (city.id == CityId.currentLocation) {
+                                city.copy(
+                                    location = locationProvider.getLastLocation()
+                                )
+                            }
                             val data = getWeatherDetailsInteractor.get(city)
                             onActionResult(WeatherDetailsActionResult.Loaded(weatherDetails = data))
                         }

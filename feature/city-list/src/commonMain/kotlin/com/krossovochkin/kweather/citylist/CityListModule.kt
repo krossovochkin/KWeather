@@ -14,6 +14,7 @@ import com.krossovochkin.kweather.citylist.presentation.CityListViewModel
 import com.krossovochkin.kweather.citylist.presentation.CityListViewModelImpl
 import com.krossovochkin.kweather.citylist.presentation.localization.cityListLocalizationModule
 import com.krossovochkin.kweather.service.storagecurrentcity.currentCityStorageModule
+import com.krossovochkin.location.locationProviderModule
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
@@ -21,6 +22,7 @@ import org.kodein.di.singleton
 
 val cityListModule = DI.Module("CityListModule") {
 
+    importOnce(locationProviderModule)
     import(currentCityStorageModule)
     import(cityListLocalizationModule)
 
@@ -29,7 +31,8 @@ val cityListModule = DI.Module("CityListModule") {
             router = instance(),
             getCityListInteractor = instance(),
             selectCityInteractor = instance(),
-            localizationManager = instance()
+            localizationManager = instance(),
+            locationProvider = instance()
         )
     }
 

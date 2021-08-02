@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -116,11 +117,17 @@ private fun DataState(
                 onAction(CityListAction.ChangeCityNameQuery(it))
             }
         )
-        LazyColumn {
+        LazyColumn(modifier = Modifier.weight(1f)) {
             items(state.cityList) { city ->
                 CityItem(city, onAction)
                 Divider()
             }
+        }
+        Button(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            onClick = { onAction(CityListAction.UseCurrentLocation) }
+        ) {
+            Text(state.useCurrentLocationText)
         }
     }
 }

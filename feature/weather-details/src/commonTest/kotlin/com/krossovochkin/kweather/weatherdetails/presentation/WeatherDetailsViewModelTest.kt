@@ -2,6 +2,7 @@ package com.krossovochkin.kweather.weatherdetails.presentation
 
 import com.krossovochkin.core.test.runBlockingTest
 import com.krossovochkin.kweather.core.localization.TestLocalizationManager
+import com.krossovochkin.kweather.core.location.TestLocationProvider
 import com.krossovochkin.kweather.core.router.TestRouter
 import com.krossovochkin.kweather.core.storage.TestCurrentCityStorage
 import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractor
@@ -28,6 +29,7 @@ class WeatherDetailsViewModelTest {
 
     private val router = TestRouter()
     private val localizationManager = TestLocalizationManager<LocalizedStringKey>()
+    private val locationProvider = TestLocationProvider()
 
     private lateinit var viewModel: WeatherDetailsViewModel
 
@@ -37,7 +39,8 @@ class WeatherDetailsViewModelTest {
             getWeatherDetailsInteractor = getWeatherDetailsInteractor,
             getCurrentCityInteractor = currentCityInteractor,
             router = router,
-            localizationManager = localizationManager
+            localizationManager = localizationManager,
+            locationProvider = locationProvider
         )
 
         runBlockingTest {

@@ -13,6 +13,8 @@ sealed class CityListAction {
     data class ChangeCityNameQuery(
         val query: String
     ) : CityListAction()
+
+    object UseCurrentLocation : CityListAction()
 }
 
 sealed class CityListActionResult {

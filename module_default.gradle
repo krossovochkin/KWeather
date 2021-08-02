@@ -6,6 +6,11 @@ android {
     compileSdkVersion v.compile_sdk_version
     buildToolsVersion v.build_tools_version
 
+    defaultConfig {
+        minSdkVersion v.min_sdk_version
+        targetSdkVersion v.target_sdk_version
+    }
+
     // Workaround as per https://stackoverflow.com/a/66433024/1533933
     configurations {
         androidTestApi {}

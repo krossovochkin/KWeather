@@ -6,7 +6,11 @@ import com.krossovochkin.i18n.LocalizationManager
 import com.krossovochkin.kweather.citylist.domain.GetCityListInteractor
 import com.krossovochkin.kweather.citylist.domain.SelectCityInteractor
 import com.krossovochkin.kweather.citylist.presentation.localization.LocalizedStringKey
+import com.krossovochkin.kweather.domain.City
+import com.krossovochkin.kweather.domain.CityId
 import com.krossovochkin.navigation.Router
+import com.krossovochkin.navigation.RouterDestination
+import com.krossovochkin.location.LocationProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
@@ -19,7 +23,8 @@ class CityListViewModelImpl(
     private val getCityListInteractor: GetCityListInteractor,
     private val selectCityInteractor: SelectCityInteractor,
     private val router: Router,
-    private val localizationManager: LocalizationManager<LocalizedStringKey>
+    private val localizationManager: LocalizationManager<LocalizedStringKey>,
+    private val locationProvider: LocationProvider
 ) : BaseViewModel<CityListState, CityListAction, CityListActionResult>(CityListState.Loading),
     CityListViewModel {
 
@@ -45,7 +50,9 @@ class CityListViewModelImpl(
                 is CityListActionResult.Loaded -> CityListState.Data(
                     queryText = "",
                     cityList = result.cityList,
-                    cityNameHintText = localizationManager.getString(LocalizedStringKey.CityList_CityNameHint)
+                    cityNameHintText = localizationManager.getString(LocalizedStringKey.CityList_CityNameHint),
+                    useCurrentLocationText = localizationManager
+                        .getString(LocalizedStringKey.CityList_UseCurrentLocation)
                 )
                 is CityListActionResult.CityNameQueryChanged -> reducerError(
                     state,
@@ -85,13 +92,25 @@ class CityListViewModelImpl(
             is CityListAction.SelectCity -> {
                 scope.launch {
                     selectCityInteractor.select(action.city)
-                    router.navigateTo(com.krossovochkin.navigation.RouterDestination.WeatherDetails)
+                    router.navigateTo(RouterDestination.WeatherDetails)
                 }
             }
             is CityListAction.ChangeCityNameQuery -> {
                 scope.launch {
                     queryChanges.value = action.query
                     onActionResult(CityListActionResult.CityNameQueryChanged(action.query))
+                }
+            }
+            CityListAction.UseCurrentLocation -> {
+                scope.launch {
+                    selectCityInteractor.select(
+                        City(
+                            id = CityId.currentLocation,
+                            name = localizationManager.getString(LocalizedStringKey.CityList_UseCurrentLocation),
+                            location = locationProvider.getLastLocation()
+                        )
+                    )
+                    router.navigateTo(RouterDestination.WeatherDetails)
                 }
             }
         }

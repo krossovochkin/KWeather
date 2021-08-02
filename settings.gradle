@@ -9,10 +9,12 @@ include ':core:presentation'
 include ':core:storage'
 include ':core:domain'
 include ':core:navigation'
+include ':core:permission'
+include ':core:lifecycle'
+include ':core:location'
 include ':core:test'
 
 include ':service:storage-current-city'
 
 include ':feature:city-list'
 include ':feature:weather-details'
-

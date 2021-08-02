@@ -12,6 +12,7 @@ import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetailsRepository
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModelImpl
 import com.krossovochkin.kweather.weatherdetails.presentation.localization.weatherDetailsLocalizationModule
+import com.krossovochkin.location.locationProviderModule
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
@@ -21,6 +22,7 @@ const val DI_TAG_API_KEY = "DI_TAG_API_KEY"
 
 val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
 
+    importOnce(locationProviderModule)
     import(currentCityStorageModule)
     import(weatherDetailsLocalizationModule)
 
@@ -29,7 +31,8 @@ val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
             router = instance(),
             getWeatherDetailsInteractor = instance(),
             getCurrentCityInteractor = instance(),
-            localizationManager = instance()
+            localizationManager = instance(),
+            locationProvider = instance()
         )
     }
 
