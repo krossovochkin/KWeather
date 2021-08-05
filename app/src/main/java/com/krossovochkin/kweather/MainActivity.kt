@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.remember
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,8 +19,6 @@ import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.singleton
 
-private const val BG_COLOR = 0xFFADD8E6
-
 class MainActivity : AppCompatActivity() {
 
     private val parentDi by lazy { (application as App).di }
@@ -31,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContent {
             MaterialTheme(
                 colors = lightColors(
-                    background = Color(BG_COLOR)
+                    background = colorResource(id = R.color.ic_launcher_background)
                 )
             ) {
                 val navController = rememberNavController()
