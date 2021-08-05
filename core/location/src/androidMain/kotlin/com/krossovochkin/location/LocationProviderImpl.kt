@@ -10,8 +10,8 @@ import com.krossovochkin.kweather.domain.Location
 import com.krossovochkin.lifecycle.Lifecycle
 import com.krossovochkin.permission.Permission
 import com.krossovochkin.permission.PermissionManager
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 internal actual class LocationProviderImpl(
     private val permissionManager: PermissionManager,
@@ -22,11 +22,11 @@ internal actual class LocationProviderImpl(
     override suspend fun getLastLocation(): Location {
         val activity = requireNotNull(lifecycle.currentActivity)
         val locationClient = LocationServices.getFusedLocationProviderClient(activity)
-        val hasPermission = permissionManager.requestPermission(Permission.COARSE_LOCATION)
+        val hasPermission = permissionManager.requestPermission(Permission.FINE_LOCATION)
 
         check(hasPermission)
 
-        return suspendCoroutine { continuation ->
+        return suspendCancellableCoroutine { continuation ->
             val callback = object : LocationCallback() {
                 var isFinished = false
                 override fun onLocationResult(locationResult: LocationResult) {
@@ -46,10 +46,16 @@ internal actual class LocationProviderImpl(
             }
 
             locationClient.requestLocationUpdates(
-                LocationRequest.create(),
+                LocationRequest.create()
+                    .setWaitForAccurateLocation(true)
+                    .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY),
                 callback,
                 Looper.getMainLooper()
             )
+
+            continuation.invokeOnCancellation {
+                locationClient.removeLocationUpdates(callback)
+            }
         }
     }
 }

@@ -8,5 +8,5 @@ interface PermissionManager {
 }
 
 enum class Permission {
-    COARSE_LOCATION
+    FINE_LOCATION
 }

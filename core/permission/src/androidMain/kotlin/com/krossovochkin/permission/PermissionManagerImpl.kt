@@ -58,7 +58,7 @@ internal actual class PermissionManagerImpl(
 
     private fun Permission.toPermissionString(): String {
         return when (this) {
-            Permission.COARSE_LOCATION -> Manifest.permission.ACCESS_COARSE_LOCATION
+            Permission.FINE_LOCATION -> Manifest.permission.ACCESS_FINE_LOCATION
         }
     }
 }
