@@ -5,6 +5,7 @@ import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_CON
 import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_CONDITION_IMAGE_URL
 import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_HUMIDITY
 import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_LOCAL_DATE_TIME
+import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_PRECIPITATION_VOLUME
 import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_PRESSURE
 import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_TEMPERATURE
 import com.krossovochkin.kweather.weatherdetails.domain.TestDefaults.DEFAULT_WIND_DEGREE
@@ -22,6 +23,7 @@ class TestHourlyWeatherDataBuilder {
     private var windDegree: Int = DEFAULT_WIND_DEGREE
     private var conditionImageUrl: String = DEFAULT_CONDITION_IMAGE_URL
     private var conditionDescription: String = DEFAULT_CONDITION_DESCRIPTION
+    private var precipitationVolume: Double = DEFAULT_PRECIPITATION_VOLUME
 
     fun setLocalDateTime(localDateTime: LocalDateTime) = apply {
         this.localDateTime = localDateTime
@@ -59,6 +61,10 @@ class TestHourlyWeatherDataBuilder {
         this.conditionDescription = conditionDescription
     }
 
+    fun setPrecipitationVolume(precipitationVolume: Double) = apply {
+        this.precipitationVolume = precipitationVolume
+    }
+
     fun build(): WeatherDetails.HourlyWeatherData {
         return WeatherDetails.HourlyWeatherData(
             localDateTime = localDateTime,
@@ -69,7 +75,8 @@ class TestHourlyWeatherDataBuilder {
             windSpeed = windSpeed,
             windDegree = windDegree,
             conditionImageUrl = conditionImageUrl,
-            conditionDescription = conditionDescription
+            conditionDescription = conditionDescription,
+            precipitationVolume = precipitationVolume,
         )
     }
 }

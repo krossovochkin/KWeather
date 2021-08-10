@@ -19,4 +19,5 @@ object TestDefaults {
     const val DEFAULT_CONDITION_IMAGE_URL =
         "https://openweathermap.org/img/wn/01d@2x.png"
     const val DEFAULT_CONDITION_DESCRIPTION = "scattered clouds"
+    const val DEFAULT_PRECIPITATION_VOLUME = 0.0
 }
