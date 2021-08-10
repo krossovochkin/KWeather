@@ -28,6 +28,7 @@ sealed class WeatherDetailsState {
             val temperatureText: String,
             val weatherConditionsImageUrl: String,
             val weatherConditionsImageContentDescription: String,
+            val precipitationVolumeText: String,
         )
 
         data class DailyWeatherData(

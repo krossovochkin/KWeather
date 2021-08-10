@@ -24,6 +24,7 @@ data class WeatherDetails(
         val windDegree: Int,
         val conditionImageUrl: String,
         val conditionDescription: String,
+        val precipitationVolume: Double,
     )
 
     data class DailyWeatherData(

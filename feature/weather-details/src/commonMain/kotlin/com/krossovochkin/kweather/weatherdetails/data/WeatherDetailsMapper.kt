@@ -119,7 +119,8 @@ internal class WeatherDetailsMapperImpl : WeatherDetailsMapper {
                 conditionImageUrl = mapConditionImageUrl(
                     icon = conditions.first().icon
                 ),
-                conditionDescription = mapConditionDescription(conditions.first().description)
+                conditionDescription = mapConditionDescription(conditions.first().description),
+                precipitationVolume = rainData?.volume ?: snowData?.volume ?: 0.0
             )
         }
     }

@@ -8,8 +8,8 @@ import com.krossovochkin.kweather.domain.WeatherDetails
 import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractor
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractor
 import com.krossovochkin.kweather.weatherdetails.presentation.localization.LocalizedStringKey
-import com.krossovochkin.navigation.Router
 import com.krossovochkin.location.LocationProvider
+import com.krossovochkin.navigation.Router
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 
@@ -117,6 +117,7 @@ class WeatherDetailsViewModelImpl(
                     .getString(
                         LocalizedStringKey.WeatherDetails_WeatherConditionsImageContentDescription
                     ),
+                precipitationVolumeText = "$precipitationVolume"
             )
         }
     }
@@ -167,7 +168,7 @@ class WeatherDetailsViewModelImpl(
                             onActionResult(WeatherDetailsActionResult.LoadErrorCityMissing)
                         } else {
                             if (city.id == CityId.currentLocation) {
-                                city.copy(
+                                city = city.copy(
                                     location = locationProvider.getLastLocation()
                                 )
                             }

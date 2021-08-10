@@ -191,11 +191,9 @@ private fun <T> TabController(
 private fun TodayDataState(
     weatherData: WeatherDetailsState.Data.OneDayWeatherData
 ) {
-    Column(
-        modifier = Modifier.padding(16.dp)
-    ) {
+    Column {
         Spacer(modifier = Modifier.weight(1f))
-        Row {
+        Row(modifier = Modifier.padding(horizontal = 16.dp)) {
             Text(
                 text = weatherData.temperatureDayText,
                 style = MaterialTheme.typography.subtitle1
@@ -206,7 +204,7 @@ private fun TodayDataState(
                 style = MaterialTheme.typography.subtitle1
             )
         }
-        Row {
+        Row(modifier = Modifier.padding(horizontal = 16.dp)) {
             weatherData.temperatureCurrentText?.let { temperatureText ->
                 Text(
                     text = temperatureText,
@@ -220,7 +218,7 @@ private fun TodayDataState(
                 contentDescription = weatherData.weatherConditionImageContentDescription
             )
         }
-        Row {
+        Row(modifier = Modifier.padding(horizontal = 16.dp)) {
             weatherData.temperatureFeelsLikeText?.let { temperatureText ->
                 Text(
                     text = temperatureText,
@@ -234,7 +232,7 @@ private fun TodayDataState(
             )
         }
         Spacer(modifier = Modifier.weight(3f))
-        LazyRow {
+        LazyRow(modifier = Modifier.padding(vertical = 16.dp)) {
             items(weatherData.hourlyWeatherData) { HourlyWeatherItem(it) }
         }
     }
@@ -304,7 +302,7 @@ private fun HourlyWeatherItem(
     ) {
         Text(
             text = weatherData.temperatureText,
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.caption
         )
         Image(
             modifier = Modifier.size(48.dp),
@@ -313,7 +311,11 @@ private fun HourlyWeatherItem(
         )
         Text(
             text = weatherData.dateTimeText,
-            style = MaterialTheme.typography.body2
+            style = MaterialTheme.typography.overline
+        )
+        Text(
+            text = weatherData.precipitationVolumeText,
+            style = MaterialTheme.typography.overline
         )
     }
 }

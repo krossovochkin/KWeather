@@ -31,7 +31,18 @@ data class WeatherDetailsDto(
         val windDegree: Int,
         @SerialName("weather")
         val conditions: List<WeatherConditionDto>,
-    )
+        @SerialName("rain")
+        val rainData: PrecipitationDataDto? = null,
+        @SerialName("snow")
+        val snowData: PrecipitationDataDto? = null,
+    ) {
+
+        @Serializable
+        data class PrecipitationDataDto(
+            @SerialName("1h")
+            val volume: Double,
+        )
+    }
 
     @Serializable
     data class DailyWeatherDataDto(
