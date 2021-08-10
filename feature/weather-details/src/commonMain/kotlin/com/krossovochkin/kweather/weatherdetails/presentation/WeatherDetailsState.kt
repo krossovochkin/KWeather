@@ -9,7 +9,6 @@ sealed class WeatherDetailsState {
         val todayWeatherData: OneDayWeatherData,
         val tomorrowWeatherData: OneDayWeatherData,
         val weekWeatherData: List<DailyWeatherData>,
-        val changeCityButtonText: String
     ) : WeatherDetailsState() {
 
         data class OneDayWeatherData(

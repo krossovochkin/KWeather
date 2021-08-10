@@ -1,4 +1,8 @@
 <resources>
 
-    <style name="Theme.KWeather" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+    <style name="Theme.KWeather" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/ic_launcher_background</item>
+        <item name="android:navigationBarColor">@color/ic_launcher_background</item>
+        <item name="android:background">@color/ic_launcher_background</item>
+    </style>
 </resources>

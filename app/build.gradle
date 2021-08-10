@@ -85,6 +85,9 @@ dependencies {
     implementation d.coil
     implementation d.accompanist_pager
     implementation d.accompanist_pager_indicators
+    implementation d.accompanist_insets
+    implementation d.accompanist_insets_ui
+    implementation d.accompanist_system_ui_controller
 }
 
 String getApiKey() {

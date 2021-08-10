@@ -69,8 +69,6 @@ class WeatherDetailsViewModelImpl(
                 todayWeatherData = mapOneDayWeatherData(todayWeatherData),
                 tomorrowWeatherData = mapOneDayWeatherData(tomorrowWeatherData),
                 weekWeatherData = weekWeatherData.map(::mapDailyData),
-                changeCityButtonText = localizationManager
-                    .getString(LocalizedStringKey.WeatherDetails_ChangeCity)
             )
         }
     }

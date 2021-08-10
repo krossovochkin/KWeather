@@ -66,6 +66,9 @@ d.material_components = "com.google.android.material:material:$v.material_compon
 d.coil = "io.coil-kt:coil-compose:$v.coil"
 d.accompanist_pager = "com.google.accompanist:accompanist-pager:$v.accompanist"
 d.accompanist_pager_indicators = "com.google.accompanist:accompanist-pager-indicators:$v.accompanist"
+d.accompanist_insets = "com.google.accompanist:accompanist-insets:$v.accompanist"
+d.accompanist_insets_ui = "com.google.accompanist:accompanist-insets-ui:$v.accompanist"
+d.accompanist_system_ui_controller = "com.google.accompanist:accompanist-systemuicontroller:$v.accompanist"
 
 d.ktor_client_core = "io.ktor:ktor-client-core:$v.ktor"
 d.ktor_client_json = "io.ktor:ktor-client-json:$v.ktor"

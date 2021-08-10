@@ -3,7 +3,6 @@ package com.krossovochkin.kweather.feature.weatherdetails
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
@@ -25,7 +25,6 @@ import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
@@ -37,6 +36,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
+import com.google.accompanist.insets.LocalWindowInsets
+import com.google.accompanist.insets.navigationBarsPadding
+import com.google.accompanist.insets.rememberInsetsPaddingValues
+import com.google.accompanist.insets.ui.TopAppBar
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
@@ -123,24 +126,27 @@ private fun DataState(
 ) {
     Column {
         TopAppBar(
-            contentPadding = PaddingValues(
-                start = 16.dp,
-                end = 16.dp
-            )
-        ) {
-            Text(
-                text = state.cityNameText,
-                style = MaterialTheme.typography.h6
-            )
-            IconButton(onClick = {
-                onAction(WeatherDetailsAction.OpenSelectCityScreen)
-            }) {
-                Icon(
-                    imageVector = Icons.Filled.Edit,
-                    contentDescription = stringResource(R.string.edit)
+            title = {
+                Text(
+                    text = state.cityNameText,
+                    style = MaterialTheme.typography.h6
                 )
-            }
-        }
+                IconButton(onClick = {
+                    onAction(WeatherDetailsAction.OpenSelectCityScreen)
+                }) {
+                    Icon(
+                        imageVector = Icons.Filled.Edit,
+                        contentDescription = stringResource(R.string.edit)
+                    )
+                }
+            },
+            contentPadding = rememberInsetsPaddingValues(
+                insets = LocalWindowInsets.current.statusBars,
+                applyStart = true,
+                applyTop = true,
+                applyBottom = true,
+            )
+        )
 
         TabController(
             tabs = WeatherTab.values().toList(),
@@ -152,15 +158,6 @@ private fun DataState(
                 WeatherTab.Tomorrow -> TomorrowDataState(weatherData = state.tomorrowWeatherData)
                 WeatherTab.Week -> WeekDataState(weekWeatherData = state.weekWeatherData)
             }
-        }
-
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp),
-            onClick = { onAction(WeatherDetailsAction.OpenSelectCityScreen) }
-        ) {
-            Text(text = state.changeCityButtonText)
         }
     }
 }
@@ -212,7 +209,9 @@ private fun TabController(
 private fun TodayDataState(
     weatherData: WeatherDetailsState.Data.OneDayWeatherData
 ) {
-    Column {
+    Column(
+        modifier = Modifier.navigationBarsPadding()
+    ) {
         Spacer(modifier = Modifier.weight(1f))
         Row(modifier = Modifier.padding(horizontal = 16.dp)) {
             Text(
@@ -264,11 +263,11 @@ private fun TomorrowDataState(
     weatherData: WeatherDetailsState.Data.OneDayWeatherData
 ) {
     Column(
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier.navigationBarsPadding()
     ) {
         Spacer(modifier = Modifier.weight(1f))
 
-        Row {
+        Row(modifier = Modifier.padding(horizontal = 16.dp)) {
             Column {
                 Row {
                     Text(
@@ -295,7 +294,7 @@ private fun TomorrowDataState(
             )
         }
         Spacer(modifier = Modifier.weight(3f))
-        LazyRow {
+        LazyRow(modifier = Modifier.padding(vertical = 16.dp)) {
             items(weatherData.hourlyWeatherData) {
                 HourlyWeatherItem(it)
             }
@@ -306,9 +305,12 @@ private fun TomorrowDataState(
 @Composable
 private fun WeekDataState(weekWeatherData: List<WeatherDetailsState.Data.DailyWeatherData>) {
     LazyColumn {
-        items(weekWeatherData) {
-            DailyWeatherItem(it)
+        itemsIndexed(weekWeatherData) { index, item ->
+            DailyWeatherItem(item)
             Divider()
+            if (index == weekWeatherData.size - 1) {
+                Spacer(modifier = Modifier.navigationBarsPadding())
+            }
         }
     }
 }

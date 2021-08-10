@@ -20,9 +20,6 @@ internal actual class LocalizationManagerImpl(
     @StringRes
     private fun map(key: LocalizedStringKey): Int {
         return when (key) {
-            LocalizedStringKey.WeatherDetails_ChangeCity -> {
-                R.string.weatherDetails_changeCity
-            }
             LocalizedStringKey.WeatherDetails_CityMissingMessage -> {
                 R.string.weatherDetails_cityMissingMessage
             }
