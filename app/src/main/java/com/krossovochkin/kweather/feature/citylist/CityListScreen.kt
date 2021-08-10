@@ -20,7 +20,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -30,22 +29,19 @@ import com.krossovochkin.kweather.citylist.cityListModule
 import com.krossovochkin.kweather.citylist.presentation.CityListAction
 import com.krossovochkin.kweather.citylist.presentation.CityListState
 import com.krossovochkin.kweather.citylist.presentation.CityListViewModel
+import com.krossovochkin.kweather.di.withParentDI
 import com.krossovochkin.kweather.domain.City
-import org.kodein.di.DI
+import org.kodein.di.compose.LocalDI
 import org.kodein.di.instance
 
 @Composable
-fun CityListScreen(
-    parentDi: DI
-) {
-    val cityListViewModel: CityListViewModel = remember {
-        val di = DI {
-            extend(parentDi)
-            import(cityListModule)
-        }
-        val viewModel by di.instance<CityListViewModel>()
-        viewModel
+fun CityListScreen() = withParentDI(
+    {
+        import(cityListModule)
     }
+) {
+    val cityListViewModel: CityListViewModel by LocalDI.current.instance()
+
     val cityListState = cityListViewModel
         .observeState()
         .collectAsState(CityListState.Loading)
@@ -124,7 +120,9 @@ private fun DataState(
             }
         }
         Button(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             onClick = { onAction(CityListAction.UseCurrentLocation) }
         ) {
             Text(state.useCurrentLocationText)

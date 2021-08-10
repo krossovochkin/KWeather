@@ -79,6 +79,7 @@ d.sqldelight_android = "com.squareup.sqldelight:android-driver:$v.sqldelight"
 d.sqldelight_coroutines_extensions_jvm = "com.squareup.sqldelight:coroutines-extensions-jvm:$v.sqldelight"
 
 d.kodein = "org.kodein.di:kodein-di:$v.kodein"
+d.kodein_compose = "org.kodein.di:kodein-di-framework-compose:$v.kodein"
 d.settings = "com.russhwolf:multiplatform-settings:$v.settings"
 d.settings_coroutines = "com.russhwolf:multiplatform-settings-coroutines:$v.settings"
 d.gms_location = "com.google.android.gms:play-services-location:$v.gms_location"

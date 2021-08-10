@@ -72,7 +72,7 @@ dependencies {
 
     implementation d.project.shared
 
-    implementation d.kodein
+    implementation d.kodein_compose
 
     implementation d.androidx_core_ktx
     implementation d.androidx_appcompat

@@ -38,25 +38,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.krossovochkin.kweather.R
+import com.krossovochkin.kweather.di.withParentDI
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsAction
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsState
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.weatherdetails.weatherDetailsModule
-import org.kodein.di.DI
+import org.kodein.di.compose.LocalDI
 import org.kodein.di.instance
 
 @Composable
-fun WeatherDetailsScreen(
-    parentDi: DI
-) {
-    val weatherDetailsViewModel = remember {
-        val di = DI {
-            extend(parentDi)
-            import(weatherDetailsModule)
-        }
-        val viewModel by di.instance<WeatherDetailsViewModel>()
-        viewModel
+fun WeatherDetailsScreen() = withParentDI(
+    {
+        import(weatherDetailsModule)
     }
+) {
+    val weatherDetailsViewModel: WeatherDetailsViewModel by LocalDI.current.instance()
+
     val weatherDetailsState = weatherDetailsViewModel
         .observeState()
         .collectAsState(WeatherDetailsState.Loading)

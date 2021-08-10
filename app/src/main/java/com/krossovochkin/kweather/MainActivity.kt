@@ -5,7 +5,6 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
-import androidx.compose.runtime.remember
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -15,8 +14,8 @@ import com.krossovochkin.kweather.feature.citylist.CityListScreen
 import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
 import com.krossovochkin.navigation.RouterDestination
 import com.krossovochkin.navigation.navigationModule
-import org.kodein.di.DI
 import org.kodein.di.bind
+import org.kodein.di.compose.withDI
 import org.kodein.di.singleton
 
 class MainActivity : AppCompatActivity() {
@@ -33,22 +32,24 @@ class MainActivity : AppCompatActivity() {
                 )
             ) {
                 val navController = rememberNavController()
-                val di = remember {
-                    DI.lazy {
+
+                withDI(
+                    {
                         extend(parentDi)
                         bind<NavController>() with singleton { navController }
                         import(navigationModule)
                     }
-                }
-                NavHost(
-                    navController = navController,
-                    startDestination = RouterDestination.WeatherDetails.route
                 ) {
-                    composable(RouterDestination.CityList.route) {
-                        CityListScreen(parentDi = di)
-                    }
-                    composable(RouterDestination.WeatherDetails.route) {
-                        WeatherDetailsScreen(parentDi = di)
+                    NavHost(
+                        navController = navController,
+                        startDestination = RouterDestination.WeatherDetails.route
+                    ) {
+                        composable(RouterDestination.CityList.route) {
+                            CityListScreen()
+                        }
+                        composable(RouterDestination.WeatherDetails.route) {
+                            WeatherDetailsScreen()
+                        }
                     }
                 }
             }
