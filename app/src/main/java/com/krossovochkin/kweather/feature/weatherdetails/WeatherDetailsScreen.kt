@@ -23,6 +23,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
+import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -30,19 +31,23 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.pagerTabIndicatorOffset
+import com.google.accompanist.pager.rememberPagerState
 import com.krossovochkin.kweather.R
 import com.krossovochkin.kweather.di.withParentDI
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsAction
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsState
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.weatherdetails.weatherDetailsModule
+import kotlinx.coroutines.launch
 import org.kodein.di.compose.LocalDI
 import org.kodein.di.instance
 
@@ -141,8 +146,8 @@ private fun DataState(
             tabs = WeatherTab.values().toList(),
             defaultTab = WeatherTab.Today,
             title = { it.text }
-        ) { currentTab ->
-            when (currentTab) {
+        ) { tab ->
+            when (tab) {
                 WeatherTab.Today -> TodayDataState(weatherData = state.todayWeatherData)
                 WeatherTab.Tomorrow -> TomorrowDataState(weatherData = state.tomorrowWeatherData)
                 WeatherTab.Week -> WeekDataState(weekWeatherData = state.weekWeatherData)
@@ -160,21 +165,35 @@ private fun DataState(
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun <T> TabController(
-    tabs: List<T>,
-    defaultTab: T,
-    title: (T) -> String,
-    block: @Composable (T) -> Unit
+private fun TabController(
+    tabs: List<WeatherTab>,
+    defaultTab: WeatherTab,
+    title: (WeatherTab) -> String,
+    block: @Composable (WeatherTab) -> Unit
 ) {
-    val currentTabIndex = remember { mutableStateOf(tabs.indexOf(defaultTab)) }
+    val coroutineScope = rememberCoroutineScope()
+    val pagerState = rememberPagerState(
+        pageCount = tabs.size,
+        initialPage = tabs.indexOf(defaultTab)
+    )
 
-    TabRow(selectedTabIndex = currentTabIndex.value) {
+    TabRow(
+        selectedTabIndex = pagerState.currentPage,
+        indicator = { tabPositions ->
+            TabRowDefaults.Indicator(
+                modifier = Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
+            )
+        }
+    ) {
         tabs
             .forEachIndexed { index, value ->
                 Tab(
-                    selected = currentTabIndex.value == index,
-                    onClick = { currentTabIndex.value = index }
+                    selected = pagerState.currentPage == index,
+                    onClick = {
+                        coroutineScope.launch { pagerState.animateScrollToPage(index) }
+                    }
                 ) {
                     Text(
                         modifier = Modifier.padding(16.dp),
@@ -184,7 +203,9 @@ private fun <T> TabController(
             }
     }
 
-    block(tabs[currentTabIndex.value])
+    HorizontalPager(state = pagerState) { page ->
+        block(tabs[page])
+    }
 }
 
 @Composable
