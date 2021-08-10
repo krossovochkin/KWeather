@@ -32,7 +32,7 @@ Jetpack Compose Kotlin MPP Weather app
 
 ## App Features
 
-- Weather details (temperature and weather conditions) for given city
+- Weather details (temperature and weather conditions) for given city  
 <img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details_today.png" width="200"/><img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details_tomorrow.png" width="200"/><img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details_week.png" width="200"/>
 - City selection by name (with text input debounce)
 <img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list.png" width="200"/>
