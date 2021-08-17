@@ -2,7 +2,7 @@ package com.krossovochkin.kweather
 
 import android.app.Application
 import android.content.Context
-import com.krossovochkin.kweather.weatherdetails.DI_TAG_API_KEY
+import com.krossovochkin.kweather.core.DI_TAG_API_KEY
 import com.krossovochkin.lifecycle.lifecycleModule
 import com.krossovochkin.permission.permissionModule
 import org.kodein.di.DI

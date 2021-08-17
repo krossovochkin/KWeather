@@ -22,7 +22,7 @@ class WeatherDetailsViewModelImpl(
     private val getCurrentCityInteractor: GetCurrentCityInteractor,
     private val router: Router,
     private val localizationManager: LocalizationManager<LocalizedStringKey>,
-    private val locationProvider: LocationProvider
+    private val locationProvider: LocationProvider,
 ) : BaseViewModel<WeatherDetailsState,
     WeatherDetailsAction,
     WeatherDetailsActionResult>(WeatherDetailsState.Loading),
@@ -65,6 +65,9 @@ class WeatherDetailsViewModelImpl(
     private fun map(weatherDetails: WeatherDetails): WeatherDetailsState.Data {
         return with(weatherDetails) {
             WeatherDetailsState.Data(
+                changeCityText = localizationManager.getString(
+                    LocalizedStringKey.WeatherDetails_ChangeCityText
+                ),
                 cityNameText = city.name,
                 todayWeatherData = mapOneDayWeatherData(todayWeatherData),
                 tomorrowWeatherData = mapOneDayWeatherData(tomorrowWeatherData),

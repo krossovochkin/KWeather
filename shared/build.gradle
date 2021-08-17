@@ -2,6 +2,16 @@ apply from: "../module_default.gradle"
 
 kotlin {
     sourceSets {
+        jvmMain {
+            dependencies {
+                api d.project.core_navigation
+                api d.project.core_storage
+                api d.project.core_lifecycle
+                api d.project.core_permission
+                api d.project.feature_city_list
+                api d.project.feature_weather_details
+            }
+        }
         commonMain {
             dependencies {
                 api d.project.feature_city_list

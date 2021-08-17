@@ -9,6 +9,7 @@ v.version_name = "1.0"
 v.kotlin = "1.5.21"
 v.gradle_plugin_android = '7.1.0-alpha08'
 v.gradle_plugin_versions = "0.39.0"
+v.jetbrains_compose = "1.0.0-alpha3"
 
 v.kotlin_coroutines = "1.5.1"
 v.ktor = "1.6.2"
@@ -44,6 +45,7 @@ d.gradle_plugin_sqldelight = "com.squareup.sqldelight:gradle-plugin:$v.sqldeligh
 d.gradle_plugin_kotlin_serialization = "org.jetbrains.kotlin:kotlin-serialization:$v.kotlin"
 d.gradle_plugin_versions = "com.github.ben-manes:gradle-versions-plugin:$v.gradle_plugin_versions"
 d.gradle_plugin_detekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$v.detekt"
+d.gradle_plugin_jetbrains_compose = "org.jetbrains.compose:compose-gradle-plugin:$v.jetbrains_compose"
 
 d.kotlin_coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$v.kotlin_coroutines"
 d.kotlin_coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$v.kotlin_coroutines"
@@ -74,6 +76,7 @@ d.ktor_client_core = "io.ktor:ktor-client-core:$v.ktor"
 d.ktor_client_json = "io.ktor:ktor-client-json:$v.ktor"
 d.ktor_client_serialization = "io.ktor:ktor-client-serialization:$v.ktor"
 d.ktor_client_android = "io.ktor:ktor-client-android:$v.ktor"
+d.ktor_client_java = "io.ktor:ktor-client-java:$v.ktor"
 d.ktor_client_json_jvm = "io.ktor:ktor-client-json-jvm:$v.ktor"
 d.ktor_client_serialization_jvm = "io.ktor:ktor-client-serialization-jvm:$v.ktor"
 

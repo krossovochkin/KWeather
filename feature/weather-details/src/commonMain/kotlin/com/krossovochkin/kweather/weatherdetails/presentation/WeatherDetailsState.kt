@@ -5,6 +5,7 @@ sealed class WeatherDetailsState {
     object Loading : WeatherDetailsState()
 
     data class Data(
+        val changeCityText: String,
         val cityNameText: String,
         val todayWeatherData: OneDayWeatherData,
         val tomorrowWeatherData: OneDayWeatherData,

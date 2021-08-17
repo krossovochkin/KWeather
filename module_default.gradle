@@ -38,6 +38,7 @@ android {
 
 kotlin {
     android()
+    jvm()
 
     sourceSets {
         all {

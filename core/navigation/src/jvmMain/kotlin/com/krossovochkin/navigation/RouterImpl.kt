@@ -1,16 +1,17 @@
-package com.krossovochkin.kweather.core.router
+package com.krossovochkin.navigation
 
-import com.krossovochkin.navigation.RouterDestination
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
 
-class TestRouter : com.krossovochkin.navigation.Router {
+class RouterImpl : Router {
 
     private var currentDestinationStateFlow =
-        MutableStateFlow<RouterDestination>(RouterDestination.WeatherDetails)
+        MutableStateFlow<RouterDestination?>(null)
 
     override fun observeDestination(): Flow<RouterDestination> {
         return currentDestinationStateFlow
+            .filterNotNull()
     }
 
     override suspend fun navigateTo(destination: RouterDestination) {

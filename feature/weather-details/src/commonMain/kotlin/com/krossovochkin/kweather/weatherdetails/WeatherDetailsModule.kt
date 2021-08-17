@@ -18,8 +18,6 @@ import org.kodein.di.bind
 import org.kodein.di.instance
 import org.kodein.di.singleton
 
-const val DI_TAG_API_KEY = "DI_TAG_API_KEY"
-
 val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
 
     importOnce(locationProviderModule)

@@ -20,5 +20,13 @@ kotlin {
                 implementation d.kotlin_serialization_json
             }
         }
+        jmvMain {
+            dependencies {
+                implementation d.ktor_client_java
+                implementation d.ktor_client_json_jvm
+                implementation d.ktor_client_serialization_jvm
+                implementation d.kotlin_serialization_json
+            }
+        }
     }
 }

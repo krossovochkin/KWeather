@@ -1,0 +1,45 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+
+apply plugin: "kotlin-multiplatform"
+apply plugin: "org.jetbrains.compose"
+
+kotlin {
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = "11"
+        }
+    }
+    sourceSets {
+        jvmMain {
+            dependencies {
+                implementation compose.desktop.currentOs
+                implementation d.project.shared
+                implementation d.kodein_compose
+                implementation d.ktor_client_java
+            }
+        }
+    }
+}
+
+compose.desktop {
+    application {
+        mainClass = "com.krossovochkin.kweather.MainKt"
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "jvm"
+        }
+        args(getApiKey())
+    }
+}
+
+String getApiKey() {
+    def ciKey = System.getenv()['API_KEY']
+    def localKey = findProperty("kweather_api_key")
+    if (ciKey != null) {
+        return ciKey
+    } else if (localKey != null) {
+        return localKey
+    } else {
+        throw Exception("Can't find API key")
+    }
+}
