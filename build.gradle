@@ -8,9 +8,6 @@ buildscript {
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven {
-            url "https://maven.pkg.jetbrains.space/public/p/compose/dev"
-        }
     }
     dependencies {
         classpath d.gradle_plugin_kotlin
@@ -19,7 +16,6 @@ buildscript {
         classpath d.gradle_plugin_kotlin_serialization
         classpath d.gradle_plugin_versions
         classpath d.gradle_plugin_detekt
-        classpath d.gradle_plugin_jetbrains_compose
     }
 }
 
@@ -47,7 +43,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
     }
 }
 
