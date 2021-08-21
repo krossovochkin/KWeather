@@ -8,6 +8,7 @@ pluginManagement {
 rootProject.name = "KWeather"
 include ':app'
 include ':desktop'
+include ':web'
 
 include ':shared'
 

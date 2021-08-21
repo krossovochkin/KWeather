@@ -1,0 +1,37 @@
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+android {
+    compileSdkVersion v.compile_sdk_version
+    buildToolsVersion v.build_tools_version
+
+    defaultConfig {
+        minSdkVersion v.min_sdk_version
+        targetSdkVersion v.target_sdk_version
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion v.androidx_compose
+    }
+}
+
+dependencies {
+    implementation d.androidx_compose_foundation
+    implementation d.coil
+}

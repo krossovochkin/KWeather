@@ -39,6 +39,10 @@ android {
 kotlin {
     android()
     jvm()
+    js(IR) {
+        useCommonJs()
+        browser()
+    }
 
     sourceSets {
         all {

@@ -1,7 +1,6 @@
 package com.krossovochkin.kweather.domain
 
-@JvmInline
-value class CityId(
+data class CityId(
     val id: Int
 ) {
     companion object {

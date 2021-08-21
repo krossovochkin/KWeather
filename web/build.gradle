@@ -19,31 +19,33 @@ repositories {
     }
 }
 
-apply from: "../../module_default.gradle"
+apply plugin: "kotlin-multiplatform"
 apply plugin: "org.jetbrains.compose"
 
 kotlin {
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "11"
-        }
+    js(IR) {
+        browser()
+        binaries.executable()
     }
     sourceSets {
-        jvmMain {
+        jsMain {
             dependencies {
-                implementation compose.desktop.currentOs
-            }
-        }
-        commonMain {
-            dependencies {
+                implementation compose.web.core
                 implementation compose.runtime
-                implementation compose.ui
+                implementation d.project.shared
             }
         }
-        androidMain {
-            dependencies {
-                implementation d.project.core_image_loader_android
-            }
-        }
+    }
+}
+
+String getApiKey() {
+    def ciKey = System.getenv()['API_KEY']
+    def localKey = findProperty("kweather_api_key")
+    if (ciKey != null) {
+        return ciKey
+    } else if (localKey != null) {
+        return localKey
+    } else {
+        throw Exception("Can't find API key")
     }
 }
