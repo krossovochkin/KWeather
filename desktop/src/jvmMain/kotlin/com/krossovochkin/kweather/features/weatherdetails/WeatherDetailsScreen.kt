@@ -1,5 +1,6 @@
 package com.krossovochkin.kweather.features.weatherdetails
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
@@ -20,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.krossovochkin.imageloader.ImageLoader
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsAction
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsState
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
@@ -115,6 +118,13 @@ private fun TodayDataState(
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
+            ImageLoader.rememberImagePainter(weatherData.weatherConditionImageUrl)?.let {
+                Image(
+                    painter = it,
+                    modifier = Modifier.size(160.dp),
+                    contentDescription = weatherData.weatherConditionImageContentDescription
+                )
+            }
         }
         Row(modifier = Modifier.padding(horizontal = 16.dp)) {
             weatherData.temperatureFeelsLikeText?.let { temperatureText ->
@@ -123,8 +133,7 @@ private fun TodayDataState(
                     style = MaterialTheme.typography.subtitle1
                 )
             }
-        }
-        Row(modifier = Modifier.padding(horizontal = 16.dp)) {
+            Spacer(modifier = Modifier.weight(1f))
             Text(
                 text = weatherData.weatherConditionDescription,
                 style = MaterialTheme.typography.subtitle1

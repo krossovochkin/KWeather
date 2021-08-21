@@ -35,7 +35,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
 import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.rememberInsetsPaddingValues
@@ -44,6 +43,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
+import com.krossovochkin.imageloaderandroid.ImageLoader
 import com.krossovochkin.kweather.R
 import com.krossovochkin.kweather.di.withParentDI
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsAction
@@ -232,11 +232,13 @@ private fun TodayDataState(
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
-            Image(
-                modifier = Modifier.size(144.dp),
-                painter = rememberImagePainter(weatherData.weatherConditionImageUrl),
-                contentDescription = weatherData.weatherConditionImageContentDescription
-            )
+            ImageLoader.rememberImagePainter(weatherData.weatherConditionImageUrl)?.let {
+                Image(
+                    modifier = Modifier.size(144.dp),
+                    painter = it,
+                    contentDescription = weatherData.weatherConditionImageContentDescription
+                )
+            }
         }
         Row(modifier = Modifier.padding(horizontal = 16.dp)) {
             weatherData.temperatureFeelsLikeText?.let { temperatureText ->
@@ -287,11 +289,13 @@ private fun TomorrowDataState(
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
-            Image(
-                modifier = Modifier.size(144.dp),
-                painter = rememberImagePainter(weatherData.weatherConditionImageUrl),
-                contentDescription = weatherData.weatherConditionImageContentDescription
-            )
+            ImageLoader.rememberImagePainter(weatherData.weatherConditionImageUrl)?.let {
+                Image(
+                    modifier = Modifier.size(144.dp),
+                    painter = it,
+                    contentDescription = weatherData.weatherConditionImageContentDescription
+                )
+            }
         }
         Spacer(modifier = Modifier.weight(3f))
         LazyRow(modifier = Modifier.padding(vertical = 16.dp)) {
@@ -327,11 +331,13 @@ private fun HourlyWeatherItem(
             text = weatherData.temperatureText,
             style = MaterialTheme.typography.caption
         )
-        Image(
-            modifier = Modifier.size(48.dp),
-            painter = rememberImagePainter(weatherData.weatherConditionsImageUrl),
-            contentDescription = weatherData.weatherConditionsImageContentDescription
-        )
+        ImageLoader.rememberImagePainter(weatherData.weatherConditionsImageUrl)?.let {
+            Image(
+                modifier = Modifier.size(48.dp),
+                painter = it,
+                contentDescription = weatherData.weatherConditionsImageContentDescription
+            )
+        }
         Text(
             text = weatherData.dateTimeText,
             style = MaterialTheme.typography.overline
@@ -361,11 +367,13 @@ private fun DailyWeatherItem(
                 style = MaterialTheme.typography.body2
             )
         }
-        Image(
-            modifier = Modifier.size(72.dp),
-            painter = rememberImagePainter(weatherData.weatherConditionsImageUrl),
-            contentDescription = weatherData.weatherConditionsImageContentDescription
-        )
+        ImageLoader.rememberImagePainter(weatherData.weatherConditionsImageUrl)?.let {
+            Image(
+                modifier = Modifier.size(72.dp),
+                painter = it,
+                contentDescription = weatherData.weatherConditionsImageContentDescription
+            )
+        }
         Column {
             Text(
                 text = weatherData.temperatureDayText,

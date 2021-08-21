@@ -71,6 +71,7 @@ dependencies {
     implementation d.kotlin_coroutines_android
 
     implementation d.project.shared
+    implementation d.project.core_image_loader_android
 
     implementation d.kodein_compose
 
@@ -82,7 +83,6 @@ dependencies {
     implementation d.androidx_compose_ui_tooling
     implementation d.androidx_compose_ui_util
     implementation d.material_components
-    implementation d.coil
     implementation d.accompanist_pager
     implementation d.accompanist_pager_indicators
     implementation d.accompanist_insets
