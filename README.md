@@ -38,7 +38,7 @@ Jetpack Compose Kotlin MPP Weather app
 <img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details_today.png" width="200"/><img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details_tomorrow.png" width="200"/><img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details_week.png" width="200"/>
 
 #### Desktop
-<img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details_desktop.png" width="200"/>
+<img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details_desktop.png" width="400"/>
 
 #### Web
 <img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/weather_details_web.png" width="200"/>
@@ -49,7 +49,7 @@ Jetpack Compose Kotlin MPP Weather app
 <img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list.png" width="200"/>
 
 #### Desktop
-<img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list_desktop.png" width="200"/>
+<img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list_desktop.png" width="400"/>
 
 #### Web
-<img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list_web.png" width="200"/>
+<img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list_web.png" width="400"/>
