@@ -52,4 +52,4 @@ Jetpack Compose Kotlin MPP Weather app
 <img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list_desktop.png" width="200"/>
 
 #### Web
-<img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list_desktop.png" width="200"/>
+<img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list_web.png" width="200"/>
