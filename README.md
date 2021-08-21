@@ -1,4 +1,4 @@
-[![pipeline](https://github.com/krossovochkin/KWeather/actions/workflows/main.yml/badge.svg)](https://github.com/krossovochkin/KWeather/actions/workflows/main.yml)
+[![pipeline](https://github.com/krossovochkin/KWeather/actions/workflows/pipeline-android.yml/badge.svg)](https://github.com/krossovochkin/KWeather/actions/workflows/pipeline-android.yml)[![pipeline](https://github.com/krossovochkin/KWeather/actions/workflows/pipeline-desktop.yml/badge.svg)](https://github.com/krossovochkin/KWeather/actions/workflows/pipeline-desktop.yml)[![pipeline](https://github.com/krossovochkin/KWeather/actions/workflows/pipeline-web.yml/badge.svg)](https://github.com/krossovochkin/KWeather/actions/workflows/pipeline-web.yml)
 
 # KWeather
 Jetpack Compose Kotlin MPP Weather app
