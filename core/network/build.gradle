@@ -28,5 +28,10 @@ kotlin {
                 implementation d.kotlin_serialization_json
             }
         }
+        jsMain {
+            dependencies {
+                implementation d.ktor_client_js
+            }
+        }
     }
 }

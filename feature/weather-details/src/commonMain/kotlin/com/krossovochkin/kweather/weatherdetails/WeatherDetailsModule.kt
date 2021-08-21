@@ -12,6 +12,8 @@ import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetailsRepository
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModelImpl
 import com.krossovochkin.kweather.weatherdetails.presentation.localization.weatherDetailsLocalizationModule
+import com.krossovochkin.kweather.core.WeatherApi
+import com.krossovochkin.kweather.core.WeatherDetailsApi
 import com.krossovochkin.location.locationProviderModule
 import org.kodein.di.DI
 import org.kodein.di.bind
@@ -23,6 +25,10 @@ val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
     importOnce(locationProviderModule)
     import(currentCityStorageModule)
     import(weatherDetailsLocalizationModule)
+
+    bind<WeatherDetailsApi>() with singleton {
+        instance<WeatherApi>()
+    }
 
     bind<WeatherDetailsViewModel>() with singleton {
         WeatherDetailsViewModelImpl(

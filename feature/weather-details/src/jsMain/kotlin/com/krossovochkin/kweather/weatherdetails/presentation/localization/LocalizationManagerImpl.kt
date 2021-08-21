@@ -10,8 +10,8 @@ internal actual class LocalizationManagerImpl : LocalizationManager<LocalizedStr
 
     override fun getString(key: LocalizedStringKey, vararg params: Any): String {
         var string = map(key)
-        params.forEach { key ->
-            string = string.replaceFirst("%1\$s", "$key")
+        params.forEach { param ->
+            string = string.replaceFirst("%s", "$param")
         }
         return string
     }

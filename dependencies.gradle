@@ -78,6 +78,7 @@ d.ktor_client_serialization = "io.ktor:ktor-client-serialization:$v.ktor"
 d.ktor_client_android = "io.ktor:ktor-client-android:$v.ktor"
 d.ktor_client_java = "io.ktor:ktor-client-java:$v.ktor"
 d.ktor_client_json_jvm = "io.ktor:ktor-client-json-jvm:$v.ktor"
+d.ktor_client_js = "io.ktor:ktor-client-js:$v.ktor"
 d.ktor_client_serialization_jvm = "io.ktor:ktor-client-serialization-jvm:$v.ktor"
 
 d.kotlin_serialization_json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$v.kotlin_serialization"

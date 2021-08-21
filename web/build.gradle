@@ -31,6 +31,7 @@ kotlin {
         jsMain {
             dependencies {
                 implementation compose.web.core
+                implementation compose.web.widgets
                 implementation compose.runtime
                 implementation d.project.shared
             }
