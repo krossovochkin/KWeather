@@ -14,7 +14,6 @@ kotlin {
                 api d.project.core_storage
                 api d.project.core_lifecycle
                 api d.project.core_permission
-                api d.project.core_image_loader
                 api d.project.feature_city_list
                 api d.project.feature_weather_details
             }

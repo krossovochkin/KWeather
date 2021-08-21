@@ -19,7 +19,7 @@ repositories {
     }
 }
 
-apply from: "../../module_default.gradle"
+apply plugin: "kotlin-multiplatform"
 apply plugin: "org.jetbrains.compose"
 
 kotlin {
@@ -32,17 +32,6 @@ kotlin {
         jvmMain {
             dependencies {
                 implementation compose.desktop.currentOs
-            }
-        }
-        commonMain {
-            dependencies {
-                implementation compose.runtime
-                implementation compose.ui
-            }
-        }
-        androidMain {
-            dependencies {
-                implementation d.project.core_image_loader_android
             }
         }
     }

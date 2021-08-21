@@ -24,10 +24,10 @@ import javax.imageio.ImageIO
 /**
  * Implementation based on https://github.com/joreilly/PeopleInSpace/blob/main/compose-desktop/src/main/kotlin/main.kt
  */
-actual object ImageLoader {
+object ImageLoader {
 
     @Composable
-    actual fun rememberImagePainter(url: String): Painter? {
+    fun rememberImagePainter(url: String): Painter? {
         return fetchImage(url)?.let { ImagePainter(it) }
     }
 

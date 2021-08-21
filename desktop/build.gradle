@@ -34,6 +34,7 @@ kotlin {
         jvmMain {
             dependencies {
                 implementation compose.desktop.currentOs
+                implementation d.project.core_image_loader_jvm
                 implementation d.project.shared
                 implementation d.kodein_compose
                 implementation d.ktor_client_java
