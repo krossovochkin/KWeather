@@ -1,4 +1,4 @@
-name: pipeline
+name: pipeline-desktop
 
 on: [push]
 
@@ -16,9 +16,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew detektAll lintDebug testDebug
+        run: ./gradlew :web:jsJar
         env:
-          RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
-          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
           API_KEY: ${{ secrets.API_KEY }}
