@@ -53,3 +53,11 @@ Jetpack Compose Kotlin MPP Weather app
 
 #### Web
 <img src="https://raw.githubusercontent.com/krossovochkin/KWeather/master/doc/city_list_web.png" width="400"/>
+
+## Module structure
+
+- core - application agnostic modules (navigation, i18n, etc.)
+- app - application specific modules (domain, network API, etc.)
+- feature - application features/screens
+- shared - facade of all modules that are required for application
+- target - implementations of the apps for particular platforms (android, desktop, etc.)
