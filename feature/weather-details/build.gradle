@@ -4,13 +4,13 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api d.project.service_network
+                api d.project.app_network
                 api d.project.core_presentation
-                api d.project.service_domain
+                api d.project.app_domain
                 implementation d.project.core_i18n
                 implementation d.project.core_navigation
                 implementation d.project.core_location
-                implementation d.project.service_storage_current_city
+                implementation d.project.app_storage_current_city
                 implementation d.kotlin_datetime
             }
         }
@@ -18,8 +18,8 @@ kotlin {
             dependencies {
                 implementation kotlin("test")
                 implementation d.project.core_test
-                implementation d.project.service_domain_test
-                implementation d.project.service_storage_current_city_test
+                implementation d.project.app_domain_test
+                implementation d.project.app_storage_current_city_test
                 implementation d.project.core_i18n_test
                 implementation d.project.core_location_test
                 implementation d.project.core_navigation_test

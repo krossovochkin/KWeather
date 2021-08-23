@@ -7,7 +7,7 @@ kotlin {
                 implementation d.project.core_permission
                 implementation d.kotlin_coroutines_core
                 implementation d.kodein
-                implementation d.project.service_domain
+                implementation d.project.app_domain
             }
         }
         androidMain {

@@ -4,7 +4,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.project.service_domain
+                implementation d.project.app_domain
             }
         }
     }
