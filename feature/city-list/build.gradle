@@ -1,4 +1,4 @@
-apply from: "../feature_default.gradle"
+apply from: "$rootDir/feature/feature_default.gradle"
 
 kotlin {
     sourceSets {
