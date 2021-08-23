@@ -2,7 +2,7 @@ package com.krossovochkin.kweather.service.storagecurrentcity
 
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.CityId
-import com.krossovochkin.kweather.domain.Location
+import com.krossovochkin.kweather.domain.CityLocation
 import com.krossovochkin.storage.Storage
 
 private const val KEY_CURRENT_CITY_ID = "KEY_CURRENT_CITY_ID"
@@ -21,7 +21,7 @@ internal class CurrentCityStorageImpl(
                     id = storage.getInt(KEY_CURRENT_CITY_ID)!!
                 ),
                 name = storage.getString(KEY_CURRENT_CITY_NAME)!!,
-                location = Location(
+                location = CityLocation(
                     latitude = storage.getDouble(KEY_CURRENT_CITY_LATITUDE)!!,
                     longitude = storage.getDouble(KEY_CURRENT_CITY_LONGITUDE)!!
                 )

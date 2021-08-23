@@ -4,7 +4,7 @@ import com.krossovochkin.kweather.core.dto.CityListDto.CityDto
 import com.krossovochkin.kweather.core.dto.LocationDto
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.CityId
-import com.krossovochkin.kweather.domain.Location
+import com.krossovochkin.kweather.domain.CityLocation
 
 internal interface CityListMapper {
 
@@ -20,7 +20,7 @@ internal class CityListMapperImpl : CityListMapper {
             City(
                 id = CityId(id),
                 name = name,
-                location = Location(
+                location = CityLocation(
                     latitude = location.latitude,
                     longitude = location.longitude
                 )

@@ -4,9 +4,9 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api d.project.core_network
+                api d.project.service_network
                 api d.project.core_presentation
-                api d.project.core_domain
+                api d.project.service_domain
                 implementation d.project.core_i18n
                 implementation d.project.core_navigation
                 implementation d.project.core_location
@@ -18,6 +18,11 @@ kotlin {
             dependencies {
                 implementation kotlin("test")
                 implementation d.project.core_test
+                implementation d.project.service_domain_test
+                implementation d.project.service_storage_current_city_test
+                implementation d.project.core_i18n_test
+                implementation d.project.core_location_test
+                implementation d.project.core_navigation_test
             }
         }
     }

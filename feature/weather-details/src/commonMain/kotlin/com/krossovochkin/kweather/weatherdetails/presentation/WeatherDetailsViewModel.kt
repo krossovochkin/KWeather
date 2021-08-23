@@ -1,9 +1,10 @@
 package com.krossovochkin.kweather.weatherdetails.presentation
 
-import com.krossovochkin.core.presentation.BaseViewModel
-import com.krossovochkin.core.presentation.ViewModel
+import com.krossovochkin.presentation.BaseViewModel
+import com.krossovochkin.presentation.ViewModel
 import com.krossovochkin.i18n.LocalizationManager
 import com.krossovochkin.kweather.domain.CityId
+import com.krossovochkin.kweather.domain.CityLocation
 import com.krossovochkin.kweather.domain.WeatherDetails
 import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractor
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractor
@@ -171,6 +172,12 @@ class WeatherDetailsViewModelImpl(
                             if (city.id == CityId.currentLocation) {
                                 city = city.copy(
                                     location = locationProvider.getLastLocation()
+                                        .let { location ->
+                                            CityLocation(
+                                                latitude = location.latitude,
+                                                longitude = location.longitude,
+                                            )
+                                        }
                                 )
                             }
                             val data = getWeatherDetailsInteractor.get(city)

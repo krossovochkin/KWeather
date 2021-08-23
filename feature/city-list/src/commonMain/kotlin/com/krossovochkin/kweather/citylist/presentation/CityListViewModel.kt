@@ -1,16 +1,17 @@
 package com.krossovochkin.kweather.citylist.presentation
 
-import com.krossovochkin.core.presentation.BaseViewModel
-import com.krossovochkin.core.presentation.ViewModel
 import com.krossovochkin.i18n.LocalizationManager
 import com.krossovochkin.kweather.citylist.domain.GetCityListInteractor
 import com.krossovochkin.kweather.citylist.domain.SelectCityInteractor
 import com.krossovochkin.kweather.citylist.presentation.localization.LocalizedStringKey
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.CityId
+import com.krossovochkin.kweather.domain.CityLocation
+import com.krossovochkin.location.LocationProvider
 import com.krossovochkin.navigation.Router
 import com.krossovochkin.navigation.RouterDestination
-import com.krossovochkin.location.LocationProvider
+import com.krossovochkin.presentation.BaseViewModel
+import com.krossovochkin.presentation.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
@@ -108,6 +109,12 @@ class CityListViewModelImpl(
                             id = CityId.currentLocation,
                             name = localizationManager.getString(LocalizedStringKey.CityList_UseCurrentLocation),
                             location = locationProvider.getLastLocation()
+                                .let { location ->
+                                    CityLocation(
+                                        latitude = location.latitude,
+                                        longitude = location.longitude
+                                    )
+                                }
                         )
                     )
                     router.navigateTo(RouterDestination.WeatherDetails)

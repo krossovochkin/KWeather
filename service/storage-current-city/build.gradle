@@ -4,7 +4,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api d.project.core_domain
+                api d.project.service_domain
                 implementation d.kodein
                 implementation d.project.core_storage
             }

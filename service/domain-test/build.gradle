@@ -1,0 +1,11 @@
+apply from: "$rootDir/module_default.gradle"
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation d.project.service_domain
+            }
+        }
+    }
+}

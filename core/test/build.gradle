@@ -1,14 +1,9 @@
-apply from: "../../module_default.gradle"
+apply from: "$rootDir/module_default.gradle"
 
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.project.core_domain
-                implementation d.project.core_navigation
-                implementation d.project.core_i18n
-                implementation d.project.core_location
-                implementation d.project.service_storage_current_city
                 api d.kotlin_coroutines_core
                 api d.test_mockk
             }
