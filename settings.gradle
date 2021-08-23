@@ -6,9 +6,9 @@ pluginManagement {
 }
 
 rootProject.name = "KWeather"
-include ':app'
-include ':desktop'
-include ':web'
+include ':target:android'
+include ':target:desktop'
+include ':target:web'
 
 include ':shared'
 

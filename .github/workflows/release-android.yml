@@ -43,4 +43,4 @@ jobs:
           to: ${{ secrets.EMAIL }}
           from: Luke Skywalker
           body: Build job of ${{github.repository}} completed successfully!
-          attachments: ./app/build/outputs/apk/release/app-release.apk
+          attachments: ./target/androida/build/outputs/apk/release/app-release.apk
