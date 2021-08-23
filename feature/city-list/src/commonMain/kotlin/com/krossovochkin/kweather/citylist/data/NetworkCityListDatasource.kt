@@ -1,6 +1,6 @@
 package com.krossovochkin.kweather.citylist.data
 
-import com.krossovochkin.kweather.core.CityListApi
+import com.krossovochkin.kweather.network.CityListApi
 import com.krossovochkin.kweather.domain.City
 
 internal class NetworkCityListDatasource(

@@ -1,7 +1,7 @@
 package com.krossovochkin.kweather.citylist.data
 
-import com.krossovochkin.kweather.core.dto.CityListDto.CityDto
-import com.krossovochkin.kweather.core.dto.LocationDto
+import com.krossovochkin.kweather.network.dto.CityListDto.CityDto
+import com.krossovochkin.kweather.network.dto.LocationDto
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.CityId
 import com.krossovochkin.kweather.domain.CityLocation

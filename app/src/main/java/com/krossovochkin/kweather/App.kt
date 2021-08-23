@@ -1,7 +1,7 @@
 package com.krossovochkin.kweather
 
 import android.app.Application
-import com.krossovochkin.kweather.core.networkModule
+import com.krossovochkin.kweather.network.networkModule
 import com.krossovochkin.lifecycle.Lifecycle
 import com.krossovochkin.permission.PermissionManager
 import com.krossovochkin.storage.storageModule

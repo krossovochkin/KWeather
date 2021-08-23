@@ -5,7 +5,6 @@ kotlin {
         commonMain {
             dependencies {
                 api d.kotlin_coroutines_core
-                api d.test_mockk
             }
         }
         androidMain {

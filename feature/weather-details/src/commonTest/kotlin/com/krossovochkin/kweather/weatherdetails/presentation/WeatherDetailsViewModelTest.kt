@@ -4,7 +4,7 @@ import com.krossovochkin.test.runBlockingTest
 import com.krossovochkin.localization.test.TestLocalizationManager
 import com.krossovochkin.location.test.TestLocationProvider
 import com.krossovochkin.navigation.test.TestRouter
-import com.krossovochkin.storagecurrentcity.test.TestCurrentCityStorage
+import com.krossovochkin.kweather.storagecurrentcity.test.TestCurrentCityStorage
 import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractor
 import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractorImpl
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractor

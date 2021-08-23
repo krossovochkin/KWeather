@@ -1,4 +1,4 @@
-package com.krossovochkin.kweather.core.dto
+package com.krossovochkin.kweather.network.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

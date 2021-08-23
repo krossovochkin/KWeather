@@ -1,7 +1,7 @@
 package com.krossovochkin.kweather.citylist.domain
 
 import com.krossovochkin.kweather.domain.City
-import com.krossovochkin.kweather.service.storagecurrentcity.MutableCurrentCityStorage
+import com.krossovochkin.kweather.storagecurrentcity.MutableCurrentCityStorage
 
 interface SelectCityInteractor {
 

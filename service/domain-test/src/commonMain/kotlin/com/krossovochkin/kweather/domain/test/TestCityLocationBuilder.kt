@@ -1,4 +1,4 @@
-package com.krossovochkin.domain.test
+package com.krossovochkin.kweather.domain.test
 
 import com.krossovochkin.kweather.domain.CityLocation
 

@@ -13,7 +13,7 @@ import com.krossovochkin.kweather.citylist.domain.SelectCityInteractorImpl
 import com.krossovochkin.kweather.citylist.presentation.CityListViewModel
 import com.krossovochkin.kweather.citylist.presentation.CityListViewModelImpl
 import com.krossovochkin.kweather.citylist.presentation.localization.cityListLocalizationModule
-import com.krossovochkin.kweather.service.storagecurrentcity.currentCityStorageModule
+import com.krossovochkin.kweather.storagecurrentcity.currentCityStorageModule
 import com.krossovochkin.location.locationProviderModule
 import org.kodein.di.DI
 import org.kodein.di.bind

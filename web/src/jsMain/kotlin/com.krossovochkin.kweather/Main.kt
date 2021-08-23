@@ -2,8 +2,8 @@ package com.krossovochkin.kweather
 
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
-import com.krossovochkin.kweather.core.DI_TAG_API_KEY
-import com.krossovochkin.kweather.core.networkModule
+import com.krossovochkin.kweather.network.DI_TAG_API_KEY
+import com.krossovochkin.kweather.network.networkModule
 import com.krossovochkin.kweather.features.citylist.CityListScreen
 import com.krossovochkin.kweather.features.weatherdetails.WeatherDetailsScreen
 import com.krossovochkin.navigation.Router

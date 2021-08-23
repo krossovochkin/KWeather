@@ -1,4 +1,4 @@
-package com.krossovochkin.kweather.service.storagecurrentcity
+package com.krossovochkin.kweather.storagecurrentcity
 
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.CityId

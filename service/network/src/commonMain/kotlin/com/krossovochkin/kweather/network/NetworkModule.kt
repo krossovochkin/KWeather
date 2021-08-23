@@ -1,4 +1,4 @@
-package com.krossovochkin.kweather.core
+package com.krossovochkin.kweather.network
 
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature

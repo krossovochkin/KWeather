@@ -1,6 +1,6 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
-import com.krossovochkin.domain.test.TestCityBuilder
+import com.krossovochkin.kweather.domain.test.TestCityBuilder
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.WeatherDetails
 

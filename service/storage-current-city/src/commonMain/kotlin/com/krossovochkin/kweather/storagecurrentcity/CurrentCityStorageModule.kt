@@ -1,4 +1,4 @@
-package com.krossovochkin.kweather.service.storagecurrentcity
+package com.krossovochkin.kweather.storagecurrentcity
 
 import org.kodein.di.DI
 import org.kodein.di.bind

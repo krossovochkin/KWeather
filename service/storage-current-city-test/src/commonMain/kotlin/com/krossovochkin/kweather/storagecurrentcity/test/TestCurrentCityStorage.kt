@@ -1,7 +1,7 @@
-package com.krossovochkin.storagecurrentcity.test
+package com.krossovochkin.kweather.storagecurrentcity.test
 
 import com.krossovochkin.kweather.domain.City
-import com.krossovochkin.kweather.service.storagecurrentcity.CurrentCityStorage
+import com.krossovochkin.kweather.storagecurrentcity.CurrentCityStorage
 
 class TestCurrentCityStorage : CurrentCityStorage {
 

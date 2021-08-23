@@ -1,7 +1,7 @@
-package com.krossovochkin.kweather.core
+package com.krossovochkin.kweather.network
 
-import com.krossovochkin.kweather.core.dto.CityListDto
-import com.krossovochkin.kweather.core.dto.WeatherDetailsDto
+import com.krossovochkin.kweather.network.dto.CityListDto
+import com.krossovochkin.kweather.network.dto.WeatherDetailsDto
 
 interface WeatherApi :
     CityListApi,

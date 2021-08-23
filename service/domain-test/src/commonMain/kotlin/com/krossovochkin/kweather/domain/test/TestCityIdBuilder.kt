@@ -1,4 +1,4 @@
-package com.krossovochkin.kweather.core.domain
+package com.krossovochkin.kweather.domain.test
 
 import com.krossovochkin.kweather.domain.CityId
 
