@@ -9,7 +9,7 @@ kotlin {
                 api d.project.app_domain
                 implementation d.project.core_location
                 implementation d.project.core_i18n
-                implementation d.project.core_navigation
+                implementation d.project.app_navigation
                 implementation d.project.app_storage_current_city
             }
         }

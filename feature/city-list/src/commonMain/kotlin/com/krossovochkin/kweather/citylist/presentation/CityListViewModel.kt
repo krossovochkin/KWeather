@@ -9,7 +9,7 @@ import com.krossovochkin.kweather.domain.CityId
 import com.krossovochkin.kweather.domain.CityLocation
 import com.krossovochkin.location.LocationProvider
 import com.krossovochkin.navigation.Router
-import com.krossovochkin.navigation.RouterDestination
+import com.krossovochkin.kweather.navigation.RouterDestination
 import com.krossovochkin.presentation.BaseViewModel
 import com.krossovochkin.presentation.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +23,7 @@ interface CityListViewModel : ViewModel<CityListState, CityListAction>
 class CityListViewModelImpl(
     private val getCityListInteractor: GetCityListInteractor,
     private val selectCityInteractor: SelectCityInteractor,
-    private val router: Router,
+    private val router: Router<com.krossovochkin.kweather.navigation.RouterDestination>,
     private val localizationManager: LocalizationManager<LocalizedStringKey>,
     private val locationProvider: LocationProvider
 ) : BaseViewModel<CityListState, CityListAction, CityListActionResult>(CityListState.Loading),

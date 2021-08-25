@@ -11,8 +11,8 @@ import com.krossovochkin.kweather.network.networkModule
 import com.krossovochkin.kweather.features.citylist.CityListScreen
 import com.krossovochkin.kweather.features.weatherdetails.WeatherDetailsScreen
 import com.krossovochkin.navigation.Router
-import com.krossovochkin.navigation.RouterDestination
-import com.krossovochkin.navigation.navigationModule
+import com.krossovochkin.kweather.navigation.RouterDestination
+import com.krossovochkin.kweather.navigation.navigationModule
 import com.krossovochkin.permission.permissionModule
 import com.krossovochkin.storage.storageModule
 import org.kodein.di.DI
@@ -35,7 +35,7 @@ fun main(args: Array<String>) = application {
                     }
                 }
 
-                val router: Router by di.instance()
+                val router: Router<RouterDestination> by di.instance()
 
                 val screen = router.observeDestination()
                     .collectAsState(RouterDestination.WeatherDetails)

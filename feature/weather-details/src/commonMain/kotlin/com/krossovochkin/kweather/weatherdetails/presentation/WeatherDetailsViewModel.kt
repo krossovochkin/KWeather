@@ -1,16 +1,17 @@
 package com.krossovochkin.kweather.weatherdetails.presentation
 
-import com.krossovochkin.presentation.BaseViewModel
-import com.krossovochkin.presentation.ViewModel
 import com.krossovochkin.i18n.LocalizationManager
 import com.krossovochkin.kweather.domain.CityId
 import com.krossovochkin.kweather.domain.CityLocation
 import com.krossovochkin.kweather.domain.WeatherDetails
+import com.krossovochkin.kweather.navigation.RouterDestination
 import com.krossovochkin.kweather.weatherdetails.domain.GetCurrentCityInteractor
 import com.krossovochkin.kweather.weatherdetails.domain.GetWeatherDetailsInteractor
 import com.krossovochkin.kweather.weatherdetails.presentation.localization.LocalizedStringKey
 import com.krossovochkin.location.LocationProvider
 import com.krossovochkin.navigation.Router
+import com.krossovochkin.presentation.BaseViewModel
+import com.krossovochkin.presentation.ViewModel
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 
@@ -21,7 +22,7 @@ private const val CELSIUS_DEGREES = "°C"
 class WeatherDetailsViewModelImpl(
     private val getWeatherDetailsInteractor: GetWeatherDetailsInteractor,
     private val getCurrentCityInteractor: GetCurrentCityInteractor,
-    private val router: Router,
+    private val router: Router<RouterDestination>,
     private val localizationManager: LocalizationManager<LocalizedStringKey>,
     private val locationProvider: LocationProvider,
 ) : BaseViewModel<WeatherDetailsState,
@@ -189,7 +190,7 @@ class WeatherDetailsViewModelImpl(
                 }
             }
             WeatherDetailsAction.OpenSelectCityScreen -> {
-                scope.launch { router.navigateTo(com.krossovochkin.navigation.RouterDestination.CityList) }
+                scope.launch { router.navigateTo(RouterDestination.CityList) }
             }
         }
     }

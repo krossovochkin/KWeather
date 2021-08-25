@@ -1,0 +1,12 @@
+apply from: "$rootDir/module_default.gradle"
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                api d.project.core_navigation
+                implementation d.kodein
+            }
+        }
+    }
+}

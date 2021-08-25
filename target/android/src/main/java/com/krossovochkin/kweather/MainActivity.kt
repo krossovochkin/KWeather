@@ -17,8 +17,8 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.krossovochkin.kweather.feature.citylist.CityListScreen
 import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
-import com.krossovochkin.navigation.RouterDestination
-import com.krossovochkin.navigation.navigationModule
+import com.krossovochkin.kweather.navigation.RouterDestination
+import com.krossovochkin.kweather.navigation.navigationModule
 import org.kodein.di.bind
 import org.kodein.di.compose.withDI
 import org.kodein.di.singleton

@@ -7,29 +7,26 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
-class AndroidRouter(
+class AndroidRouter<RouterDestinationT : RouterDestination>(
     private val navController: NavController
-) : Router {
+) : Router<RouterDestinationT> {
 
-    override fun observeDestination(): Flow<RouterDestination> {
+    private val routerDestinationMap = mutableMapOf<String, RouterDestinationT>()
+
+    override fun observeDestination(): Flow<RouterDestinationT> {
         return navController.currentBackStackEntryFlow
             .map { it.destination.route }
-            .map { route ->
-                when (route) {
-                    RouterDestination.CityList.route -> RouterDestination.CityList
-                    RouterDestination.WeatherDetails.route -> RouterDestination.WeatherDetails
-                    else -> null
-                }
-            }
+            .map { route -> routerDestinationMap[route] }
             .filterNotNull()
     }
 
-    override suspend fun navigateTo(destination: RouterDestination) =
+    override suspend fun navigateTo(destination: RouterDestinationT) =
         withContext(Dispatchers.Main.immediate) {
             val currentDestinationId = navController.currentDestination?.id
             if (currentDestinationId != null) {
                 navController.popBackStack(currentDestinationId, true)
             }
+            routerDestinationMap[destination.route] = destination
             navController.navigate(destination.route)
         }
 }

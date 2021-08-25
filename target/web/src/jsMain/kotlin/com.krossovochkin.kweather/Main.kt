@@ -2,13 +2,13 @@ package com.krossovochkin.kweather
 
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
-import com.krossovochkin.kweather.network.DI_TAG_API_KEY
-import com.krossovochkin.kweather.network.networkModule
 import com.krossovochkin.kweather.features.citylist.CityListScreen
 import com.krossovochkin.kweather.features.weatherdetails.WeatherDetailsScreen
+import com.krossovochkin.kweather.navigation.RouterDestination
+import com.krossovochkin.kweather.navigation.navigationModule
+import com.krossovochkin.kweather.network.DI_TAG_API_KEY
+import com.krossovochkin.kweather.network.networkModule
 import com.krossovochkin.navigation.Router
-import com.krossovochkin.navigation.RouterDestination
-import com.krossovochkin.navigation.navigationModule
 import com.krossovochkin.permission.permissionModule
 import com.krossovochkin.storage.storageModule
 import org.jetbrains.compose.web.renderComposable
@@ -29,7 +29,7 @@ fun main() {
             }
         }
 
-        val router: Router by di.instance()
+        val router: Router<RouterDestination> by di.instance()
 
         val screen = router.observeDestination()
             .collectAsState(RouterDestination.WeatherDetails)

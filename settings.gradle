@@ -28,6 +28,7 @@ include ':core:test'
 
 include ':app:domain'
 include ':app:domain-test'
+include ':app:navigation'
 include ':app:network'
 include ':app:storage-current-city'
 include ':app:storage-current-city-test'

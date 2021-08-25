@@ -10,7 +10,7 @@ kotlin {
     sourceSets {
         jvmMain {
             dependencies {
-                api d.project.core_navigation
+                api d.project.app_navigation
                 api d.project.core_storage
                 api d.project.core_lifecycle
                 api d.project.core_permission
@@ -26,7 +26,7 @@ kotlin {
         }
         androidMain {
             dependencies {
-                api d.project.core_navigation
+                api d.project.app_navigation
                 api d.project.core_storage
                 api d.project.core_lifecycle
                 api d.project.core_permission
@@ -36,7 +36,7 @@ kotlin {
         }
         jsMain {
             dependencies {
-                api d.project.core_navigation
+                api d.project.app_navigation
                 api d.project.core_storage
                 api d.project.core_lifecycle
                 api d.project.core_permission

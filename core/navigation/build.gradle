@@ -4,14 +4,13 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.kodein
                 implementation d.kotlin_coroutines_core
             }
         }
         androidMain {
             dependencies {
                 implementation d.kotlin_coroutines_android
-                implementation d.androidx_compose_navigation
+                api d.androidx_compose_navigation
             }
         }
     }

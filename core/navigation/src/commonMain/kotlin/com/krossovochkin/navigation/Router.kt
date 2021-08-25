@@ -2,9 +2,9 @@ package com.krossovochkin.navigation
 
 import kotlinx.coroutines.flow.Flow
 
-interface Router {
+interface Router<RouterDestinationT : RouterDestination> {
 
-    fun observeDestination(): Flow<RouterDestination>
+    fun observeDestination(): Flow<RouterDestinationT>
 
-    suspend fun navigateTo(destination: RouterDestination)
+    suspend fun navigateTo(destination: RouterDestinationT)
 }

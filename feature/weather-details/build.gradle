@@ -8,7 +8,7 @@ kotlin {
                 api d.project.core_presentation
                 api d.project.app_domain
                 implementation d.project.core_i18n
-                implementation d.project.core_navigation
+                implementation d.project.app_navigation
                 implementation d.project.core_location
                 implementation d.project.app_storage_current_city
                 implementation d.kotlin_datetime

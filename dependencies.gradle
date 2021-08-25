@@ -118,6 +118,7 @@ d.project.core_test = project(":core:test")
 d.project.app_network = project(":app:network")
 d.project.app_domain = project(":app:domain")
 d.project.app_domain_test = project(":app:domain-test")
+d.project.app_navigation = project(":app:navigation")
 d.project.app_storage_current_city = project(":app:storage-current-city")
 d.project.app_storage_current_city_test = project(":app:storage-current-city-test")
 
