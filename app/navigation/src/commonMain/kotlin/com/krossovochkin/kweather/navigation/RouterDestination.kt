@@ -7,4 +7,6 @@ sealed class RouterDestination(
     object CityList : RouterDestination("city_list")
 
     object WeatherDetails : RouterDestination("weather_details")
+
+    object WeatherMap : RouterDestination("weather_map")
 }

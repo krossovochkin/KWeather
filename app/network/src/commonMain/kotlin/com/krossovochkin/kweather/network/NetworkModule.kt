@@ -10,6 +10,7 @@ import org.kodein.di.instance
 import org.kodein.di.singleton
 
 const val DI_TAG_API_KEY = "DI_TAG_API_KEY"
+const val DI_TAG_MAPBOX_API_KEY = "DI_TAG_MAPBOX_API_KEY"
 
 val networkModule = DI.Module("WeatherApiModule") {
 

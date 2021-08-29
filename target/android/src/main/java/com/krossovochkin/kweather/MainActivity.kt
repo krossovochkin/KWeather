@@ -17,6 +17,7 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.krossovochkin.kweather.feature.citylist.CityListScreen
 import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
+import com.krossovochkin.kweather.feature.weathermap.WeatherMapScreen
 import com.krossovochkin.kweather.navigation.RouterDestination
 import com.krossovochkin.kweather.navigation.navigationModule
 import org.kodein.di.bind
@@ -65,6 +66,9 @@ class MainActivity : AppCompatActivity() {
                             }
                             composable(RouterDestination.WeatherDetails.route) {
                                 WeatherDetailsScreen()
+                            }
+                            composable(RouterDestination.WeatherMap.route) {
+                                WeatherMapScreen()
                             }
                         }
                     }

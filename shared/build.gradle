@@ -16,12 +16,14 @@ kotlin {
                 api d.project.core_permission
                 api d.project.feature_city_list
                 api d.project.feature_weather_details
+                api d.project.feature_weather_map
             }
         }
         commonMain {
             dependencies {
                 api d.project.feature_city_list
                 api d.project.feature_weather_details
+                api d.project.feature_weather_map
             }
         }
         androidMain {
@@ -32,6 +34,7 @@ kotlin {
                 api d.project.core_permission
                 api d.project.feature_city_list
                 api d.project.feature_weather_details
+                api d.project.feature_weather_map
             }
         }
         jsMain {
@@ -42,6 +45,7 @@ kotlin {
                 api d.project.core_permission
                 api d.project.feature_city_list
                 api d.project.feature_weather_details
+                api d.project.feature_weather_map
             }
         }
     }

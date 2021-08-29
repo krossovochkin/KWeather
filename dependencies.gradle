@@ -59,6 +59,7 @@ d.androidx_activity = "androidx.activity:activity-ktx:$v.androidx_activity"
 d.androidx_preference = "androidx.preference:preference-ktx:$v.androidx_preference"
 d.androidx_compose_foundation = "androidx.compose.foundation:foundation:$v.androidx_compose_foundation"
 d.androidx_compose_material = "androidx.compose.material:material:$v.androidx_compose_material"
+d.androidx_compose_material_icons = "androidx.compose.material:material-icons-extended:$v.androidx_compose_material"
 d.androidx_compose_ui_tooling = "androidx.compose.ui:ui-tooling:$v.androidx_compose_ui"
 d.androidx_compose_ui_tooling_preview = "androidx.compose.ui:ui-tooling-preview:$v.androidx_compose_ui"
 d.androidx_compose_ui_tooling_data = "androidx.compose.ui:ui-tooling-data:$v.androidx_compose_ui"
@@ -124,6 +125,7 @@ d.project.app_storage_current_city_test = project(":app:storage-current-city-tes
 
 d.project.feature_city_list = project(":feature:city-list")
 d.project.feature_weather_details = project(":feature:weather-details")
+d.project.feature_weather_map = project(":feature:weather-map")
 
 ext.v = v
 ext.d = d

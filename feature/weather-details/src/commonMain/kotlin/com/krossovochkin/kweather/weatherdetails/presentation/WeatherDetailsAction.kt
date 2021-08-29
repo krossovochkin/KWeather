@@ -5,4 +5,6 @@ sealed class WeatherDetailsAction {
     object Load : WeatherDetailsAction()
 
     object OpenSelectCityScreen : WeatherDetailsAction()
+
+    object OpenWeatherMapScreen : WeatherDetailsAction()
 }

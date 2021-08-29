@@ -31,10 +31,12 @@ android {
         debug {
             applicationIdSuffix ".debug"
             buildConfigField("String", "API_KEY", "${getApiKey()}")
+            buildConfigField("String", "MAPBOX_API_KEY", "${getMapboxApiKey()}")
         }
         release {
             signingConfig signingConfigs.release
             buildConfigField("String", "API_KEY", "${getApiKey()}")
+            buildConfigField("String", "MAPBOX_API_KEY", "${getMapboxApiKey()}")
 
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -79,6 +81,7 @@ dependencies {
     implementation d.androidx_appcompat
     implementation d.androidx_compose_foundation
     implementation d.androidx_compose_material
+    implementation d.androidx_compose_material_icons
     implementation d.androidx_compose_navigation
     implementation d.androidx_compose_ui_tooling
     implementation d.androidx_compose_ui_util
@@ -93,6 +96,18 @@ dependencies {
 String getApiKey() {
     def ciKey = System.getenv()['API_KEY']
     def localKey = findProperty("kweather_api_key")
+    if (ciKey != null) {
+        return ciKey
+    } else if (localKey != null) {
+        return localKey
+    } else {
+        throw Exception("Can't find API key")
+    }
+}
+
+String getMapboxApiKey() {
+    def ciKey = System.getenv()['MAPBOX_API_KEY']
+    def localKey = findProperty("kweather_mapbox_api_key")
     if (ciKey != null) {
         return ciKey
     } else if (localKey != null) {

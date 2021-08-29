@@ -35,3 +35,4 @@ include ':app:storage-current-city-test'
 
 include ':feature:city-list'
 include ':feature:weather-details'
+include ':feature:weather-map'

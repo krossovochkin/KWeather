@@ -27,6 +27,7 @@ import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Map
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
@@ -137,6 +138,16 @@ private fun DataState(
                     Icon(
                         imageVector = Icons.Filled.Edit,
                         contentDescription = stringResource(R.string.edit)
+                    )
+                }
+            },
+            actions = {
+                IconButton(
+                    onClick = { onAction(WeatherDetailsAction.OpenWeatherMapScreen) }
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Map,
+                        contentDescription = null
                     )
                 }
             },

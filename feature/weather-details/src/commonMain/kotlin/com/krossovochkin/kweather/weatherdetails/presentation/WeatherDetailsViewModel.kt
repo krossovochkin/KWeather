@@ -192,6 +192,9 @@ class WeatherDetailsViewModelImpl(
             WeatherDetailsAction.OpenSelectCityScreen -> {
                 scope.launch { router.navigateTo(RouterDestination.CityList) }
             }
+            WeatherDetailsAction.OpenWeatherMapScreen -> {
+                scope.launch { router.navigateTo(RouterDestination.WeatherMap) }
+            }
         }
     }
 }

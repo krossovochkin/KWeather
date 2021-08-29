@@ -1,0 +1,17 @@
+apply from: "$rootDir/feature/feature_default.gradle"
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                api d.project.core_presentation
+                api d.project.app_domain
+                implementation d.project.app_network
+                implementation d.project.core_i18n
+                implementation d.project.app_navigation
+                implementation d.project.core_location
+                implementation d.project.app_storage_current_city
+            }
+        }
+    }
+}
