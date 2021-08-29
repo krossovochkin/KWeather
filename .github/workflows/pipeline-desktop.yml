@@ -19,3 +19,4 @@ jobs:
         run: ./gradlew :target:desktop:jvmJar
         env:
           API_KEY: ${{ secrets.API_KEY }}
+          MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
