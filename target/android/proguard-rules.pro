@@ -20,5 +20,5 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--include "../proguard-rules/kotlinx_serialization.pro"
--include "../proguard-rules/kodein.pro"
+-include "../../proguard-rules/kotlinx_serialization.pro"
+-include "../../proguard-rules/kodein.pro"
