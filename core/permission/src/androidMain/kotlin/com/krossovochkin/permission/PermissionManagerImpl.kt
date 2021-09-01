@@ -18,7 +18,7 @@ internal actual class PermissionManagerImpl(
 ) : PermissionManager {
 
     private val permissionReceivedFlow = MutableSharedFlow<Boolean>()
-    private var requestLauncher: ActivityResultLauncher<String>? = null
+    private var requestLauncher: ActivityResultLauncher<Array<String>>? = null
 
     override suspend fun init() {
         lifecycle.observeActivity()
@@ -26,8 +26,8 @@ internal actual class PermissionManagerImpl(
                 requestLauncher = when (state) {
                     ActivityState.CREATED -> {
                         (activity as AppCompatActivity)
-                            .registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-                                permissionReceivedFlow.tryEmit(it)
+                            .registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+                                permissionReceivedFlow.tryEmit(it.values.all { it })
                             }
                     }
                     ActivityState.DESTROYED -> {
@@ -42,23 +42,25 @@ internal actual class PermissionManagerImpl(
         val activity = lifecycle.currentActivity ?: return false
         val requestLauncher = requestLauncher ?: return false
 
-        val isGranted = ContextCompat.checkSelfPermission(
-            activity,
-            permission.toPermissionString()
-        ) == PackageManager.PERMISSION_GRANTED
+        val isGranted = permission.toPermissionStrings().all {
+            ContextCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED
+        }
 
         if (isGranted) {
             return true
         }
 
-        requestLauncher.launch(permission.toPermissionString())
+        requestLauncher.launch(permission.toPermissionStrings())
 
         return permissionReceivedFlow.first()
     }
 
-    private fun Permission.toPermissionString(): String {
+    private fun Permission.toPermissionStrings(): Array<String> {
         return when (this) {
-            Permission.FINE_LOCATION -> Manifest.permission.ACCESS_FINE_LOCATION
+            Permission.FINE_LOCATION -> arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
         }
     }
 }

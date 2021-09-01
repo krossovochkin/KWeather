@@ -31,6 +31,7 @@ import androidx.compose.material.icons.filled.Map
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.rememberInsetsPaddingValues
+import com.google.accompanist.insets.systemBarsPadding
 import com.google.accompanist.insets.ui.TopAppBar
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -46,22 +48,24 @@ import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import com.krossovochkin.imageloader.ImageLoader
 import com.krossovochkin.kweather.R
-import com.krossovochkin.kweather.di.withParentDI
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsAction
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsState
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.weatherdetails.weatherDetailsModule
 import kotlinx.coroutines.launch
-import org.kodein.di.compose.LocalDI
+import org.kodein.di.DI
 import org.kodein.di.instance
 
 @Composable
-fun WeatherDetailsScreen() = withParentDI(
-    {
-        import(weatherDetailsModule)
+fun WeatherDetailsScreen(parentDi: DI) {
+    val di = remember {
+        DI {
+            extend(parentDi)
+            import(weatherDetailsModule)
+        }
     }
-) {
-    val weatherDetailsViewModel: WeatherDetailsViewModel by LocalDI.current.instance()
+
+    val weatherDetailsViewModel: WeatherDetailsViewModel by di.instance()
 
     val weatherDetailsState = weatherDetailsViewModel
         .observeState()
@@ -109,7 +113,10 @@ private fun LoadingState() {
 
 @Composable
 private fun UnknownErrorState(state: WeatherDetailsState.UnknownError) {
-    Text(text = "${state.error}")
+    Text(
+        modifier = Modifier.systemBarsPadding(),
+        text = "${state.error}"
+    )
 }
 
 private enum class WeatherTab(
@@ -397,6 +404,7 @@ private fun CityUnknownErrorState(
 ) {
     Column(
         modifier = Modifier
+            .systemBarsPadding()
             .padding(16.dp)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally

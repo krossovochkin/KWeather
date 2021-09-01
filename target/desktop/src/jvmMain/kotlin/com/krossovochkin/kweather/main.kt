@@ -1,10 +1,10 @@
 package com.krossovochkin.kweather
 
 import androidx.compose.desktop.DesktopTheme
-import androidx.compose.desktop.Window
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
+import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import com.krossovochkin.kweather.network.DI_TAG_API_KEY
 import com.krossovochkin.kweather.network.networkModule
@@ -22,7 +22,9 @@ import org.kodein.di.singleton
 
 fun main(args: Array<String>) = application {
     val apiKey = args.get(0)
-    Window {
+    Window(
+        onCloseRequest = ::exitApplication
+    ) {
         MaterialTheme {
             DesktopTheme {
                 val di = remember {

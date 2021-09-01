@@ -18,6 +18,7 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -31,18 +32,19 @@ import com.krossovochkin.kweather.citylist.cityListModule
 import com.krossovochkin.kweather.citylist.presentation.CityListAction
 import com.krossovochkin.kweather.citylist.presentation.CityListState
 import com.krossovochkin.kweather.citylist.presentation.CityListViewModel
-import com.krossovochkin.kweather.di.withParentDI
 import com.krossovochkin.kweather.domain.City
-import org.kodein.di.compose.LocalDI
+import org.kodein.di.DI
 import org.kodein.di.instance
 
 @Composable
-fun CityListScreen() = withParentDI(
-    {
-        import(cityListModule)
+fun CityListScreen(parentDi: DI) {
+    val di = remember {
+        DI {
+            extend(parentDi)
+            import(cityListModule)
+        }
     }
-) {
-    val cityListViewModel: CityListViewModel by LocalDI.current.instance()
+    val cityListViewModel: CityListViewModel by di.instance()
 
     val cityListState = cityListViewModel
         .observeState()

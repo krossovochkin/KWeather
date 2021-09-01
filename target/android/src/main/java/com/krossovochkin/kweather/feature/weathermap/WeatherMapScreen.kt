@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -25,21 +26,22 @@ import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.ui.TopAppBar
 import com.krossovochkin.imageloader.ImageLoader
-import com.krossovochkin.kweather.di.withParentDI
 import com.krossovochkin.kweather.weathermap.presentation.WeatherMapState
 import com.krossovochkin.kweather.weathermap.presentation.WeatherMapViewModel
 import com.krossovochkin.kweather.weathermap.weatherMapModule
-import org.kodein.di.compose.LocalDI
+import org.kodein.di.DI
 import org.kodein.di.instance
 import kotlin.math.abs
 
 @Composable
-fun WeatherMapScreen() = withParentDI(
-    {
-        import(weatherMapModule)
+fun WeatherMapScreen(parentDi: DI) {
+    val di = remember {
+        DI {
+            extend(parentDi)
+            import(weatherMapModule)
+        }
     }
-) {
-    val weatherMapViewModel: WeatherMapViewModel by LocalDI.current.instance()
+    val weatherMapViewModel: WeatherMapViewModel by di.instance()
 
     val weatherMapState = weatherMapViewModel
         .observeState()

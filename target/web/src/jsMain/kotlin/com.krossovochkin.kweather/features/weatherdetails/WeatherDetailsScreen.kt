@@ -1,7 +1,10 @@
+@file:OptIn(ExperimentalComposeWebWidgetsApi::class)
+
 package com.krossovochkin.kweather.features.weatherdetails
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsAction
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsState
@@ -12,10 +15,10 @@ import org.jetbrains.compose.common.foundation.layout.Column
 import org.jetbrains.compose.common.foundation.layout.Row
 import org.jetbrains.compose.common.foundation.layout.fillMaxHeight
 import org.jetbrains.compose.common.foundation.layout.fillMaxWidth
+import org.jetbrains.compose.common.ui.ExperimentalComposeWebWidgetsApi
 import org.jetbrains.compose.common.ui.Modifier
 import org.jetbrains.compose.common.ui.padding
 import org.jetbrains.compose.common.ui.unit.dp
-import androidx.compose.runtime.collectAsState
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Img
 import org.jetbrains.compose.web.dom.Text

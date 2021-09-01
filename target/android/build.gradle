@@ -75,7 +75,7 @@ dependencies {
     implementation d.project.shared
     implementation d.project.core_image_loader_android
 
-    implementation d.kodein_compose
+    implementation d.kodein
 
     implementation d.androidx_core_ktx
     implementation d.androidx_appcompat

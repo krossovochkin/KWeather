@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalComposeWebWidgetsApi::class)
+
 package com.krossovochkin.kweather.features.citylist
 
 import androidx.compose.runtime.Composable
@@ -13,6 +15,7 @@ import org.jetbrains.compose.common.foundation.layout.Box
 import org.jetbrains.compose.common.foundation.layout.Column
 import org.jetbrains.compose.common.foundation.layout.fillMaxHeight
 import org.jetbrains.compose.common.foundation.layout.fillMaxWidth
+import org.jetbrains.compose.common.ui.ExperimentalComposeWebWidgetsApi
 import org.jetbrains.compose.common.ui.Modifier
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text

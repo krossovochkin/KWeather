@@ -1,41 +1,41 @@
 def v = [:]
-v.compile_sdk_version = 30
-v.build_tools_version = "30.0.3"
+v.compile_sdk_version = 31
+v.build_tools_version = "31.0.0"
 v.min_sdk_version = 24
-v.target_sdk_version = 30
+v.target_sdk_version = 31
 v.version_code = 1
 v.version_name = "1.0"
 
-v.kotlin = "1.5.21"
-v.gradle_plugin_android = '7.1.0-alpha08'
+v.kotlin = "1.5.30"
+v.gradle_plugin_android = '7.1.0-alpha10'
 v.gradle_plugin_versions = "0.39.0"
-v.jetbrains_compose = "1.0.0-alpha3"
+v.jetbrains_compose = "1.0.0-alpha4-build331"
 
 v.kotlin_coroutines = "1.5.1"
-v.ktor = "1.6.2"
+v.ktor = "1.6.3"
 v.kotlin_serialization = "1.2.2"
 v.kotlin_datetime = "0.2.1"
 
 v.androidx_annotation = "1.3.0-alpha01"
-v.androidx_compose = "1.1.0-alpha01"
-v.androidx_compose_foundation = "1.1.0-alpha01"
-v.androidx_compose_material = "1.1.0-alpha01"
-v.androidx_compose_ui = "1.1.0-alpha01"
-v.androidx_compose_navigation = "2.4.0-alpha06"
-v.androidx_core_ktx = "1.7.0-alpha01"
+v.androidx_compose = "1.1.0-alpha03"
+v.androidx_compose_foundation = "1.1.0-alpha03"
+v.androidx_compose_material = "1.1.0-alpha03"
+v.androidx_compose_ui = "1.1.0-alpha03"
+v.androidx_compose_navigation = "2.4.0-alpha08"
+v.androidx_core_ktx = "1.7.0-alpha02"
 v.androidx_appcompat = "1.4.0-alpha03"
-v.androidx_activity = "1.3.1"
+v.androidx_activity = "1.4.0-alpha01"
 v.androidx_preference = "1.1.1"
-v.material_components = "1.5.0-alpha01"
+v.material_components = "1.5.0-alpha03"
 v.coil = "1.3.2"
-v.accompanist = "0.16.1"
+v.accompanist = "0.17.0"
 
 v.sqldelight = "1.5.1"
-v.kodein = "7.6.0"
-v.settings = "0.7.7"
+v.kodein = "7.7.0"
+v.settings = "0.8"
 v.gms_location = "18.0.0"
 
-v.detekt = "1.18.0-RC2"
+v.detekt = "1.18.1"
 v.test_mockk = "1.12.0"
 
 def d = [:]
@@ -91,7 +91,6 @@ d.sqldelight_android = "com.squareup.sqldelight:android-driver:$v.sqldelight"
 d.sqldelight_coroutines_extensions_jvm = "com.squareup.sqldelight:coroutines-extensions-jvm:$v.sqldelight"
 
 d.kodein = "org.kodein.di:kodein-di:$v.kodein"
-d.kodein_compose = "org.kodein.di:kodein-di-framework-compose:$v.kodein"
 d.settings = "com.russhwolf:multiplatform-settings:$v.settings"
 d.settings_coroutines = "com.russhwolf:multiplatform-settings-coroutines:$v.settings"
 d.gms_location = "com.google.android.gms:play-services-location:$v.gms_location"
