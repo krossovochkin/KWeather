@@ -9,9 +9,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
@@ -26,6 +30,7 @@ import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.ui.TopAppBar
 import com.krossovochkin.imageloader.ImageLoader
+import com.krossovochkin.kweather.weathermap.presentation.WeatherMapAction
 import com.krossovochkin.kweather.weathermap.presentation.WeatherMapState
 import com.krossovochkin.kweather.weathermap.presentation.WeatherMapViewModel
 import com.krossovochkin.kweather.weathermap.weatherMapModule
@@ -50,6 +55,7 @@ fun WeatherMapScreen(parentDi: DI) {
 
     WeatherMapScreenImpl(
         weatherMapState,
+        weatherMapViewModel::performAction,
         weatherMapViewModel::dispose
     )
 }
@@ -57,6 +63,7 @@ fun WeatherMapScreen(parentDi: DI) {
 @Composable
 private fun WeatherMapScreenImpl(
     weatherMapState: WeatherMapState?,
+    onAction: (WeatherMapAction) -> Unit,
     onDispose: () -> Unit
 ) {
     DisposableEffect(null) { onDispose { onDispose() } }
@@ -64,7 +71,8 @@ private fun WeatherMapScreenImpl(
         when (weatherMapState) {
             is WeatherMapState.Loading -> LoadingState()
             is WeatherMapState.Data -> DataState(
-                state = weatherMapState
+                state = weatherMapState,
+                onAction = onAction
             )
         }
     }
@@ -82,10 +90,16 @@ private fun LoadingState() {
 
 @Composable
 private fun DataState(
-    state: WeatherMapState.Data
+    state: WeatherMapState.Data,
+    onAction: (WeatherMapAction) -> Unit
 ) {
     Column {
         TopAppBar(
+            navigationIcon = {
+                IconButton(onClick = { onAction(WeatherMapAction.Back) }) {
+                    Icon(Icons.Default.ArrowBack, contentDescription = null)
+                }
+            },
             title = {
                 Text(
                     text = state.toolbarTitle,

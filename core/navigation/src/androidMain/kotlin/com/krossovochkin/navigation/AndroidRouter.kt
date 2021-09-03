@@ -22,11 +22,12 @@ class AndroidRouter<RouterDestinationT : RouterDestination>(
 
     override suspend fun navigateTo(destination: RouterDestinationT) =
         withContext(Dispatchers.Main.immediate) {
-            val currentDestinationId = navController.currentDestination?.id
-            if (currentDestinationId != null) {
-                navController.popBackStack(currentDestinationId, true)
-            }
             routerDestinationMap[destination.route] = destination
             navController.navigate(destination.route)
+        }
+
+    override suspend fun navigateBack() =
+        withContext(Dispatchers.Main.immediate) {
+            navController.popBackStack()
         }
 }

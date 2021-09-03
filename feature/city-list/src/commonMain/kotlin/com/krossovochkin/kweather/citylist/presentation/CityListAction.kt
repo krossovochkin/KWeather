@@ -15,6 +15,8 @@ sealed class CityListAction {
     ) : CityListAction()
 
     object UseCurrentLocation : CityListAction()
+
+    object Back : CityListAction()
 }
 
 sealed class CityListActionResult {

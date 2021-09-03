@@ -11,10 +11,14 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
@@ -96,6 +100,11 @@ private fun DataState(
 ) {
     Column {
         TopAppBar(
+            navigationIcon = {
+                IconButton(onClick = { onAction(CityListAction.Back) }) {
+                    Icon(Icons.Default.ArrowBack, contentDescription = null)
+                }
+            },
             title = {
                 Text(
                     text = stringResource(R.string.chooseCity),

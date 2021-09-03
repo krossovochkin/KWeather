@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.filterNotNull
 
 class RouterImpl<RouterDestinationT : RouterDestination> : Router<RouterDestinationT> {
 
+    private val backstack = ArrayDeque<RouterDestinationT>()
     private var currentDestinationStateFlow =
         MutableStateFlow<RouterDestinationT?>(null)
 
@@ -15,6 +16,17 @@ class RouterImpl<RouterDestinationT : RouterDestination> : Router<RouterDestinat
     }
 
     override suspend fun navigateTo(destination: RouterDestinationT) {
+        backstack.addFirst(destination)
         currentDestinationStateFlow.emit(destination)
+    }
+
+    override suspend fun navigateBack(): Boolean {
+        return if (backstack.size > 1) {
+            backstack.removeFirst()
+            currentDestinationStateFlow.emit(backstack.first())
+            true
+        } else {
+            false
+        }
     }
 }

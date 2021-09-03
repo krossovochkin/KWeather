@@ -25,6 +25,7 @@ val weatherMapModule = DI.Module("WeatherMapModule") {
             getCurrentCityInteractor = instance(),
             localizationManager = instance(),
             getWeatherMapDataInteractor = instance(),
+            router = instance(),
         )
     }
 

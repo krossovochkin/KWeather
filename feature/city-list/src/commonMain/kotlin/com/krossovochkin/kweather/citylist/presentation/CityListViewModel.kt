@@ -7,9 +7,9 @@ import com.krossovochkin.kweather.citylist.presentation.localization.LocalizedSt
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.CityId
 import com.krossovochkin.kweather.domain.CityLocation
+import com.krossovochkin.kweather.navigation.RouterDestination
 import com.krossovochkin.location.LocationProvider
 import com.krossovochkin.navigation.Router
-import com.krossovochkin.kweather.navigation.RouterDestination
 import com.krossovochkin.presentation.BaseViewModel
 import com.krossovochkin.presentation.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +23,7 @@ interface CityListViewModel : ViewModel<CityListState, CityListAction>
 class CityListViewModelImpl(
     private val getCityListInteractor: GetCityListInteractor,
     private val selectCityInteractor: SelectCityInteractor,
-    private val router: Router<com.krossovochkin.kweather.navigation.RouterDestination>,
+    private val router: Router<RouterDestination>,
     private val localizationManager: LocalizationManager<LocalizedStringKey>,
     private val locationProvider: LocationProvider
 ) : BaseViewModel<CityListState, CityListAction, CityListActionResult>(CityListState.Loading),
@@ -119,6 +119,9 @@ class CityListViewModelImpl(
                     )
                     router.navigateTo(RouterDestination.WeatherDetails)
                 }
+            }
+            CityListAction.Back -> {
+                scope.launch { router.navigateBack() }
             }
         }
     }
