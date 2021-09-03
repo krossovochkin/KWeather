@@ -3,12 +3,11 @@ apply plugin: "com.android.library"
 apply from: "$rootDir/quality/lint.gradle"
 
 android {
-    compileSdkVersion v.compile_sdk_version
-    buildToolsVersion v.build_tools_version
+    compileSdk v.compile_sdk
 
     defaultConfig {
-        minSdkVersion v.min_sdk_version
-        targetSdkVersion v.target_sdk_version
+        minSdk v.min_sdk
+        targetSdk v.target_sdk
     }
 
     // Workaround as per https://stackoverflow.com/a/66433024/1533933
@@ -29,11 +28,6 @@ android {
             assets.srcDirs = ['src/androidMain/assets']
         }
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 kotlin {
@@ -42,11 +36,5 @@ kotlin {
     js(IR) {
         useCommonJs()
         browser()
-    }
-
-    sourceSets {
-        all {
-            languageSettings.enableLanguageFeature("InlineClasses")
-        }
     }
 }

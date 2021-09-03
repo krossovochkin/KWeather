@@ -1,8 +1,7 @@
 def v = [:]
-v.compile_sdk_version = 31
-v.build_tools_version = "31.0.0"
-v.min_sdk_version = 24
-v.target_sdk_version = 31
+v.compile_sdk = 31
+v.min_sdk = 24
+v.target_sdk = 31
 v.version_code = 1
 v.version_name = "1.0"
 
