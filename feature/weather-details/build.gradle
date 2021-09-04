@@ -22,7 +22,6 @@ kotlin {
                 implementation d.project.app_storage_current_city_test
                 implementation d.project.core_i18n_test
                 implementation d.project.core_location_test
-                implementation d.project.core_navigation_test
             }
         }
     }

@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 
-class RouterImpl<RouterDestinationT : RouterDestination> : Router<RouterDestinationT> {
+class SimpleRouter<RouterDestinationT : RouterDestination> : Router<RouterDestinationT> {
 
     private val backstack = ArrayDeque<RouterDestinationT>()
     private var currentDestinationStateFlow =

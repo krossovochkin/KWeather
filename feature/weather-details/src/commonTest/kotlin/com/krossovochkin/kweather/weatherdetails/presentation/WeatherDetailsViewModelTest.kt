@@ -10,7 +10,7 @@ import com.krossovochkin.kweather.weatherdetails.domain.TestWeatherDetailsReposi
 import com.krossovochkin.kweather.weatherdetails.presentation.localization.LocalizedStringKey
 import com.krossovochkin.localization.test.TestLocalizationManager
 import com.krossovochkin.location.test.TestLocationProvider
-import com.krossovochkin.navigation.test.TestRouter
+import com.krossovochkin.navigation.SimpleRouter
 import com.krossovochkin.test.runBlockingTest
 import kotlin.test.Test
 
@@ -28,7 +28,7 @@ class WeatherDetailsViewModelTest {
             weatherDetailsRepository = weatherDetailsRepository
         )
 
-    private val router = TestRouter<RouterDestination>()
+    private val router = SimpleRouter<RouterDestination>()
     private val localizationManager = TestLocalizationManager<LocalizedStringKey>()
     private val locationProvider = TestLocationProvider()
 
