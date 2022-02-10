@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalComposeWebWidgetsApi::class)
-
 package com.krossovochkin.kweather.features.citylist
 
 import androidx.compose.runtime.Composable
@@ -11,12 +9,6 @@ import com.krossovochkin.kweather.citylist.presentation.CityListAction
 import com.krossovochkin.kweather.citylist.presentation.CityListState
 import com.krossovochkin.kweather.citylist.presentation.CityListViewModel
 import com.krossovochkin.kweather.domain.City
-import org.jetbrains.compose.common.foundation.layout.Box
-import org.jetbrains.compose.common.foundation.layout.Column
-import org.jetbrains.compose.common.foundation.layout.fillMaxHeight
-import org.jetbrains.compose.common.foundation.layout.fillMaxWidth
-import org.jetbrains.compose.common.ui.ExperimentalComposeWebWidgetsApi
-import org.jetbrains.compose.common.ui.Modifier
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.dom.TextInput
@@ -46,32 +38,25 @@ fun CityListScreen(parentDi: DI) {
 
 @Composable
 private fun CityListScreenImpl(
-    cityListState: CityListState?,
+    cityListState: CityListState,
     onAction: (CityListAction) -> Unit,
     onDispose: () -> Unit
 ) {
     DisposableEffect(null) { onDispose { onDispose() } }
-    Box(
-        modifier = Modifier.fillMaxWidth().fillMaxHeight(1f)
-    ) {
-        when (cityListState) {
-            is CityListState.Loading -> CityListLoadingState()
-            is CityListState.Data -> DataState(
-                state = cityListState,
-                onAction = { onAction(it) }
-            )
-            is CityListState.Error -> ErrorState(state = cityListState)
-        }
+
+    when (cityListState) {
+        is CityListState.Loading -> CityListLoadingState()
+        is CityListState.Data -> DataState(
+            state = cityListState,
+            onAction = { onAction(it) }
+        )
+        is CityListState.Error -> ErrorState(state = cityListState)
     }
 }
 
 @Composable
 private fun CityListLoadingState() {
-    Box(
-        modifier = Modifier.fillMaxWidth().fillMaxHeight(1f)
-    ) {
-        Text("Loading...")
-    }
+    Text("Loading...")
 }
 
 @Composable
@@ -79,16 +64,14 @@ private fun DataState(
     state: CityListState.Data,
     onAction: (CityListAction) -> Unit
 ) {
-    Column {
-        TextInput(
-            value = state.queryText,
-            attrs = {
-                onInput { onAction(CityListAction.ChangeCityNameQuery(it.value)) }
-            }
-        )
-        state.cityList.forEach { city ->
-            CityItem(city, onAction)
+    TextInput(
+        value = state.queryText,
+        attrs = {
+            onInput { onAction(CityListAction.ChangeCityNameQuery(it.value)) }
         }
+    )
+    state.cityList.forEach { city ->
+        CityItem(city, onAction)
     }
 }
 

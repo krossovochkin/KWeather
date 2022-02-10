@@ -1,5 +1,7 @@
 package com.krossovochkin.kweather.weatherdetails
 
+import com.krossovochkin.kweather.network.WeatherApi
+import com.krossovochkin.kweather.network.WeatherDetailsApi
 import com.krossovochkin.kweather.storagecurrentcity.currentCityStorageModule
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsMapper
 import com.krossovochkin.kweather.weatherdetails.data.WeatherDetailsMapperImpl
@@ -12,9 +14,8 @@ import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetailsRepository
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModelImpl
 import com.krossovochkin.kweather.weatherdetails.presentation.localization.weatherDetailsLocalizationModule
-import com.krossovochkin.kweather.network.WeatherApi
-import com.krossovochkin.kweather.network.WeatherDetailsApi
 import com.krossovochkin.location.locationProviderModule
+import kotlinx.coroutines.Dispatchers
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
@@ -36,7 +37,8 @@ val weatherDetailsModule = DI.Module("WeatherDetailsModule") {
             getWeatherDetailsInteractor = instance(),
             getCurrentCityInteractor = instance(),
             localizationManager = instance(),
-            locationProvider = instance()
+            locationProvider = instance(),
+            defaultDispatcher = Dispatchers.Default,
         )
     }
 

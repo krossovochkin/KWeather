@@ -1,8 +1,8 @@
 package com.krossovochkin.kweather.weatherdetails.data
 
-import com.krossovochkin.kweather.network.WeatherDetailsApi
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.WeatherDetails
+import com.krossovochkin.kweather.network.WeatherDetailsApi
 import com.krossovochkin.kweather.weatherdetails.domain.WeatherDetailsRepository
 
 internal class WeatherDetailsRepositoryImpl(

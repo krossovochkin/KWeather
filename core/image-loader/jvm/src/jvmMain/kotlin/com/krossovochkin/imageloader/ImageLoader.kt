@@ -8,12 +8,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.toComposeImageBitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jetbrains.skija.Image
+import org.jetbrains.skia.Image
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
@@ -37,7 +37,7 @@ object ImageLoader {
 
         LaunchedEffect(url) {
             loadFullImage(url)?.let {
-                image = Image.makeFromEncoded(toByteArray(it)).asImageBitmap()
+                image = Image.makeFromEncoded(toByteArray(it)).toComposeImageBitmap()
             }
         }
 

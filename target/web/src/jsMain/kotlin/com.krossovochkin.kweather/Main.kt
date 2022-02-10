@@ -37,6 +37,7 @@ fun main() {
         when (screen.value) {
             RouterDestination.CityList -> CityListScreen(di)
             RouterDestination.WeatherDetails -> WeatherDetailsScreen(di)
+            RouterDestination.WeatherMap -> Unit
         }
     }
 }

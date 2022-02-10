@@ -1,8 +1,8 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
-import com.krossovochkin.test.runBlockingTest
 import com.krossovochkin.kweather.domain.test.TestCityBuilder
 import com.krossovochkin.kweather.storagecurrentcity.test.TestCurrentCityStorage
+import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -17,7 +17,7 @@ class GetCurrentCityInteractorTest {
 
     @Test
     fun `if current city not set then returns null`() {
-        runBlockingTest {
+        runTest {
             assertNull(interactor.get())
         }
     }
@@ -28,7 +28,7 @@ class GetCurrentCityInteractorTest {
 
         storage.setCity(city)
 
-        runBlockingTest {
+        runTest {
             assertEquals(
                 expected = city,
                 actual = interactor.get()

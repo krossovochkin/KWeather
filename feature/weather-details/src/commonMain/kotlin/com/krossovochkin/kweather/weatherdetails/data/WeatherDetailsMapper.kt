@@ -1,8 +1,8 @@
 package com.krossovochkin.kweather.weatherdetails.data
 
-import com.krossovochkin.kweather.network.dto.WeatherDetailsDto
 import com.krossovochkin.kweather.domain.City
 import com.krossovochkin.kweather.domain.WeatherDetails
+import com.krossovochkin.kweather.network.dto.WeatherDetailsDto
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone

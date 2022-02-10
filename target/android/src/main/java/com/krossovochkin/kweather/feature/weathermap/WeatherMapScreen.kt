@@ -62,7 +62,7 @@ fun WeatherMapScreen(parentDi: DI) {
 
 @Composable
 private fun WeatherMapScreenImpl(
-    weatherMapState: WeatherMapState?,
+    weatherMapState: WeatherMapState,
     onAction: (WeatherMapAction) -> Unit,
     onDispose: () -> Unit
 ) {

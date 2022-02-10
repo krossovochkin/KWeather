@@ -80,7 +80,7 @@ fun WeatherDetailsScreen(parentDi: DI) {
 
 @Composable
 private fun WeatherDetailsScreenImpl(
-    weatherDetailsState: WeatherDetailsState?,
+    weatherDetailsState: WeatherDetailsState,
     onAction: (WeatherDetailsAction) -> Unit,
     onDispose: () -> Unit
 ) {
@@ -190,7 +190,6 @@ private fun TabController(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(
-        pageCount = tabs.size,
         initialPage = tabs.indexOf(defaultTab)
     )
 
@@ -218,7 +217,7 @@ private fun TabController(
             }
     }
 
-    HorizontalPager(state = pagerState) { page ->
+    HorizontalPager(state = pagerState, count = tabs.size) { page ->
         block(tabs[page])
     }
 }

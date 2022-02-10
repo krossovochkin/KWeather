@@ -7,25 +7,18 @@ kotlin {
             dependencies {
                 implementation d.kodein
                 implementation d.ktor_client_core
-                implementation d.ktor_client_json
-                implementation d.ktor_client_serialization
-                implementation d.kotlin_serialization_json
+                implementation d.ktor_serialization_json
+                implementation d.ktor_content_negotiation
             }
         }
         androidMain {
             dependencies {
                 implementation d.ktor_client_android
-                implementation d.ktor_client_json_jvm
-                implementation d.ktor_client_serialization_jvm
-                implementation d.kotlin_serialization_json
             }
         }
         jmvMain {
             dependencies {
                 implementation d.ktor_client_java
-                implementation d.ktor_client_json_jvm
-                implementation d.ktor_client_serialization_jvm
-                implementation d.kotlin_serialization_json
             }
         }
         jsMain {

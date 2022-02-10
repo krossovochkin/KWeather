@@ -4,12 +4,8 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                api kotlin("test")
                 api d.kotlin_coroutines_core
-            }
-        }
-        androidMain {
-            dependencies {
-                api d.kotlin_coroutines_android
                 api d.kotlin_coroutines_test
             }
         }

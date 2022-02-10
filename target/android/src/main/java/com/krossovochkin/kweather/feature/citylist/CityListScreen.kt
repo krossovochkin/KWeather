@@ -63,7 +63,7 @@ fun CityListScreen(parentDi: DI) {
 
 @Composable
 private fun CityListScreenImpl(
-    cityListState: CityListState?,
+    cityListState: CityListState,
     onAction: (CityListAction) -> Unit,
     onDispose: () -> Unit
 ) {

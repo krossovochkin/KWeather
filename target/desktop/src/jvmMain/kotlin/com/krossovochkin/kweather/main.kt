@@ -6,13 +6,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import com.krossovochkin.kweather.network.DI_TAG_API_KEY
-import com.krossovochkin.kweather.network.networkModule
 import com.krossovochkin.kweather.features.citylist.CityListScreen
 import com.krossovochkin.kweather.features.weatherdetails.WeatherDetailsScreen
-import com.krossovochkin.navigation.Router
 import com.krossovochkin.kweather.navigation.RouterDestination
 import com.krossovochkin.kweather.navigation.navigationModule
+import com.krossovochkin.kweather.network.DI_TAG_API_KEY
+import com.krossovochkin.kweather.network.networkModule
+import com.krossovochkin.navigation.Router
 import com.krossovochkin.permission.permissionModule
 import com.krossovochkin.storage.storageModule
 import org.kodein.di.DI

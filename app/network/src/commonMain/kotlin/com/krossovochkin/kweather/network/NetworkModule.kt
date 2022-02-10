@@ -1,8 +1,8 @@
 package com.krossovochkin.kweather.network
 
 import io.ktor.client.HttpClient
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.plugins.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.kodein.di.DI
 import org.kodein.di.bind
@@ -27,10 +27,10 @@ val networkModule = DI.Module("WeatherApiModule") {
 
     bind<HttpClient>() with singleton {
         HttpClient() {
-            install(JsonFeature) {
-                serializer = KotlinxSerializer(
-                    json = Json {
-                        this.ignoreUnknownKeys = true
+            install(ContentNegotiation) {
+                json(
+                    Json {
+                        ignoreUnknownKeys = true
                     }
                 )
             }

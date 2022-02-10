@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalComposeWebWidgetsApi::class)
-
 package com.krossovochkin.kweather.features.weatherdetails
 
 import androidx.compose.runtime.Composable
@@ -10,16 +8,8 @@ import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsActi
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsState
 import com.krossovochkin.kweather.weatherdetails.presentation.WeatherDetailsViewModel
 import com.krossovochkin.kweather.weatherdetails.weatherDetailsModule
-import org.jetbrains.compose.common.foundation.layout.Box
-import org.jetbrains.compose.common.foundation.layout.Column
-import org.jetbrains.compose.common.foundation.layout.Row
-import org.jetbrains.compose.common.foundation.layout.fillMaxHeight
-import org.jetbrains.compose.common.foundation.layout.fillMaxWidth
-import org.jetbrains.compose.common.ui.ExperimentalComposeWebWidgetsApi
-import org.jetbrains.compose.common.ui.Modifier
-import org.jetbrains.compose.common.ui.padding
-import org.jetbrains.compose.common.ui.unit.dp
 import org.jetbrains.compose.web.dom.Button
+import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Img
 import org.jetbrains.compose.web.dom.Text
 import org.kodein.di.DI
@@ -50,11 +40,7 @@ fun WeatherDetailsScreen(parentDi: DI) {
 
 @Composable
 private fun LoadingState() {
-    Box(
-        modifier = Modifier.fillMaxWidth().fillMaxHeight(1f)
-    ) {
-        Text("Loading...")
-    }
+    Text("Loading...")
 }
 
 @Composable
@@ -64,7 +50,7 @@ private fun UnknownErrorState(state: WeatherDetailsState.UnknownError) {
 
 @Composable
 private fun WeatherDetailsScreenImpl(
-    weatherDetailsState: WeatherDetailsState?,
+    weatherDetailsState: WeatherDetailsState,
     onAction: (WeatherDetailsAction) -> Unit,
     onDispose: () -> Unit
 ) {
@@ -90,30 +76,28 @@ private fun TodayDataState(
     weatherData: WeatherDetailsState.Data.OneDayWeatherData,
     onAction: (WeatherDetailsAction) -> Unit
 ) {
-    Column {
-        Row(modifier = Modifier.padding(16.dp)) {
-            Text(weatherData.temperatureDayText)
-            Text(weatherData.temperatureNightText)
+    Div {
+        Text(weatherData.temperatureDayText)
+        Text(weatherData.temperatureNightText)
+    }
+    Div {
+        weatherData.temperatureCurrentText?.let { temperatureText ->
+            Text(temperatureText)
         }
-        Row(modifier = Modifier.padding(16.dp)) {
-            weatherData.temperatureCurrentText?.let { temperatureText ->
-                Text(temperatureText)
-            }
-            Img(weatherData.weatherConditionImageUrl)
+        Img(weatherData.weatherConditionImageUrl)
+    }
+    Div {
+        weatherData.temperatureFeelsLikeText?.let { temperatureText ->
+            Text(temperatureText)
         }
-        Row(modifier = Modifier.padding(16.dp)) {
-            weatherData.temperatureFeelsLikeText?.let { temperatureText ->
-                Text(temperatureText)
-            }
-            Text(weatherData.weatherConditionDescription)
+        Text(weatherData.weatherConditionDescription)
+    }
+    Button(
+        attrs = {
+            onClick { onAction(WeatherDetailsAction.OpenSelectCityScreen) }
         }
-        Button(
-            attrs = {
-                onClick { onAction(WeatherDetailsAction.OpenSelectCityScreen) }
-            }
-        ) {
-            Text(changeCityText)
-        }
+    ) {
+        Text(changeCityText)
     }
 }
 
@@ -122,17 +106,12 @@ private fun CityUnknownErrorState(
     state: WeatherDetailsState.CityUnknownError,
     onAction: (WeatherDetailsAction) -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .padding(16.dp),
-    ) {
-        Text(state.cityMissingMessageText)
-        Button(
-            attrs = {
-                onClick { onAction(WeatherDetailsAction.OpenSelectCityScreen) }
-            }
-        ) {
-            Text(state.selectCityButtonText)
+    Text(state.cityMissingMessageText)
+    Button(
+        attrs = {
+            onClick { onAction(WeatherDetailsAction.OpenSelectCityScreen) }
         }
+    ) {
+        Text(state.selectCityButtonText)
     }
 }

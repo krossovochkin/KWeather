@@ -6,6 +6,10 @@ complexity:
   TooManyFunctions:
     active: false
 
+naming:
+  FunctionNaming:
+    active: false
+
 style:
   MagicNumber:
     active: false

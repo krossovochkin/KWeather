@@ -1,6 +1,8 @@
 package com.krossovochkin.presentation
 
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +13,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.scan
 
 abstract class BaseViewModel<StateT, ActionT, ActionResultT>(
-    initialState: StateT
+    initialState: StateT,
+    defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) : ViewModel<StateT, ActionT> {
 
     private val actionResults = MutableSharedFlow<ActionResultT>(
@@ -20,7 +23,7 @@ abstract class BaseViewModel<StateT, ActionT, ActionResultT>(
     )
     private val stateFlow = MutableStateFlow(initialState)
 
-    protected val scope: CoroutineScope = CoroutineScope(SupervisorJob())
+    protected val scope: CoroutineScope = CoroutineScope(SupervisorJob() + defaultDispatcher)
     protected val state: StateT
         get() = stateFlow.value
 

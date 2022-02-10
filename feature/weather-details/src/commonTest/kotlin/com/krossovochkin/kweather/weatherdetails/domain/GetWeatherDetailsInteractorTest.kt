@@ -1,7 +1,7 @@
 package com.krossovochkin.kweather.weatherdetails.domain
 
-import com.krossovochkin.test.runBlockingTest
 import com.krossovochkin.kweather.domain.test.TestCityBuilder
+import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
@@ -18,7 +18,7 @@ class GetWeatherDetailsInteractorTest {
     fun `if no data for given city then throws exception`() {
         val city = TestCityBuilder().build()
 
-        runBlockingTest {
+        runTest {
             assertFails {
                 interactor.get(city)
             }
@@ -31,7 +31,7 @@ class GetWeatherDetailsInteractorTest {
         val weatherDetails = TestWeatherDetailsBuilder().build()
         weatherDetailsRepository.put(city, weatherDetails)
 
-        runBlockingTest {
+        runTest {
             assertEquals(
                 expected = weatherDetails,
                 actual = interactor.get(city)

@@ -7,6 +7,6 @@ object ImageLoader {
 
     @Composable
     fun rememberImagePainter(url: String): Painter {
-        return coil.compose.rememberImagePainter(url)
+        return coil.compose.rememberAsyncImagePainter(url)
     }
 }

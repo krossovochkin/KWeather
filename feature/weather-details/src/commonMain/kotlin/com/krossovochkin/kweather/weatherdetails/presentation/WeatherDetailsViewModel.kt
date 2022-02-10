@@ -12,6 +12,7 @@ import com.krossovochkin.location.LocationProvider
 import com.krossovochkin.navigation.Router
 import com.krossovochkin.presentation.BaseViewModel
 import com.krossovochkin.presentation.ViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 
@@ -25,9 +26,10 @@ class WeatherDetailsViewModelImpl(
     private val router: Router<RouterDestination>,
     private val localizationManager: LocalizationManager<LocalizedStringKey>,
     private val locationProvider: LocationProvider,
+    defaultDispatcher: CoroutineDispatcher,
 ) : BaseViewModel<WeatherDetailsState,
     WeatherDetailsAction,
-    WeatherDetailsActionResult>(WeatherDetailsState.Loading),
+    WeatherDetailsActionResult>(WeatherDetailsState.Loading, defaultDispatcher),
     WeatherDetailsViewModel {
 
     init {
