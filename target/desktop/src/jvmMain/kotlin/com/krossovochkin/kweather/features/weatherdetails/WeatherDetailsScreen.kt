@@ -70,7 +70,7 @@ private fun UnknownErrorState(state: WeatherDetailsState.UnknownError) {
 
 @Composable
 private fun WeatherDetailsScreenImpl(
-    weatherDetailsState: WeatherDetailsState?,
+    weatherDetailsState: WeatherDetailsState,
     onAction: (WeatherDetailsAction) -> Unit,
     onDispose: () -> Unit
 ) {
