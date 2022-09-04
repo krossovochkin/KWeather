@@ -4,5 +4,9 @@ android {
         warningsAsErrors true
         xmlReport false
         htmlReport true
+
+        disable = [
+                "MonochromeLauncherIcon",
+        ]
     }
 }

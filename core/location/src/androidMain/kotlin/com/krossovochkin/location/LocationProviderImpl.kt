@@ -32,9 +32,12 @@ internal actual class LocationProviderImpl(
                     if (isFinished) {
                         return
                     }
+                    val location = locationResult.lastLocation
+                    if (location == null) {
+                        return
+                    }
                     isFinished = true
                     locationClient.removeLocationUpdates(this)
-                    val location = locationResult.lastLocation
                     continuation.resume(
                         Location(
                             latitude = location.latitude,

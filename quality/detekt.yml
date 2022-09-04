@@ -9,6 +9,8 @@ complexity:
 naming:
   FunctionNaming:
     active: false
+  InvalidPackageDeclaration:
+    excludes: ['**/jsMain/**']
 
 style:
   MagicNumber:
