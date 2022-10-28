@@ -1,29 +1,33 @@
 apply from: "../../module_default.gradle"
 apply plugin: "org.jetbrains.kotlin.plugin.serialization"
 
+android {
+    namespace 'com.krossovochkin.kweather.network'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.kodein
-                implementation d.ktor_client_core
-                implementation d.ktor_serialization_json
-                implementation d.ktor_content_negotiation
+                implementation libs.kodein.di
+                implementation libs.ktor.client.core
+                implementation libs.ktor.serialization.kotlinx.json
+                implementation libs.ktor.client.content.negotiation
             }
         }
         androidMain {
             dependencies {
-                implementation d.ktor_client_android
+                implementation libs.ktor.client.android
             }
         }
         jmvMain {
             dependencies {
-                implementation d.ktor_client_java
+                implementation libs.ktor.client.java
             }
         }
         jsMain {
             dependencies {
-                implementation d.ktor_client_js
+                implementation libs.ktor.client.js
             }
         }
     }

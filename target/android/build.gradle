@@ -3,14 +3,16 @@ apply plugin: "kotlin-android"
 apply from: "$rootDir/quality/lint.gradle"
 
 android {
-    compileSdk v.compile_sdk
+    namespace 'com.krossovochkin.kweather'
+
+    compileSdk libs.versions.android.compile.sdk.get().toInteger()
 
     defaultConfig {
         applicationId "com.krossovochkin.kweather"
-        minSdk v.min_sdk
-        targetSdk v.target_sdk
-        versionCode v.version_code
-        versionName v.version_name
+        minSdk libs.versions.android.min.sdk.get().toInteger()
+        targetSdk libs.versions.android.target.sdk.get().toInteger()
+        versionCode libs.versions.app.version.code.get().toInteger()
+        versionName libs.versions.app.version.name.get()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,7 +47,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion v.androidx_compose
+        kotlinCompilerExtensionVersion libs.versions.androidx.compose.compiler.get()
     }
 
     packagingOptions {
@@ -61,28 +63,27 @@ android {
 }
 
 dependencies {
-    implementation d.kotlin_coroutines_core
-    implementation d.kotlin_coroutines_android
+    implementation libs.kotlinx.coroutines.core
+    implementation libs.kotlinx.coroutines.android
 
-    implementation d.project.shared
-    implementation d.project.core_image_loader_android
+    implementation project(":shared")
+    implementation project(":core:image-loader:android")
 
-    implementation d.kodein
+    implementation libs.kodein.di
 
-    implementation d.androidx_core_ktx
-    implementation d.androidx_appcompat
-    implementation d.androidx_compose_foundation
-    implementation d.androidx_compose_material
-    implementation d.androidx_compose_material_icons
-    implementation d.androidx_compose_navigation
-    implementation d.androidx_compose_ui_tooling
-    implementation d.androidx_compose_ui_util
-    implementation d.material_components
-    implementation d.accompanist_pager
-    implementation d.accompanist_pager_indicators
-    implementation d.accompanist_insets
-    implementation d.accompanist_insets_ui
-    implementation d.accompanist_system_ui_controller
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.compose.foundation
+    implementation libs.androidx.compose.material
+    implementation libs.androidx.compose.material.icons.extended
+    implementation libs.androidx.compose.navigation
+    implementation libs.androidx.compose.ui.tooling
+    implementation libs.androidx.compose.ui.util
+    implementation libs.android.material
+    implementation libs.accompanist.pager
+    implementation libs.accompanist.pager.indicators
+    implementation libs.accompanist.insets.ui
+    implementation libs.accompanist.systemuicontroller
 }
 
 String getApiKey() {

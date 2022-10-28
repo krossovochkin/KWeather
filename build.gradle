@@ -1,29 +1,23 @@
-apply plugin: "com.github.ben-manes.versions"
 apply plugin: "io.gitlab.arturbosch.detekt"
 
 buildscript {
-    apply from: 'dependencies.gradle'
-
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
     dependencies {
-        classpath d.gradle_plugin_kotlin
-        classpath d.gradle_plugin_android
-        classpath d.gradle_plugin_sqldelight
-        classpath d.gradle_plugin_kotlin_serialization
-        classpath d.gradle_plugin_versions
-        classpath d.gradle_plugin_detekt
+        classpath libs.gradle.plugin.kotlin
+        classpath libs.gradle.plugin.android
+        classpath libs.gradle.plugin.kotlin.serialization
+        classpath libs.gradle.plugin.detekt
     }
 }
 
 dependencies {
-    detektPlugins d.quality_detekt_formatting
+    detektPlugins libs.detekt.formatting
 }
 task detektAll(type: io.gitlab.arturbosch.detekt.Detekt) {
-    failFast = true
     parallel = true
     setSource(files(projectDir))
     include("**/*.kt")

@@ -1,19 +1,23 @@
 apply from: "../../module_default.gradle"
 
+android {
+    namespace 'com.krossovochkin.kweather.storage'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.kodein
-                implementation d.settings
-                implementation d.settings_coroutines
-                implementation d.kotlin_coroutines_core
+                implementation libs.kodein.di
+                implementation libs.multiplatform.settings
+                implementation libs.multiplatform.settings.coroutines
+                implementation libs.kotlinx.coroutines.core
             }
         }
         androidMain {
             dependencies {
-                implementation d.androidx_preference
-                implementation d.kotlin_coroutines_android
+                implementation libs.androidx.preference.ktx
+                implementation libs.kotlinx.coroutines.android
             }
         }
     }

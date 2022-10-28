@@ -14,7 +14,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.krossovochkin.kweather.feature.citylist.CityListScreen
 import com.krossovochkin.kweather.feature.weatherdetails.WeatherDetailsScreen
@@ -48,30 +47,28 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
 
-                ProvideWindowInsets {
-                    val navController = rememberNavController()
+                val navController = rememberNavController()
 
-                    val di = remember {
-                        DI {
-                            extend(parentDi)
-                            bind<NavController>() with singleton { navController }
-                            import(navigationModule)
-                        }
+                val di = remember {
+                    DI {
+                        extend(parentDi)
+                        bind<NavController>() with singleton { navController }
+                        import(navigationModule)
                     }
+                }
 
-                    NavHost(
-                        navController = navController,
-                        startDestination = RouterDestination.WeatherDetails.route
-                    ) {
-                        composable(RouterDestination.CityList.route) {
-                            CityListScreen(parentDi = di)
-                        }
-                        composable(RouterDestination.WeatherDetails.route) {
-                            WeatherDetailsScreen(parentDi = di)
-                        }
-                        composable(RouterDestination.WeatherMap.route) {
-                            WeatherMapScreen(parentDi = di)
-                        }
+                NavHost(
+                    navController = navController,
+                    startDestination = RouterDestination.WeatherDetails.route
+                ) {
+                    composable(RouterDestination.CityList.route) {
+                        CityListScreen(parentDi = di)
+                    }
+                    composable(RouterDestination.WeatherDetails.route) {
+                        WeatherDetailsScreen(parentDi = di)
+                    }
+                    composable(RouterDestination.WeatherMap.route) {
+                        WeatherMapScreen(parentDi = di)
                     }
                 }
             }

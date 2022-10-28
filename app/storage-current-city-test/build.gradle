@@ -1,11 +1,15 @@
 apply from: "$rootDir/module_default.gradle"
 
+android {
+    namespace 'com.krossovochkin.kweather.storagecurrentcitytest'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.project.app_storage_current_city
-                implementation d.kotlin_coroutines_core
+                implementation project(":app:storage-current-city")
+                implementation libs.kotlinx.coroutines.core
             }
         }
     }

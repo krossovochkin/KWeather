@@ -1,27 +1,31 @@
 apply from: "$rootDir/feature/feature_default.gradle"
 
+android {
+    namespace 'com.krossovochkin.kweather.weatherdetails'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api d.project.app_network
-                api d.project.core_presentation
-                api d.project.app_domain
-                implementation d.project.core_i18n
-                implementation d.project.app_navigation
-                implementation d.project.core_location
-                implementation d.project.app_storage_current_city
-                implementation d.kotlin_datetime
+                api project(":app:network")
+                api project(":core:presentation")
+                api project(":app:domain")
+                implementation project(":core:i18n")
+                implementation project(":app:navigation")
+                implementation project(":core:location")
+                implementation project(":app:storage-current-city")
+                implementation libs.kotlinx.datetime
             }
         }
         commonTest {
             dependencies {
                 implementation kotlin("test")
-                implementation d.project.core_test
-                implementation d.project.app_domain_test
-                implementation d.project.app_storage_current_city_test
-                implementation d.project.core_i18n_test
-                implementation d.project.core_location_test
+                implementation project(":core:test")
+                implementation project(":app:domain-test")
+                implementation project(":app:storage-current-city-test")
+                implementation project(":core:i18n-test")
+                implementation project(":core:location-test")
             }
         }
     }

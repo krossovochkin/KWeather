@@ -1,12 +1,16 @@
 apply from: "../../module_default.gradle"
 
+android {
+    namespace 'com.krossovochkin.kweather.storagecurrentcity'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api d.project.app_domain
-                implementation d.kodein
-                implementation d.project.core_storage
+                api project(":app:domain")
+                implementation libs.kodein.di
+                implementation project(":core:storage")
             }
         }
     }

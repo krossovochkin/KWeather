@@ -1,12 +1,16 @@
 apply from: "$rootDir/module_default.gradle"
 
+android {
+    namespace 'com.krossovochkin.kweather.test'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
                 api kotlin("test")
-                api d.kotlin_coroutines_core
-                api d.kotlin_coroutines_test
+                api libs.kotlinx.coroutines.core
+                api libs.kotlinx.coroutines.test
             }
         }
     }

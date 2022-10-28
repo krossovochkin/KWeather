@@ -7,8 +7,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath d.gradle_plugin_kotlin
-        classpath d.gradle_plugin_jetbrains_compose
+        classpath libs.gradle.plugin.kotlin
+        classpath libs.gradle.plugin.compose
     }
 }
 
@@ -32,7 +32,7 @@ kotlin {
             dependencies {
                 implementation compose.web.core
                 implementation compose.runtime
-                implementation d.project.shared
+                implementation project(":shared")
             }
         }
     }

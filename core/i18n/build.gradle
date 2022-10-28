@@ -1,1 +1,5 @@
 apply from: "../../module_default.gradle"
+
+android {
+    namespace 'com.krossovochkin.kweather.i18n'
+}

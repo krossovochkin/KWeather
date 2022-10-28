@@ -2,11 +2,13 @@ apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
 android {
-    compileSdk v.compile_sdk
+    namespace 'com.krossovochkin.kweather.imageloader'
+
+    compileSdk libs.versions.android.compile.sdk.get().toInteger()
 
     defaultConfig {
-        minSdk v.min_sdk
-        targetSdk v.target_sdk
+        minSdk libs.versions.android.min.sdk.get().toInteger()
+        targetSdk libs.versions.android.target.sdk.get().toInteger()
     }
 
     buildTypes {
@@ -19,11 +21,11 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion v.androidx_compose
+        kotlinCompilerExtensionVersion libs.versions.androidx.compose.compiler.get()
     }
 }
 
 dependencies {
-    implementation d.androidx_compose_foundation
-    implementation d.coil
+    implementation libs.androidx.compose.foundation
+    implementation libs.coil.compose
 }

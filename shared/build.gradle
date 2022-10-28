@@ -6,46 +6,50 @@ repositories {
     }
 }
 
+android {
+    namespace 'com.krossovochkin.kweather.shared'
+}
+
 kotlin {
     sourceSets {
         jvmMain {
             dependencies {
-                api d.project.app_navigation
-                api d.project.core_storage
-                api d.project.core_lifecycle
-                api d.project.core_permission
-                api d.project.feature_city_list
-                api d.project.feature_weather_details
-                api d.project.feature_weather_map
+                api project(":app:navigation")
+                api project(":core:storage")
+                api project(":core:lifecycle")
+                api project(":core:permission")
+                api project(":feature:city-list")
+                api project(":feature:weather-details")
+                api project(":feature:weather-map")
             }
         }
         commonMain {
             dependencies {
-                api d.project.feature_city_list
-                api d.project.feature_weather_details
-                api d.project.feature_weather_map
+                api project(":feature:city-list")
+                api project(":feature:weather-details")
+                api project(":feature:weather-map")
             }
         }
         androidMain {
             dependencies {
-                api d.project.app_navigation
-                api d.project.core_storage
-                api d.project.core_lifecycle
-                api d.project.core_permission
-                api d.project.feature_city_list
-                api d.project.feature_weather_details
-                api d.project.feature_weather_map
+                api project(":app:navigation")
+                api project(":core:storage")
+                api project(":core:lifecycle")
+                api project(":core:permission")
+                api project(":feature:city-list")
+                api project(":feature:weather-details")
+                api project(":feature:weather-map")
             }
         }
         jsMain {
             dependencies {
-                api d.project.app_navigation
-                api d.project.core_storage
-                api d.project.core_lifecycle
-                api d.project.core_permission
-                api d.project.feature_city_list
-                api d.project.feature_weather_details
-                api d.project.feature_weather_map
+                api project(":app:navigation")
+                api project(":core:storage")
+                api project(":core:lifecycle")
+                api project(":core:permission")
+                api project(":feature:city-list")
+                api project(":feature:weather-details")
+                api project(":feature:weather-map")
             }
         }
     }

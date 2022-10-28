@@ -1,17 +1,21 @@
 apply from: "../../module_default.gradle"
 
+android {
+    namespace 'com.krossovochkin.kweather.permission'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.kodein
+                implementation libs.kodein.di
             }
         }
         androidMain {
             dependencies {
-                implementation d.androidx_appcompat
-                implementation d.androidx_activity
-                implementation d.project.core_lifecycle
+                implementation libs.androidx.appcompat
+                implementation libs.androidx.activity.ktx
+                implementation project(":core:lifecycle")
             }
         }
     }

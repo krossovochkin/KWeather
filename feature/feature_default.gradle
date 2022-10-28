@@ -4,14 +4,14 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.kotlin_coroutines_core
-                implementation d.kodein
+                implementation libs.kotlinx.coroutines.core
+                implementation libs.kodein.di
             }
         }
         androidMain {
             dependencies {
-                implementation d.androidx_annotation
-                implementation d.kotlin_coroutines_android
+                implementation libs.androidx.annotation
+                implementation libs.kotlinx.coroutines.android
             }
         }
     }

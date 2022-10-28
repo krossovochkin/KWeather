@@ -6,11 +6,14 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.krossovochkin.lifecycle.Lifecycle
 import com.krossovochkin.permission.Permission
 import com.krossovochkin.permission.PermissionManager
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
+
+private const val INTERVAL_MILLIS = 1_000L
 
 internal actual class LocationProviderImpl(
     private val permissionManager: PermissionManager,
@@ -48,9 +51,10 @@ internal actual class LocationProviderImpl(
             }
 
             locationClient.requestLocationUpdates(
-                LocationRequest.create()
+                LocationRequest.Builder(INTERVAL_MILLIS)
                     .setWaitForAccurateLocation(true)
-                    .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY),
+                    .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
+                    .build(),
                 callback,
                 Looper.getMainLooper()
             )

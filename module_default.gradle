@@ -3,11 +3,11 @@ apply plugin: "com.android.library"
 apply from: "$rootDir/quality/lint.gradle"
 
 android {
-    compileSdk v.compile_sdk
+    compileSdk libs.versions.android.compile.sdk.get().toInteger()
 
     defaultConfig {
-        minSdk v.min_sdk
-        targetSdk v.target_sdk
+        minSdk libs.versions.android.min.sdk.get().toInteger()
+        targetSdk libs.versions.android.target.sdk.get().toInteger()
     }
 
     // Workaround as per https://stackoverflow.com/a/66433024/1533933

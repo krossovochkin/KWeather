@@ -37,7 +37,8 @@ internal class LifecycleImpl(
 
                 override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) =
                     Unit
-            })
+            }
+        )
     }
 
     override fun observeActivity(): Flow<Pair<ActivityState, Activity>> {

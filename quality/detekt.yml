@@ -17,3 +17,9 @@ style:
     active: false
   ReturnCount:
     active: false
+
+formatting:
+  EnumEntryNameCase:
+    active: false
+  Filename:
+    active: false

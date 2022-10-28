@@ -1,15 +1,19 @@
 apply from: "../../module_default.gradle"
 
+android {
+    namespace 'com.krossovochkin.kweather.presentation'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.kotlin_coroutines_core
+                implementation libs.kotlinx.coroutines.core
             }
         }
         androidMain {
             dependencies {
-                implementation d.kotlin_coroutines_android
+                implementation libs.kotlinx.coroutines.android
             }
         }
     }

@@ -1,11 +1,15 @@
 apply from: "$rootDir/module_default.gradle"
 
+android {
+    namespace 'com.krossovochkin.kweather.app.navigation'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api d.project.core_navigation
-                implementation d.kodein
+                api project(":core:navigation")
+                implementation libs.kodein.di
             }
         }
     }

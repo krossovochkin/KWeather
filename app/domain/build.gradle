@@ -1,10 +1,14 @@
 apply from: "../../module_default.gradle"
 
+android {
+    namespace 'com.krossovochkin.kweather.domain'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.kotlin_datetime
+                implementation libs.kotlinx.datetime
             }
         }
     }

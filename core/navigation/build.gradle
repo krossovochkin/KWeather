@@ -1,16 +1,20 @@
 apply from: "../../module_default.gradle"
 
+android {
+    namespace 'com.krossovochkin.kweather.navigation'
+}
+
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation d.kotlin_coroutines_core
+                implementation libs.kotlinx.coroutines.core
             }
         }
         androidMain {
             dependencies {
-                implementation d.kotlin_coroutines_android
-                api d.androidx_compose_navigation
+                implementation libs.kotlinx.coroutines.android
+                api libs.androidx.compose.navigation
             }
         }
     }
