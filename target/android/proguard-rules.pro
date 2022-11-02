@@ -22,3 +22,6 @@
 
 -include "../../proguard-rules/kotlinx_serialization.pro"
 -include "../../proguard-rules/kodein.pro"
+-include "../../proguard-rules/okhttp.pro"
+-include "../../proguard-rules/okio.pro"
+-include "../../proguard-rules/ktor.pro"
