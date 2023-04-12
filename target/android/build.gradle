@@ -50,6 +50,9 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.androidx.compose.compiler.get()
     }
+    kotlin {
+        jvmToolchain(17)
+    }
 
     packagingOptions {
         exclude "META-INF/ktor-client-serialization.kotlin_module"
