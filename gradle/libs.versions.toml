@@ -24,7 +24,7 @@ kodein-di = "7.20.1"
 
 ktor = "2.2.4"
 
-kotlinx-coroutines = "1.7.0-Beta"
+kotlinx-coroutines = "1.6.4"
 
 google-android-play-services-location = "21.0.1"
 
