@@ -32,7 +32,7 @@ androidx-compose-navigation = "2.6.0-alpha09"
 
 androidx-appcompat = "1.7.0-alpha02"
 
-androidx-activity = "1.8.0-alpha02"
+androidx-activity = "1.7.0"
 
 multiplatform-settings = "1.0.0"
 
@@ -40,7 +40,7 @@ androidx-preference = "1.2.0"
 
 androidx-annotation = "1.7.0-alpha02"
 
-androidx-core = "1.12.0-alpha01"
+androidx-core = "1.11.0-alpha02"
 
 androidx-compose-foundation = "1.5.0-alpha02"
 
@@ -48,7 +48,7 @@ androidx-compose-material = "1.5.0-alpha02"
 
 androidx-compose-ui = "1.5.0-alpha02"
 
-google-android-material = "1.10.0-alpha01"
+google-android-material = "1.9.0-beta01"
 
 google-accompanist = "0.31.0-alpha"
 
