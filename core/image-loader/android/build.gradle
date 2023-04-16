@@ -23,6 +23,9 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion libs.versions.androidx.compose.compiler.get()
     }
+    kotlin {
+        jvmToolchain(17)
+    }
 }
 
 dependencies {

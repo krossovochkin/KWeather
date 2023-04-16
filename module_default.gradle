@@ -28,6 +28,10 @@ android {
             assets.srcDirs = ['src/androidMain/assets']
         }
     }
+
+    kotlin {
+        jvmToolchain(17)
+    }
 }
 
 kotlin {
