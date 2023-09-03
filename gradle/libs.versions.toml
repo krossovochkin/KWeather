@@ -52,7 +52,7 @@ gradle-plugin-android = "8.3.0-alpha01"
 ##                 ⬆ = "8.2.0-beta01"
 ##                 ⬆ = "8.3.0-alpha01"
 
-gradle-plugin-compose = "1.5.10-dev1177"
+gradle-plugin-compose = "1.5.0"
 ##                 ⬆ = "1.4.1-rc01"
 ##                 ⬆ = "1.4.1"
 ##                 ⬆ = "1.4.2"
