@@ -27,7 +27,8 @@ class WeatherDetailsViewModelImpl(
     private val localizationManager: LocalizationManager<LocalizedStringKey>,
     private val locationProvider: LocationProvider,
     defaultDispatcher: CoroutineDispatcher,
-) : BaseViewModel<WeatherDetailsState,
+) : BaseViewModel<
+    WeatherDetailsState,
     WeatherDetailsAction,
     WeatherDetailsActionResult>(WeatherDetailsState.Loading, defaultDispatcher),
     WeatherDetailsViewModel {
