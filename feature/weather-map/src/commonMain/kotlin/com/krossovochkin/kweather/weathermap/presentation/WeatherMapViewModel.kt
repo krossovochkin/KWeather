@@ -17,7 +17,8 @@ class WeatherMapViewModelImpl(
     private val getWeatherMapDataInteractor: GetWeatherMapDataInteractor,
     private val localizationManager: LocalizationManager<LocalizedStringKey>,
     private val router: Router<RouterDestination>,
-) : BaseViewModel<WeatherMapState,
+) : BaseViewModel<
+    WeatherMapState,
     WeatherMapAction,
     WeatherMapActionResult>(WeatherMapState.Loading),
     WeatherMapViewModel {
