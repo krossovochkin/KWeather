@@ -30,7 +30,8 @@ class WeatherDetailsViewModelImpl(
 ) : BaseViewModel<
     WeatherDetailsState,
     WeatherDetailsAction,
-    WeatherDetailsActionResult>(WeatherDetailsState.Loading, defaultDispatcher),
+    WeatherDetailsActionResult
+    >(WeatherDetailsState.Loading, defaultDispatcher),
     WeatherDetailsViewModel {
 
     init {
