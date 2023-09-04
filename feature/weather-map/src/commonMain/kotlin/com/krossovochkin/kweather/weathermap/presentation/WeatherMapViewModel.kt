@@ -20,7 +20,8 @@ class WeatherMapViewModelImpl(
 ) : BaseViewModel<
     WeatherMapState,
     WeatherMapAction,
-    WeatherMapActionResult>(WeatherMapState.Loading),
+    WeatherMapActionResult
+    >(WeatherMapState.Loading),
     WeatherMapViewModel {
 
     init {
