@@ -12,7 +12,7 @@ app-version-code = "1"
 
 app-version-name = "1.0"
 
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 ##  ⬆ = "1.8.20-Beta"
 ##  ⬆ = "1.8.20-RC"
 ##  ⬆ = "1.8.20-RC2"
