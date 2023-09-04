@@ -26,7 +26,7 @@ val networkModule = DI.Module("WeatherApiModule") {
     }
 
     bind<HttpClient>() with singleton {
-        HttpClient() {
+        HttpClient {
             install(ContentNegotiation) {
                 json(
                     Json {
