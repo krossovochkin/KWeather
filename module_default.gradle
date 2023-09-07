@@ -35,10 +35,11 @@ android {
 }
 
 kotlin {
-    android()
+    androidTarget()
     jvm()
     js(IR) {
         useCommonJs()
         browser()
+        binaries.executable()
     }
 }
