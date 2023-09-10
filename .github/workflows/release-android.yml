@@ -35,6 +35,11 @@ jobs:
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
           API_KEY: ${{ secrets.API_KEY }}
           MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: release
+          path: target/android/build/outputs/mapping/
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
