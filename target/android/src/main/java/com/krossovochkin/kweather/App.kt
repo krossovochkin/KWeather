@@ -16,7 +16,7 @@ import org.kodein.di.instance
 import java.io.File
 import java.lang.System
 import java.lang.Thread
-import kotlin.io.File.writeText
+import kotlin.io.writeText
 
 class App : Application(), DIAware {
 
