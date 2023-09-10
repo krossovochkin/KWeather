@@ -6,9 +6,6 @@ import com.krossovochkin.kweather.network.networkModule
 import com.krossovochkin.lifecycle.Lifecycle
 import com.krossovochkin.permission.PermissionManager
 import com.krossovochkin.storage.storageModule
-import java.lang.System
-import java.lang.Thread
-import kotlin.io.File.writeText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -16,6 +13,9 @@ import kotlinx.coroutines.launch
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.instance
+import java.lang.System
+import java.lang.Thread
+import kotlin.io.File.writeText
 
 class App : Application(), DIAware {
 
@@ -32,9 +32,7 @@ class App : Application(), DIAware {
 
     override fun onCreate() {
         super.onCreate()
-
         initCrashHandler()
-        
         applicationScope.launch {
             permissionManager.init()
         }
