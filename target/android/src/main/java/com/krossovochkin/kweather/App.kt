@@ -1,10 +1,14 @@
 package com.krossovochkin.kweather
 
 import android.app.Application
+import android.util.Log
 import com.krossovochkin.kweather.network.networkModule
 import com.krossovochkin.lifecycle.Lifecycle
 import com.krossovochkin.permission.PermissionManager
 import com.krossovochkin.storage.storageModule
+import java.lang.System
+import java.lang.Thread
+import kotlin.io.File.writeText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -28,9 +32,21 @@ class App : Application(), DIAware {
 
     override fun onCreate() {
         super.onCreate()
+
+        initCrashHandler()
+        
         applicationScope.launch {
             permissionManager.init()
         }
         lifecycle.init()
+    }
+
+    private fun initCrashHandler() {
+        Thread.setDefaultUncaughtExceptionHandler { _, e ->
+            val message = e.message + "\n" +
+                Log.getStackTraceString(e)
+            val file = File(externalCacheDir, "${System.currentTimeMillis()}")
+            file.writeText(message)
+        }
     }
 }
