@@ -20,4 +20,4 @@ jobs:
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
           API_KEY: ${{ secrets.API_KEY }}
           MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
-      - uses: peter-evans/create-pull-request@v4
+      - uses: peter-evans/create-pull-request@v6
