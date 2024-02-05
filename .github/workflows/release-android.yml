@@ -36,7 +36,7 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
       - name: Archive artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release
           path: target/android/build/outputs/mapping/
