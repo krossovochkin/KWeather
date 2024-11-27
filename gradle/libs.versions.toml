@@ -61,7 +61,7 @@ detekt = "1.23.7"
 
 [plugins]
 
-jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "gradle-plugin-compose" }
 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
