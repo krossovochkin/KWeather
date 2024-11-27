@@ -59,6 +59,12 @@ coil-kt = "2.7.0"
 
 detekt = "1.23.7"
 
+[plugins]
+
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
 [libraries]
 
 gradle-plugin-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -70,6 +76,8 @@ gradle-plugin-kotlin-serialization = { group = "org.jetbrains.kotlin", name = "k
 gradle-plugin-detekt = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 
 gradle-plugin-compose = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "gradle-plugin-compose" }
+
+jetbrains-compose-runtime = { group ="org.jetbrains.compose.runtime", name="runtime", version.ref = 'gradle-plugin-compose' }
 
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
