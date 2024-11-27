@@ -1,5 +1,10 @@
 apply plugin: "io.gitlab.arturbosch.detekt"
 
+plugins {
+    alias(libs.plugins.jetbrains.compose) apply false
+    alias(libs.plugins.compose.compiler) apply false
+}
+
 buildscript {
     repositories {
         google()
@@ -12,11 +17,6 @@ buildscript {
         classpath libs.gradle.plugin.kotlin.serialization
         classpath libs.gradle.plugin.detekt
     }
-}
-
-plugins {
-    alias(libs.plugins.jetbrains.compose) apply false
-    alias(libs.plugins.compose.compiler) apply false
 }
 
 dependencies {
