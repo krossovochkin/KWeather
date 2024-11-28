@@ -13,7 +13,7 @@ buildscript {
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt")
+    id("io.gitlab.arturbosch.detekt") version libs.versions.detekt
     alias(libs.plugins.jetbrains.compose) apply false
     alias(libs.plugins.compose.compiler) apply false
 }
