@@ -1,11 +1,11 @@
-apply plugin: "kotlin-multiplatform"
-apply plugin: "com.android.library"
-apply from: "$rootDir/quality/lint.gradle"
-
 plugins {
+    id("kotlin-multiplatform")
+    id("com.android.library")
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.compose.compiler)
 }
+
+apply from: "$rootDir/quality/lint.gradle"
 
 android {
     compileSdk libs.versions.android.compile.sdk.get().toInteger()
