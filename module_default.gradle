@@ -1,7 +1,5 @@
 apply plugin: "kotlin-multiplatform"
 apply plugin: "com.android.library"
-apply plugin: libs.plugins.jetbrains.compose.get().getPluginId()
-apply plugin: libs.plugins.compose.compiler.get().getPluginId()
 apply from: "$rootDir/quality/lint.gradle"
 
 android {
