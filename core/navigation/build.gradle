@@ -15,7 +15,7 @@ kotlin {
             dependencies {
                 implementation libs.kotlinx.coroutines.android
                 api libs.androidx.compose.navigation
-                implementation jetbrains.compose.runtime
+                implementation libs.jetbrains.compose.runtime
             }
         }
     }
