@@ -2,61 +2,68 @@
 
 [versions]
 
-android-compile-sdk = "34"
+android-compile-sdk = "35"
 
 android-min-sdk = "24"
 
-android-target-sdk = "34"
+android-target-sdk = "35"
 
 app-version-code = "1"
 
 app-version-name = "1.0"
 
-kotlin = "1.9.22"
+kotlin = "2.0.21"
 
-gradle-plugin-android = "8.4.0-alpha07"
+gradle-plugin-android = "8.9.0-alpha03"
 
-gradle-plugin-compose = "1.5.12"
+gradle-plugin-compose = "1.7.1"
 
-kotlinx-datetime = "0.5.0"
+kotlinx-datetime = "0.6.1"
 
-kodein-di = "7.21.2"
+kodein-di = "7.22.0"
 
-ktor = "2.3.8"
+ktor = "2.3.13"
+##⬆ = "3.0.1"
 
-kotlinx-coroutines = "1.7.3"
+kotlinx-coroutines = "1.9.0"
 
-google-android-play-services-location = "21.1.0"
+google-android-play-services-location = "21.3.0"
 
-androidx-compose-navigation = "2.8.0-alpha01"
+androidx-compose-navigation = "2.9.0-alpha03"
 
-androidx-appcompat = "1.7.0-alpha03"
+androidx-appcompat = "1.7.0"
 
-androidx-activity = "1.9.0-alpha02"
+androidx-activity = "1.10.0-beta01"
 
-multiplatform-settings = "1.1.1"
+multiplatform-settings = "1.2.0"
 
 androidx-preference = "1.2.1"
 
-androidx-annotation = "1.7.1"
+androidx-annotation = "1.9.1"
 
-androidx-core = "1.13.0-alpha04"
+androidx-core = "1.15.0"
 
-androidx-compose-foundation = "1.6.0"
+androidx-compose-foundation = "1.7.5"
 
-androidx-compose-material = "1.5.4"
+androidx-compose-material = "1.7.5"
 
-androidx-compose-ui = "1.6.0"
+androidx-compose-ui = "1.7.5"
 
-google-android-material = "1.12.0-alpha03"
+google-android-material = "1.13.0-alpha08"
 
-google-accompanist = "0.35.0-alpha"
+google-accompanist = "0.36.0"
 
-androidx-compose-compiler = "1.5.8"
+androidx-compose-compiler = "1.5.15"
 
-coil-kt = "2.5.0"
+coil-kt = "2.7.0"
 
-detekt = "1.23.5"
+detekt = "1.23.7"
+
+[plugins]
+
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "gradle-plugin-compose" }
+
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 [libraries]
 
@@ -69,6 +76,8 @@ gradle-plugin-kotlin-serialization = { group = "org.jetbrains.kotlin", name = "k
 gradle-plugin-detekt = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 
 gradle-plugin-compose = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "gradle-plugin-compose" }
+
+jetbrains-compose-runtime = { group ="org.jetbrains.compose.runtime", name="runtime", version.ref = 'gradle-plugin-compose' }
 
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
