@@ -36,6 +36,7 @@ kotlin {
                 implementation compose.web.core
                 implementation compose.runtime
                 implementation libs.kodein.di
+                implementation libs.kotlinx.coroutines.core
                 implementation project(":shared")
             }
         }
