@@ -13,6 +13,7 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
       - run: chmod +x gradlew
+      - run: ./gradlew wrapper --gradle-version latest
       - run: ./gradlew refreshVersions
         env:
           RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
