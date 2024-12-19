@@ -6,7 +6,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 
-private const val BASE_URL = "https://api.openweathermap.org/data/2.5"
+private const val BASE_URL = "https://api.openweathermap.org/data"
 private const val UNITS = "metric"
 
 class WeatherApiClient(
@@ -16,7 +16,7 @@ class WeatherApiClient(
 
     override suspend fun getCityList(query: String): CityListDto {
         return client
-            .get("$BASE_URL/find?q=$query&appid=$apiKey&units=$UNITS")
+            .get("$BASE_URL/2.5/find?q=$query&appid=$apiKey&units=$UNITS")
             .body()
     }
 
@@ -25,7 +25,7 @@ class WeatherApiClient(
         longitude: Double
     ): WeatherDetailsDto {
         return client
-            .get("$BASE_URL/onecall?lat=$latitude&lon=$longitude&appid=$apiKey&units=$UNITS")
+            .get("$BASE_URL/3.0/onecall?lat=$latitude&lon=$longitude&appid=$apiKey&units=$UNITS")
             .body()
     }
 }
